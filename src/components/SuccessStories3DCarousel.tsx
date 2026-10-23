@@ -148,7 +148,7 @@ export const SuccessStories3DCarousel: React.FC<SuccessStories3DCarouselProps> =
               {/* Bottom: Verifiable Metrics Matrix */}
               <div>
                 <div className="grid grid-cols-3 gap-3 p-4 rounded-2xl bg-[#070512]/90 border border-[#2a1e4a] mb-6">
-                  {current.metrics.map((metric: { stat: string; label: string }, i: number) => (
+                  {current.metrics.map((metric, i) => (
                     <div key={i} className="text-center">
                       <div className="text-xl sm:text-2xl font-syne font-extrabold text-[#00FF9D] font-mono-num leading-tight">
                         {metric.stat}
@@ -208,7 +208,7 @@ export const SuccessStories3DCarousel: React.FC<SuccessStories3DCarouselProps> =
                     <strong className="text-white">Technical Architecture:</strong> Zero-bloat modern React architecture, pre-filled WhatsApp conversion links, sub-second 4G/5G mobile load times, and structured local SEO schema.
                   </p>
                   <div className="pt-2 flex flex-wrap gap-2">
-                    {current.tags.map((t: string, idx: number) => (
+                    {current.tags.map((t, idx) => (
                       <span key={idx} className="px-2.5 py-1 rounded-lg bg-[#1a1436] text-[#FFB800] text-xs font-mono-num border border-[#2a1e4a]">
                         #{t}
                       </span>
@@ -244,7 +244,7 @@ export const SuccessStories3DCarousel: React.FC<SuccessStories3DCarouselProps> =
 
             {/* Pagination Thumbnails */}
             <div className="flex items-center gap-2">
-              {SUCCESS_STORIES.map((s: SuccessStory, idx: number) => (
+              {SUCCESS_STORIES.map((s, idx) => (
                 <button
                   key={s.id}
                   onClick={() => {

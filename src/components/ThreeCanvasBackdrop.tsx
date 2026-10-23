@@ -38,11 +38,9 @@ export const ThreeCanvasBackdrop: React.FC = () => {
     const colors = new Float32Array(particleCount * 3);
     const scales = new Float32Array(particleCount);
 
-    const goldColor = new THREE.Color('#F59E0B');
-    const roseColor = new THREE.Color('#F43F5E');
-    const magentaColor = new THREE.Color('#D946EF');
-    const violetColor = new THREE.Color('#8B5CF6');
-    const emeraldColor = new THREE.Color('#10B981');
+    const goldColor = new THREE.Color('#FFB800');
+    const magentaColor = new THREE.Color('#EC4899');
+    const emeraldColor = new THREE.Color('#00FF9D');
 
     for (let i = 0; i < particleCount; i++) {
       // Cylindrical / spherical spread across scene
@@ -51,9 +49,9 @@ export const ThreeCanvasBackdrop: React.FC = () => {
       positions[i3 + 1] = (Math.random() - 0.5) * 120;
       positions[i3 + 2] = (Math.random() - 0.5) * 100;
 
-      // Color interpolation across vibrant palette
-      const r = Math.random();
-      const col = r < 0.25 ? goldColor : r < 0.5 ? roseColor : r < 0.7 ? magentaColor : r < 0.85 ? violetColor : emeraldColor;
+      // Color interpolation
+      const choice = Math.random();
+      const col = choice < 0.45 ? goldColor : choice < 0.8 ? magentaColor : emeraldColor;
       colors[i3] = col.r;
       colors[i3 + 1] = col.g;
       colors[i3 + 2] = col.b;
@@ -72,20 +70,20 @@ export const ThreeCanvasBackdrop: React.FC = () => {
     if (ctx) {
       const gradient = ctx.createRadialGradient(16, 16, 0, 16, 16, 16);
       gradient.addColorStop(0, 'rgba(255,255,255,1)');
-      gradient.addColorStop(0.3, 'rgba(244,63,94,0.9)');
-      gradient.addColorStop(1, 'rgba(255,255,255,0)');
+      gradient.addColorStop(0.3, 'rgba(255,184,0,0.85)');
+      gradient.addColorStop(1, 'rgba(0,0,0,0)');
       ctx.fillStyle = gradient;
       ctx.fillRect(0, 0, 32, 32);
     }
     const texture = new THREE.CanvasTexture(canvas);
 
     const material = new THREE.PointsMaterial({
-      size: 4.2,
+      size: 3.4,
       map: texture,
       vertexColors: true,
       transparent: true,
-      opacity: 0.85,
-      blending: THREE.NormalBlending,
+      opacity: 0.8,
+      blending: THREE.AdditiveBlending,
       depthWrite: false
     });
 
@@ -95,22 +93,22 @@ export const ThreeCanvasBackdrop: React.FC = () => {
     // Subtle 3D Geometric Floating Icosahedron Wireframe Core (Solar Gold)
     const icoGeo = new THREE.IcosahedronGeometry(22, 1);
     const icoMat = new THREE.MeshBasicMaterial({
-      color: 0xF59E0B,
+      color: 0xFFB800,
       wireframe: true,
       transparent: true,
-      opacity: 0.22
+      opacity: 0.12
     });
     const icoMesh = new THREE.Mesh(icoGeo, icoMat);
     icoMesh.position.set(30, 5, -20);
     scene.add(icoMesh);
 
-    // Subtle second icosahedron (Hot Rose)
+    // Subtle second icosahedron (Hot Magenta)
     const icoGeo2 = new THREE.IcosahedronGeometry(14, 1);
     const icoMat2 = new THREE.MeshBasicMaterial({
-      color: 0xF43F5E,
+      color: 0xEC4899,
       wireframe: true,
       transparent: true,
-      opacity: 0.18
+      opacity: 0.09
     });
     const icoMesh2 = new THREE.Mesh(icoGeo2, icoMat2);
     icoMesh2.position.set(-35, -15, -30);

@@ -5,7 +5,6 @@ import {
   ArrowRight, Check, Eye
 } from 'lucide-react';
 import { INDUSTRIES } from '../data/siteData';
-import { IndustryItem } from '../types';
 
 interface IndustriesSectionProps {
   onSelectIndustry: (industryName: string) => void;
@@ -32,7 +31,7 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({
 
   const filteredIndustries = activeFilter === 'all' 
     ? INDUSTRIES 
-    : INDUSTRIES.filter((i: IndustryItem) => {
+    : INDUSTRIES.filter(i => {
         if (activeFilter === 'salon-spa') return i.id === 'salon-spa';
         if (activeFilter === 'luxury') return ['jewellery', 'real-estate'].includes(i.id);
         if (activeFilter === 'wellness') return ['fitness', 'clinic', 'coaching'].includes(i.id);
@@ -87,7 +86,7 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({
 
         {/* Dynamic Industries Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredIndustries.map((ind: IndustryItem) => (
+          {filteredIndustries.map((ind) => (
             <div
               key={ind.id}
               className="bg-[#0b0c1a] rounded-3xl p-7 border border-[#231b3e] hover:border-[#FFB800]/50 transition-all duration-300 flex flex-col justify-between hover:shadow-[0_15px_40px_rgba(255,184,0,0.15)] group hover:-translate-y-1"
@@ -114,7 +113,7 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({
 
                 {/* Features Checklist */}
                 <div className="space-y-1.5 mb-6 pt-3 border-t border-[#1e1935]">
-                  {ind.features.map((f: string, idx: number) => (
+                  {ind.features.map((f, idx) => (
                     <div key={idx} className="flex items-center gap-2 text-xs text-[#cbd5e1] font-space">
                       <Check className="w-3.5 h-3.5 text-[#00FF9D] shrink-0" />
                       <span>{f}</span>

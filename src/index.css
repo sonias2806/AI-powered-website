@@ -7,8 +7,8 @@
   }
   
   body {
-    background-color: #fff6f3;
-    color: #0f172a;
+    background-color: #08070e;
+    color: #f1f4fb;
     overflow-x: hidden;
   }
 }
@@ -27,217 +27,142 @@
   font-variant-numeric: tabular-nums;
 }
 
-/* Award-Winning Radiant Frosted Glassmorphism Utilities */
-.glass-panel-luxury {
-  background: rgba(255, 255, 255, 0.82);
+/* 3D Transform & Perspective Utilities */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.perspective-1200 {
+  perspective: 1200px;
+}
+
+.perspective-1600 {
+  perspective: 1600px;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* Vibrant Cyber & Luxury Glassmorphic Effects */
+.glass-panel {
+  background: rgba(18, 14, 32, 0.78);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.glass-panel-glow {
+  background: rgba(22, 16, 40, 0.85);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 20px 50px -10px rgba(244, 63, 94, 0.1), 0 4px 16px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(255, 184, 0, 0.35);
+  box-shadow: 0 0 35px -5px rgba(255, 184, 0, 0.22);
 }
 
-.glass-panel-amber {
-  background: rgba(255, 251, 240, 0.88);
+.glass-panel-magenta {
+  background: rgba(26, 14, 38, 0.82);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(251, 191, 36, 0.5);
-  box-shadow: 0 15px 40px -10px rgba(245, 158, 11, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(236, 72, 153, 0.35);
+  box-shadow: 0 0 35px -5px rgba(236, 72, 153, 0.2);
 }
 
-.glass-panel-violet {
-  background: rgba(253, 248, 255, 0.88);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(192, 132, 252, 0.5);
-  box-shadow: 0 15px 40px -10px rgba(168, 85, 247, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+.glow-border {
+  position: relative;
 }
 
-.glass-panel-rose {
-  background: rgba(255, 245, 247, 0.88);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(251, 113, 133, 0.5);
-  box-shadow: 0 15px 40px -10px rgba(244, 63, 94, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+.glow-border::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 184, 0, 0.75), transparent 45%, rgba(236, 72, 153, 0.7));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
-.glass-panel-cyan {
-  background: rgba(240, 253, 255, 0.88);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(103, 232, 249, 0.5);
-  box-shadow: 0 15px 40px -10px rgba(6, 182, 212, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-}
-
-/* Multi-Hue Gradient Text (Optimized for Vivid Colorful Aesthetic) */
-.gradient-text-rainbow {
-  background: linear-gradient(135deg, #e11d48 0%, #c026d3 30%, #7c3aed 60%, #ea580c 85%, #d97706 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gradient-text-amber {
-  background: linear-gradient(135deg, #b45309 0%, #ea580c 50%, #e11d48 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gradient-text-cyan {
-  background: linear-gradient(135deg, #0284c7 0%, #0891b2 50%, #059669 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.gradient-text-violet {
-  background: linear-gradient(135deg, #7c3aed 0%, #c026d3 50%, #db2777 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Radiant Cosmic Grid Background (Colorful Subtle Mesh) */
-.bg-cyber-grid {
-  background-size: 44px 44px;
-  background-image: 
-    linear-gradient(to right, rgba(244, 63, 94, 0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(168, 85, 247, 0.08) 1px, transparent 1px);
-}
-
-.bg-dot-matrix {
-  background-image: radial-gradient(rgba(244, 63, 94, 0.22) 1.2px, transparent 1.2px);
-  background-size: 28px 28px;
-}
-
-/* Dynamic Colorful Radial Aura Meshes */
-.aura-cosmic {
-  background: radial-gradient(circle at 50% 20%, rgba(255, 184, 0, 0.35), rgba(244, 63, 94, 0.3) 40%, rgba(168, 85, 247, 0.25) 70%, transparent 90%);
-}
-
-.aura-emerald {
-  background: radial-gradient(circle at 50% 20%, rgba(16, 185, 129, 0.3), rgba(6, 182, 212, 0.25) 40%, rgba(255, 184, 0, 0.2) 70%, transparent 90%);
-}
-
-.aura-sunset {
-  background: radial-gradient(circle at 50% 20%, rgba(244, 63, 94, 0.35), rgba(251, 146, 60, 0.3) 40%, rgba(192, 132, 252, 0.2) 70%, transparent 90%);
-}
-
-/* Animations */
-@keyframes float-slow {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(30px, -40px) scale(1.08);
-  }
-  66% {
-    transform: translate(-25px, 20px) scale(0.95);
-  }
-}
-
-@keyframes float-reverse {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  33% {
-    transform: translate(-35px, 30px) scale(1.1);
-  }
-  66% {
-    transform: translate(25px, -30px) scale(0.92);
-  }
-}
-
-@keyframes pulse-glow {
-  0%, 100% {
-    opacity: 0.55;
-  }
-  50% {
-    opacity: 0.9;
-  }
-}
-
-@keyframes spin-slow {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes stage-pulse {
-  0%, 100% {
-    transform: scale(1) rotate(0deg);
-    opacity: 0.6;
-  }
-  50% {
-    transform: scale(1.15) rotate(180deg);
-    opacity: 0.9;
-  }
-}
-
-@keyframes pedestal-glow {
-  0%, 100% {
-    opacity: 0.7;
-    transform: scaleX(1) scaleY(1);
-    box-shadow: 0 0 70px 25px rgba(245, 158, 11, 0.45), 0 0 120px 40px rgba(236, 72, 153, 0.3);
-  }
-  50% {
-    opacity: 1;
-    transform: scaleX(1.08) scaleY(1.05);
-    box-shadow: 0 0 90px 35px rgba(245, 158, 11, 0.65), 0 0 150px 60px rgba(139, 92, 246, 0.4);
-  }
-}
-
-@keyframes specular-sheen {
-  0% {
-    transform: translateX(-150%) skewX(-20deg);
-  }
-  50%, 100% {
-    transform: translateX(250%) skewX(-20deg);
-  }
-}
-
-.animate-float-slow {
-  animation: float-slow 16s ease-in-out infinite;
-}
-
-.animate-float-reverse {
-  animation: float-reverse 18s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 7s ease-in-out infinite;
-}
-
-.animate-spin-slow {
-  animation: spin-slow 35s linear infinite;
-}
-
-.animate-stage-pulse {
-  animation: stage-pulse 10s ease-in-out infinite;
-}
-
-.animate-pedestal-glow {
-  animation: pedestal-glow 4s ease-in-out infinite;
-}
-
-.animate-specular-sheen {
-  animation: specular-sheen 4s ease-in-out infinite;
+.glow-border-violet::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.8), transparent 45%, rgba(236, 72, 153, 0.7));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
 
 /* Custom vibrant scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #fff0ed;
+  background: #08070e;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #f59e0b, #ec4899, #8b5cf6);
+  background: #2a1e4a;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #fde047, #f43f5e, #a855f7);
+  background: #FFB800;
+}
+
+/* Radiant Cosmic Grid Background */
+.bg-cyber-grid {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+.bg-dot-matrix {
+  background-image: radial-gradient(rgba(255, 184, 0, 0.12) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Dynamic Radial Aura Meshes */
+.aura-cosmic {
+  background: radial-gradient(circle at 50% 20%, rgba(255, 184, 0, 0.18), rgba(236, 72, 153, 0.14) 40%, rgba(139, 92, 246, 0.08) 70%, transparent 90%);
+}
+
+.aura-emerald {
+  background: radial-gradient(circle at 50% 20%, rgba(0, 255, 157, 0.16), rgba(6, 182, 212, 0.14) 40%, rgba(255, 184, 0, 0.08) 70%, transparent 90%);
+}
+
+.aura-sunset {
+  background: radial-gradient(circle at 50% 20%, rgba(244, 63, 94, 0.18), rgba(255, 184, 0, 0.15) 40%, rgba(168, 85, 247, 0.08) 70%, transparent 90%);
+}
+
+/* Shimmer animation */
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.5s infinite;
+}
+
+/* Subtle float animation */
+@keyframes subtle-float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(0.5deg); }
+}
+
+.animate-float {
+  animation: subtle-float 6s ease-in-out infinite;
 }

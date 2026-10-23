@@ -1,132 +1,106 @@
 import React from 'react';
-import { Check, ArrowRight, MessageSquare, Sparkles } from 'lucide-react';
-import { PROCESS_STEPS, CONTACT_CONFIG } from '../data/siteData';
+import { MessageSquare, Palette, Code, Rocket, Clock, CheckCircle } from 'lucide-react';
 
-interface HowItWorksSectionProps {
-  onOpenConsultation?: () => void;
-}
-
-export const HowItWorksSection: React.FC<HowItWorksSectionProps> = ({ onOpenConsultation }) => {
-  const stepColors = [
+export const HowItWorksSection: React.FC = () => {
+  const steps = [
     {
-      text: 'text-rose-600',
-      badge: 'border-rose-200 text-rose-700 bg-rose-50',
-      glow: 'hover:border-rose-300 shadow-rose-500/10'
+      step: '01',
+      title: 'Brief On WhatsApp',
+      desc: 'Share your business name, core services, location, photos, and preferences via a quick WhatsApp chat or 2-minute questionnaire.',
+      time: '15 Mins Sprint',
+      icon: <MessageSquare className="w-5 h-5 text-[#FFB800]" />,
+      accent: 'border-[#FFB800]',
+      color: 'text-[#FFB800]'
     },
     {
-      text: 'text-amber-600',
-      badge: 'border-amber-200 text-amber-700 bg-amber-50',
-      glow: 'hover:border-amber-300 shadow-amber-500/10'
+      step: '02',
+      title: 'Choose 3D Flow',
+      desc: 'Pick your preferred visual aesthetic, brand colors, and layout structure from tailored interactive mockups engineered for your industry.',
+      time: 'Same-Hour Selection',
+      icon: <Palette className="w-5 h-5 text-[#EC4899]" />,
+      accent: 'border-[#EC4899]',
+      color: 'text-[#EC4899]'
     },
     {
-      text: 'text-purple-600',
-      badge: 'border-purple-200 text-purple-700 bg-purple-50',
-      glow: 'hover:border-purple-300 shadow-purple-500/10'
+      step: '03',
+      title: '24h Native Build',
+      desc: 'Your site is built using high-velocity modern web stacks, zero builder bloat, optimized for 99+ Core Web Vitals and local Google ranking.',
+      time: '24 Hours Delivery',
+      icon: <Code className="w-5 h-5 text-[#8B5CF6]" />,
+      accent: 'border-[#8B5CF6]',
+      color: 'text-[#8B5CF6]'
+    },
+    {
+      step: '04',
+      title: 'Go Live & Convert',
+      desc: 'Review live on your smartphone, connect your custom domain and WhatsApp hotline, and begin closing direct walk-in customers.',
+      time: 'Instant ROI',
+      icon: <Rocket className="w-5 h-5 text-[#00FF9D]" />,
+      accent: 'border-[#00FF9D]',
+      color: 'text-[#00FF9D]'
     }
   ];
 
   return (
-    <section id="process" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden border-t border-b border-rose-200/50">
-      {/* Colorful Section Lighting */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-gradient-to-r from-amber-400/20 via-rose-500/20 to-purple-500/20 rounded-full blur-[140px]" />
-      </div>
+    <section id="how-it-works" className="w-full py-24 px-4 sm:px-6 lg:px-8 bg-[#07060d] relative overflow-hidden">
+      {/* Background ambient lighting */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-r from-[#FFB800]/10 via-[#EC4899]/10 to-[#8B5CF6]/10 rounded-full blur-[160px] pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto relative z-10">
+      <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/85 border border-rose-200 text-xs font-bold uppercase tracking-wider text-rose-700 mb-4 backdrop-blur-xl shadow-md shadow-rose-500/10">
-            <Sparkles className="w-3.5 h-3.5 text-amber-500" />
-            <span>Clear &amp; Predictable Workflow · 3-5 Days Launch</span>
+        <div className="flex flex-col items-center text-center mb-16">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#140e29] border border-[#FFB800]/30 text-xs font-space font-medium text-[#FFB800] mb-4 shadow-lg shadow-[#FFB800]/10">
+            <span className="w-2 h-2 rounded-full bg-[#00FF9D] animate-ping" />
+            <span className="uppercase tracking-widest font-bold">FRICTIONLESS SPRINT PROCESS</span>
+            <span className="text-[#4b3d67]">/</span>
+            <span className="text-[#00FF9D] font-bold">4 STEPS</span>
           </div>
-          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-syne font-extrabold text-slate-900 tracking-tight">
-            A Simple <span className="gradient-text-rainbow">Three-Step Project Process</span>
+
+          <h2 className="text-3xl sm:text-5xl font-syne font-extrabold text-white tracking-tight max-w-3xl text-balance">
+            From Idea to Live Website in <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6]">24 Hours</span>
           </h2>
-          <p className="text-sm sm:text-base text-slate-600 mt-3 leading-relaxed">
-            From your first message to a live, mobile-friendly website in 3 to 5 business days—with zero technical headaches for you.
+
+          <p className="text-sm sm:text-base text-[#cbd5e1] max-w-2xl mt-4 font-normal leading-relaxed text-balance font-space">
+            A battle-tested, transparent sprint designed to get your digital flagship live with zero technical headaches, zero downtime, and instant client acquisition.
           </p>
         </div>
 
-        {/* 3 Steps Grid with glowing gradient track */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
-          {PROCESS_STEPS.map((step, idx) => {
-            const color = stepColors[idx] || stepColors[0];
-            return (
-              <div
-                key={step.stepNumber}
-                className={`p-6 sm:p-8 rounded-2xl bg-white/90 border border-rose-100/90 backdrop-blur-xl transition-all duration-300 flex flex-col justify-between shadow-md hover:shadow-xl hover:-translate-y-1 ${color.glow}`}
-              >
-                <div>
-                  {/* Clean Editorial Numbering & Timeframe */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className={`text-4xl font-syne font-black font-mono-num ${color.text}`}>
-                      {step.stepNumber}
-                    </span>
-                    <span className={`text-[11px] font-semibold font-mono-num px-3 py-1 rounded-full border ${color.badge}`}>
-                      {step.timeframe}
-                    </span>
-                  </div>
-
-                  <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-2 leading-snug">
-                    {step.title}
-                  </h3>
-
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-5">
-                    {step.description}
-                  </p>
-
-                  {/* What happens list */}
-                  <div className="space-y-2 pt-4 border-t border-rose-100">
-                    <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
-                      Key Outcomes:
-                    </div>
-                    {step.deliverables.map((deliv: string, i: number) => (
-                      <div key={i} className="flex items-start gap-2 text-xs text-slate-700">
-                        <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
-                        <span>{deliv}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Bottom indicator */}
-                <div className="mt-6 pt-4 border-t border-rose-100 flex items-center justify-between text-xs text-slate-500">
-                  <span>Step {idx + 1} of 3</span>
-                  <span className={`font-semibold ${color.text}`}>Handcrafted Polish</span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Bottom Banner */}
-        <div className="mt-12 p-6 rounded-2xl bg-white/90 border border-rose-200/80 backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left shadow-lg shadow-rose-500/5">
-          <div>
-            <h4 className="text-sm font-bold text-slate-900">Have questions about your specific business?</h4>
-            <p className="text-xs text-slate-600 mt-1">
-              Message us on WhatsApp for a quick 10-minute discovery chat with zero pressure.
-            </p>
-          </div>
-          <div className="flex items-center gap-3 shrink-0">
-            <a
-              href={`https://wa.me/${CONTACT_CONFIG.whatsappNumber}?text=Hi%20Sonia%2C%20I%20have%20a%20question%20about%20building%20a%20website%20for%20my%20business`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 text-emerald-700 font-bold text-xs transition-colors shadow-xs"
+        {/* 4 Connected Cards Flow */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+          {steps.map((item, idx) => (
+            <div
+              key={idx}
+              className="relative bg-[#0f0c22]/90 rounded-3xl p-7 border border-[#2e2354] hover:border-[#FFB800]/50 transition-all duration-300 flex flex-col justify-between group shadow-xl hover:-translate-y-1 backdrop-blur-2xl hover:shadow-[0_15px_40px_rgba(255,184,0,0.15)]"
             >
-              <MessageSquare className="w-4 h-4 text-emerald-600" />
-              <span>WhatsApp Chat</span>
-            </a>
-            {onOpenConsultation && (
-              <button
-                onClick={onOpenConsultation}
-                className="inline-flex items-center gap-1.5 px-5 py-2.5 rounded-xl bg-gradient-to-r from-rose-500 via-amber-500 to-purple-600 text-white font-bold text-xs shadow-md shadow-rose-500/20 hover:opacity-95 transition-all"
-              >
-                <span>Free Consultation</span>
-                <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            )}
-          </div>
+              <div>
+                <div className="flex items-center justify-between mb-6">
+                  <div className="w-12 h-12 rounded-2xl bg-[#14102c] border border-[#2e2354] flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform">
+                    {item.icon}
+                  </div>
+                  <span className="text-3xl font-syne font-extrabold text-[#251d45] group-hover:text-[#FFB800]/60 transition-colors font-mono-num">
+                    {item.step}
+                  </span>
+                </div>
+
+                <div className={`inline-flex items-center gap-1.5 text-[11px] font-mono-num ${item.color} bg-[#14102c] px-2.5 py-0.5 rounded-md border border-[#2e2354] mb-3 font-bold`}>
+                  <Clock className="w-3 h-3" />
+                  <span>{item.time}</span>
+                </div>
+
+                <h3 className="text-xl font-syne font-bold text-white mb-2 leading-snug">
+                  {item.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-[#cbd5e1] leading-relaxed font-space">
+                  {item.desc}
+                </p>
+              </div>
+
+              <div className="pt-4 mt-4 border-t border-[#231b45] flex items-center gap-1.5 text-xs text-[#FFB800] font-space font-bold">
+                <CheckCircle className="w-3.5 h-3.5 text-[#00FF9D]" />
+                <span>Zero Technical Jargon</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
