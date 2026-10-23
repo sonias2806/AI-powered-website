@@ -57,15 +57,15 @@ export const SuccessStories3DCarousel: React.FC<SuccessStories3DCarouselProps> =
         <div className="flex flex-col items-center text-center mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#120e24] border border-[#FFB800]/30 text-xs font-space font-medium text-[#FFB800] mb-4">
             <span className="w-2 h-2 rounded-full bg-[#00FF9D] animate-ping" />
-            <span className="uppercase tracking-widest font-bold">VERIFIED HYDERABAD REVENUE DATA</span>
+            <span className="uppercase tracking-widest font-bold">VERIFIED GLOBAL CLIENT REVENUE DATA</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-syne font-extrabold text-white tracking-tight max-w-3xl text-balance">
-            Real Hyderabad Businesses. <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6]">Explosive Growth.</span>
+            Real Flagship Salons &amp; Spas. <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6]">Explosive Growth.</span>
           </h2>
 
           <p className="text-sm sm:text-base text-[#cbd5e1] max-w-2xl mt-4 font-normal leading-relaxed text-balance">
-            Explore 3D verified case studies from businesses across Jubilee Hills, Gachibowli, and Panjagutta that transitioned from zero online footprint to high-margin WhatsApp conversions in 24 hours.
+            Explore 3D verified case studies from luxury salons, aesthetic clinics, and boutique spas across Mayfair, Dubai, Mumbai, and New York that transformed their online presence into high-margin client bookings within 24 hours.
           </p>
 
           {/* Aggregate Impact Ribbon */}
@@ -148,7 +148,7 @@ export const SuccessStories3DCarousel: React.FC<SuccessStories3DCarouselProps> =
               {/* Bottom: Verifiable Metrics Matrix */}
               <div>
                 <div className="grid grid-cols-3 gap-3 p-4 rounded-2xl bg-[#070512]/90 border border-[#2a1e4a] mb-6">
-                  {current.metrics.map((metric, i) => (
+                  {current.metrics.map((metric: { stat: string; label: string }, i: number) => (
                     <div key={i} className="text-center">
                       <div className="text-xl sm:text-2xl font-syne font-extrabold text-[#00FF9D] font-mono-num leading-tight">
                         {metric.stat}
@@ -208,7 +208,7 @@ export const SuccessStories3DCarousel: React.FC<SuccessStories3DCarouselProps> =
                     <strong className="text-white">Technical Architecture:</strong> Zero-bloat modern React architecture, pre-filled WhatsApp conversion links, sub-second 4G/5G mobile load times, and structured local SEO schema.
                   </p>
                   <div className="pt-2 flex flex-wrap gap-2">
-                    {current.tags.map((t, idx) => (
+                    {current.tags.map((t: string, idx: number) => (
                       <span key={idx} className="px-2.5 py-1 rounded-lg bg-[#1a1436] text-[#FFB800] text-xs font-mono-num border border-[#2a1e4a]">
                         #{t}
                       </span>
@@ -244,7 +244,7 @@ export const SuccessStories3DCarousel: React.FC<SuccessStories3DCarouselProps> =
 
             {/* Pagination Thumbnails */}
             <div className="flex items-center gap-2">
-              {SUCCESS_STORIES.map((s, idx) => (
+              {SUCCESS_STORIES.map((s: SuccessStory, idx: number) => (
                 <button
                   key={s.id}
                   onClick={() => {

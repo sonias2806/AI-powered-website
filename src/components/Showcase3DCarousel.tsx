@@ -116,21 +116,21 @@ export const Showcase3DCarousel: React.FC<Showcase3DCarouselProps> = ({
       <div className="absolute -bottom-20 right-10 w-96 h-96 bg-[#00FF9D]/12 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Section Header with Award Badge */}
+        {/* Section Header with Flagship Badge */}
         <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#120e24] border border-[#FFB800]/30 text-xs font-space font-medium text-[#FFB800] mb-4 shadow-lg shadow-[#FFB800]/5">
             <span className="w-2 h-2 rounded-full bg-[#FFB800] animate-pulse" />
-            <span className="tracking-widest uppercase font-bold">AWARD-GRADE 3D SHOWCASE</span>
+            <span className="tracking-widest uppercase font-bold">DIGITAL FLAGSHIP 3D SHOWCASE</span>
             <span className="text-[#4b3d67]">/</span>
-            <span className="text-[#00FF9D] font-bold">HYDERABAD EXCLUSIVES</span>
+            <span className="text-[#00FF9D] font-bold">GLOBAL &amp; NATIONAL CLIENTS</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-syne font-extrabold text-white tracking-tight max-w-4xl text-balance">
-            Interactive <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6]">3D Business Showcase</span>
+            Interactive <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6]">3D Flagship Showcase</span>
           </h2>
 
           <p className="text-sm sm:text-base text-[#cbd5e1] max-w-2xl mt-4 font-normal leading-relaxed text-balance">
-            Explore live digital experiences custom-crafted for Hyderabad's premier salons and spas, jewelers, realtors, and fitness clubs. Real 24-hour turnaround websites engineered to convert.
+            Explore live digital experiences custom-crafted for luxury salons and spas, aesthetic suites, and wellness flagships worldwide. Sub-second performance engineered to convert discerning clientele instantly.
           </p>
 
           {/* Controls Bar: Mode switcher (3D vs Grid) + Autoplay toggle */}

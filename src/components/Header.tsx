@@ -1,177 +1,117 @@
 import React, { useState } from 'react';
-import { Menu, X, ArrowRight, MessageSquare, Play, Volume2, VolumeX, Sparkles, Palette } from 'lucide-react';
+import { Menu, X, ArrowRight, MessageSquare } from 'lucide-react';
 import { BrandLogo } from './BrandLogo';
-import { CONTACT_INFO } from '../data/siteData';
+import { CONTACT_CONFIG } from '../data/siteData';
 
 interface HeaderProps {
-  onOpenLivePreview?: () => void;
   onSelectContact?: () => void;
-  soundEnabled?: boolean;
-  onToggleSound?: () => void;
-  colorTheme?: 'cosmic' | 'emerald' | 'sunset';
-  onCycleTheme?: () => void;
+  onOpenDemoWork?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
-  onOpenLivePreview,
   onSelectContact,
-  soundEnabled = false,
-  onToggleSound,
-  colorTheme = 'cosmic',
-  onCycleTheme
+  onOpenDemoWork
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: '3D Showcase', href: '#portfolio' },
-    { label: 'Success Stories', href: '#success-stories' },
-    { label: 'ROI Predictor', href: '#roi-calculator' },
+    { label: 'Demo Concepts', href: '#portfolio' },
     { label: 'Services', href: '#services' },
-    { label: 'Industries', href: '#industries' },
-    { label: 'Pricing', href: '#pricing' },
-    { label: 'FAQ', href: '#faq' }
+    { label: 'How It Works', href: '#process' },
+    { label: 'Packages', href: '#pricing' },
+    { label: 'About Founder', href: '#founder' },
+    { label: 'FAQs', href: '#faq' }
   ];
 
-  const themeLabels = {
-    cosmic: 'Solar Amethyst',
-    emerald: 'Emerald Luxe',
-    sunset: 'Sunset Horizon'
-  };
-
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#07060e]/85 backdrop-blur-2xl border-b border-[#2e2354]/70 transition-all shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-        {/* Brand Logo with 3D Monogram & Syne typography */}
-        <a href="#" className="flex items-center shrink-0">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#060713]/85 backdrop-blur-2xl border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.6)] transition-all">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-8">
+        {/* Zone 1: Brand Wordmark (single clean element) */}
+        <a href="#" className="flex items-center shrink-0 group">
           <BrandLogo size="md" withText={true} />
         </a>
 
-        {/* Clean, editorial text navigation links */}
-        <nav className="hidden xl:flex items-center gap-7 text-xs font-space font-semibold text-[#cbd5e1] tracking-wider uppercase">
+        {/* Zone 2: 4-5 concise single-line nav links */}
+        <nav className="hidden lg:flex items-center gap-7 text-xs font-semibold text-slate-300 tracking-wide">
           {navLinks.map((link) => (
             <a
               key={link.label}
               href={link.href}
-              className="hover:text-[#FFB800] transition-colors whitespace-nowrap"
+              className="hover:text-amber-300 transition-colors whitespace-nowrap py-1 relative after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-amber-400 after:scale-x-0 hover:after:scale-x-100 after:transition-transform"
             >
               {link.label}
             </a>
           ))}
         </nav>
 
-        {/* Action Controls */}
+        {/* Zone 3: 1 primary action */}
         <div className="flex items-center gap-3 shrink-0">
-          {/* Atmosphere Color Theme Switcher */}
-          {onCycleTheme && (
-            <button
-              onClick={onCycleTheme}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#14102c] hover:bg-[#1f1742] border border-[#2e2354] text-xs font-space font-bold text-[#FFB800] hover:border-[#FFB800]/50 transition-all shadow-sm"
-              title={`Active Atmosphere: ${themeLabels[colorTheme]}. Click to switch palette`}
-            >
-              <Palette className="w-3.5 h-3.5 text-[#EC4899]" />
-              <span className="hidden md:inline text-[11px] font-mono-num">{themeLabels[colorTheme]}</span>
-            </button>
-          )}
+          <a
+            href={`https://wa.me/${CONTACT_CONFIG.whatsappNumber}?text=Hi%2C%20I%20am%20interested%20in%20a%20website%20consultation%20for%20my%20business`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-bold text-emerald-300 bg-emerald-950/60 hover:bg-emerald-900/60 border border-emerald-500/40 rounded-xl transition-all whitespace-nowrap shadow-sm shadow-emerald-950/30"
+            title="WhatsApp Quick Chat"
+          >
+            <MessageSquare className="w-3.5 h-3.5 fill-emerald-400/20" />
+            <span>WhatsApp</span>
+          </a>
 
-          {/* Sound FX Toggle */}
-          {onToggleSound && (
-            <button
-              onClick={onToggleSound}
-              aria-label={soundEnabled ? 'Mute haptic sound effects' : 'Enable haptic sound effects'}
-              className="p-2 rounded-xl bg-[#14102c] hover:bg-[#1f1742] border border-[#2e2354] text-[#cbd5e1] hover:text-[#FFB800] transition-colors"
-              title={soundEnabled ? 'Haptic Audio ON' : 'Haptic Audio Muted'}
-            >
-              {soundEnabled ? (
-                <Volume2 className="w-4 h-4 text-[#00FF9D]" />
-              ) : (
-                <VolumeX className="w-4 h-4 text-[#8b7ba8]" />
-              )}
-            </button>
-          )}
-
-          {/* 3D Interactive Screen button */}
-          {onOpenLivePreview && (
-            <button
-              onClick={onOpenLivePreview}
-              className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 text-xs font-space font-extrabold text-[#FFB800] bg-[#14102c] hover:bg-[#1f1742] border border-[#FFB800]/40 rounded-xl transition-all hover:scale-105 whitespace-nowrap shadow-sm"
-            >
-              <Play className="w-3 h-3 fill-current text-[#FFB800]" />
-              <span>3D Live Simulator</span>
-            </button>
-          )}
-
-          {/* Primary CTA button */}
           <a
             href="#contact"
             onClick={onSelectContact}
-            className="hidden sm:inline-flex items-center gap-2 px-5 py-2.5 text-xs font-space font-extrabold uppercase tracking-wider text-white bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6] rounded-xl shadow-[0_4px_20px_rgba(255,184,0,0.35)] hover:shadow-[0_6px_28px_rgba(236,72,153,0.5)] transition-all hover:scale-105 active:scale-95 whitespace-nowrap"
+            className="inline-flex items-center gap-1.5 px-4.5 py-2.5 text-xs font-bold text-slate-950 bg-gradient-to-r from-amber-400 to-amber-300 hover:from-amber-300 hover:to-amber-200 rounded-xl shadow-lg shadow-amber-950/20 transition-all hover:-translate-y-0.5 whitespace-nowrap"
           >
-            <span>Launch In 24h</span>
-            <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />
+            <span>Free Consultation</span>
+            <ArrowRight className="w-3.5 h-3.5 stroke-[2.2]" />
           </a>
 
-          {/* Mobile Menu Hamburger */}
+          {/* Mobile hamburger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="xl:hidden p-2 rounded-xl bg-[#14102c] border border-[#2e2354] text-white hover:bg-[#1f1742]"
+            className="lg:hidden p-2 rounded-xl bg-white/10 border border-white/15 text-slate-200 hover:bg-white/15"
             aria-label="Toggle navigation menu"
           >
-            {mobileMenuOpen ? <X className="w-5 h-5 text-[#FFB800]" /> : <Menu className="w-5 h-5" />}
+            {mobileMenuOpen ? <X className="w-5 h-5 text-amber-400" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile drawer */}
       {mobileMenuOpen && (
-        <div className="xl:hidden bg-[#07060e]/98 backdrop-blur-2xl border-b border-[#2e2354] px-6 py-6 space-y-4">
-          <nav className="flex flex-col space-y-3 font-space text-sm uppercase tracking-wider text-[#cbd5e1]">
+        <div className="lg:hidden bg-[#0c0e20]/95 backdrop-blur-2xl border-b border-white/10 px-6 py-5 space-y-3">
+          <div className="flex flex-col space-y-2.5 text-sm text-slate-200 font-medium">
             {navLinks.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="py-2 hover:text-[#FFB800] transition-colors"
+                className="py-1.5 hover:text-amber-300 transition-colors"
               >
                 {link.label}
               </a>
             ))}
-          </nav>
+          </div>
 
-          <div className="pt-4 border-t border-[#2e2354] flex flex-col gap-3">
-            {onCycleTheme && (
-              <button
-                onClick={() => {
-                  onCycleTheme();
-                }}
-                className="w-full py-2.5 px-4 rounded-xl bg-[#14102c] border border-[#2e2354] text-xs font-space font-bold text-[#FFB800] flex items-center justify-center gap-2"
-              >
-                <Palette className="w-4 h-4 text-[#EC4899]" />
-                <span>Atmosphere: {themeLabels[colorTheme]} (Tap to change)</span>
-              </button>
-            )}
-
-            {onOpenLivePreview && (
-              <button
-                onClick={() => {
-                  setMobileMenuOpen(false);
-                  onOpenLivePreview();
-                }}
-                className="w-full py-2.5 px-4 rounded-xl bg-[#14102c] border border-[#FFB800]/40 text-xs font-space font-bold text-[#FFB800] flex items-center justify-center gap-2"
-              >
-                <Play className="w-3.5 h-3.5 fill-current text-[#FFB800]" />
-                <span>Open 3D Live Simulator</span>
-              </button>
-            )}
-
+          <div className="pt-4 border-t border-white/10 flex flex-col gap-2.5">
+            <a
+              href={`https://wa.me/${CONTACT_CONFIG.whatsappNumber}?text=Hi%2C%20I%20am%20interested%20in%20a%20website%20consultation%20for%20my%20business`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-2.5 px-4 rounded-xl bg-emerald-950/60 border border-emerald-500/40 text-emerald-300 font-bold text-xs text-center flex items-center justify-center gap-2"
+            >
+              <MessageSquare className="w-4 h-4 fill-emerald-400/20" />
+              <span>Chat on WhatsApp</span>
+            </a>
             <a
               href="#contact"
               onClick={() => {
                 setMobileMenuOpen(false);
                 if (onSelectContact) onSelectContact();
               }}
-              className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6] text-white font-space font-extrabold text-xs uppercase tracking-wider text-center shadow-lg"
+              className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-amber-400 to-amber-300 text-slate-950 font-bold text-xs text-center transition-colors shadow-lg shadow-amber-950/20"
             >
-              Get Your 24-Hour Website
+              Get a Free Website Consultation
             </a>
           </div>
         </div>

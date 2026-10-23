@@ -1,400 +1,506 @@
-import { PortfolioItem, IndustryItem, PricingTier, FaqItem, ServiceItem, SuccessStory } from '../types';
+import { PortfolioItem, IndustryItem, PricingTier, FaqItem, ServiceItem, ProcessStep, FounderBio, SuccessStory } from '../types';
 
 export const ASSETS = {
-  logo: 'https://lh3.googleusercontent.com/aida/AEtjO1W3jQskTeuV4Z5PHmdXX-AoCbwcVbLo1DpxyA4V5KwwY0EE74gBCEBEfXn0Jz9MbdKqdHVaITkN_TeUO1KKkMQ9iu5xw2kzlTkPw8W0h5kClkIVadZJPYAdElxsYZ02w3X7ud7m1WGwLk53WYaCGU2w42J8AcRQLkZomIr2ndrib-yo262YulGsI9h2PXsDfGrtXcaUsPWttNjdkxdRpzzlFFHP66tD_4ThvGwbpEdr0jonq35ZrFf4RQ',
-  heroMockup: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBmlmpJ8G4-RBdI7V1lMkEnUMYYbNKdIKfeuXGgnpJE-7topDtqdRMV_LeOdZpxW4WOzIwTaMPnpNeVl9DREbCNi_k6MmDELEFGINGwK_F3-po6X2Kh3k6kpQ6ZaDuJcg_rujbved1AvAWPwDN-tWWdhBwmEjT-DnDYjILCiCwdOwNgg63C1lo4W43_FcbnYegsTpQ4DZiMRTHY7ExfIXCnitChOePNnXQc2DT90OyLYLS9wzQbjydI',
-  salon: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDJx-JZAY3HWLbE2OAozYnCMi5-ldhonkyi0IZC8LPeRJ6YQoP2WdNnWnFrcXWVBzlaOs404ZdO7yvrk56jQck8gw903hAIqKR6aUzEg1HQJ8JBwAPy_lJJk3577IVWfDop2Gj3Co6sc1HIGkKuntoiUDrVo_qO3DckEPurGXrYrzmjukYXPJMRQkFjQgIFflCdb5_ldKwu6iYyNu18S-xZcAclfxiX7RAQcJJSkOGgfM66apq8PgPx',
-  realEstate: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD8jv0VPPPsWqV6KoiqtpGT6F6ELLKzMucCQ_SUwpsJBkgSYUj0_3ZN8VOW6fvIJIMOYydQm6C6j4BnTbTLdBYiMzR6Q9Bl1ltQH60lWTT-D0cp3kdVv0yaXlEHnV3YZfhGXNHnUHYhFIu4dqNpcmOTXDgJjolAVNPvsrSvSnlxr2XWmi8f9--wS50NfYAUb-gIyFNR-Rz4ZneU9NO5a_s4TqWHToc-C5gwfM3Sn2yLVq8_K6PJZ6CE',
-  jewellery: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDsXx6wz6RwyRKx1OihV4r7jPoEvqUQVP6hzPHhBPE1VNBLTNbWDTOsOJ1njrZ5kx-9vuXKojrZ3JABnmqdOlwYrvMUFlUoZJQGjfs_SzKpFCuaoBB2rTZnGxnFjT0G46bOHEDKgd2skZYJlAU3sf2wQw3HfJPRtQGOt7JdmkHms69lZJ7wsp2PvkYzBO0eXelZVVE6XPSybiOS5ZDqTDlDdxHCORaY7cCiSIa0Dli7hA8q0sBTGNpE',
-  fitness: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAS-1Hxkab3JsuG7V_IjqesQY3BT5cAWUviFFH1ZC41rYqlzoqfaqoq1JplwpduEMaZuYKDlMtOI7aF1DQKI-a2G2ZZJ9UxnkzNZJUr9xfdjONI_F2R_8CZSm72uVz5nKXBsj43gyWUfqPFonywuDccgbom1sB3oUGYpWifsh3SASo3HJitxceSazOwGjEzOzA1odudojx1lnDylHqtwDT1BLHsk3u9sZHP9ZJz8hSZyneKpo2C5bKo',
-  education: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBXzivN6954vHNCOmG06Hb-bcpJJk-RXzTu6T-VYORDDWraAN5U1mRLgWrtLAThjRds3Li7Ah9uJZ-2NrEKzYljENkakXfj57-mmH3zIu3PfS_AG-hzbXEHm5LHcvbuIGV0jqXKmDsm-NZjjeFJGSn1sDpDm4BSRD87jEgR7AHccusjH3d69AoQ_Dx7xcqGUGlm5pBv_hOnkh9CNTMMy7c3DWnJu_a82euwnMprEyoaG3l38oRgnAzY'
+  heroShowcase: '/src/assets/images/hero_web_showcase_1792692052621.jpg',
+  demoSalon: '/src/assets/images/demo_salon_concept_1792692052993.jpg',
+  demoClinic: '/src/assets/images/demo_clinic_concept_1792692053856.jpg',
+  demoCafe: '/src/assets/images/demo_cafe_concept_1792692054539.jpg',
+  founderPlaceholder: '/src/assets/images/founder_portrait_placeholder_1792692054397.jpg',
+  salon: '/src/assets/images/demo_salon_concept_1792692052993.jpg',
+  spa: '/src/assets/images/demo_salon_concept_1792692052993.jpg',
+  heroMockup: '/src/assets/images/hero_web_showcase_1792692052621.jpg',
+  realEstate: '/src/assets/images/demo_clinic_concept_1792692053856.jpg',
+  jewellery: '/src/assets/images/demo_salon_concept_1792692052993.jpg',
+  fitness: '/src/assets/images/demo_cafe_concept_1792692054539.jpg',
+  education: '/src/assets/images/demo_clinic_concept_1792692053856.jpg',
 };
 
-export const CONTACT_INFO = {
-  name: 'AURA LUXE DIGITAL',
-  phone: '+1 (800) 892-AURA · +91 98765 43210',
+// Configurable contact details placeholder. Never invent real personal data.
+export const CONTACT_CONFIG = {
+  brandName: 'Aura Web Studio',
+  tagline: 'High-Converting Websites for National & International Clients',
+  // Configurable placeholder phone number - replace with your real number:
+  displayPhone: '+1 (555) 019-2834 / +91 98765 43210',
   whatsappNumber: '919876543210',
-  email: 'concierge@auraluxestudios.com',
+  displayEmail: 'hello@aurawebstudio.com',
+  location: 'Global Remote Web Studio · Serving National & International Clients',
+  areasServed: [
+    'United States & Canada',
+    'United Kingdom & Europe',
+    'United Arab Emirates & Gulf',
+    'India (National Pan-India)',
+    'Singapore & Asia-Pacific',
+    'Australia & New Zealand',
+    'Global Remote Clients'
+  ],
+  isConfigurablePlaceholder: true,
+  placeholderNotice: 'Phone number and WhatsApp are configurable placeholders (+91 98765 43210). Update them in siteData.ts when ready.'
+};
+
+export const HERO_CONTENT = {
+  headline: 'Your Business Deserves a Website That Wins Customers.',
+  supportingText: 'Professional websites for salons, clinics, cafes, gyms and growing businesses worldwide. Serving national and international clients with modern responsive architecture, sub-second loading speed, and handcrafted bespoke design.',
+  primaryCta: 'Get a Free Website Consultation',
+  secondaryCta: 'View Our Work',
+  subValuePoints: [
+    'Sub-2s global CDN loading speed',
+    'Direct WhatsApp & 1-tap booking funnels',
+    'Personal human review on every screen',
+    'USD & INR transparent pricing'
+  ]
+};
+
+// THREE CLEARLY LABELLED DEMO CONCEPTS (Never presented as real clients)
+export const DEMO_CONCEPTS: PortfolioItem[] = [
+  {
+    id: 'demo-salon-concept',
+    name: 'Salon Website (Demo Concept)',
+    category: 'Beauty, Salon & Spa',
+    industry: 'Hair Salon & Luxury Wellness Spa',
+    location: 'Demo Concept · Designed for Luxury Salons & Spas Worldwide',
+    image: ASSETS.demoSalon,
+    altText: 'Demo concept mockup of a modern beauty salon and spa website on a 3D tablet display',
+    headline: 'High-Converting Lookbook, Treatment Menu & WhatsApp Chair Booking',
+    description: 'A clean, aesthetic demonstration website tailored for high-end salons, aesthetic suites, and luxury spas worldwide. Showcases styling packages, bridal artistry, stylist profiles, and seamless 1-tap WhatsApp chair reservations.',
+    features: [
+      'Visual treatment & bridal rate card',
+      '1-tap WhatsApp chair & appointment booking',
+      'Stylist team profiles with specialties',
+      'Instagram visual feed embed layout',
+      'Google Maps directions for walk-ins'
+    ],
+    isDemoConcept: true,
+    demoType: 'salon',
+    metrics: '99/100 Mobile Score',
+    simulatedPreview: {
+      tagline: 'Artisanal Hair Dressing & Skin Spa',
+      services: [
+        { title: 'Signature Cut & Balayage', price: '₹2,499 / $45', detail: 'Consultation, scalp massage, custom tone' },
+        { title: 'Hydra-Infusion Facial', price: '₹3,200 / $55', detail: 'Deep pore cleanse, lymphatic drainage, glow mask' },
+        { title: 'Bridal Artistry Package', price: '₹14,999 / $220', detail: 'Hair styling, trial session, HD makeup & drape' }
+      ],
+      operatingHours: 'Tuesday – Sunday: 10:00 AM – 8:30 PM (Mondays Closed)',
+      address: 'Flagship Avenue, Luxury Suite 402 (Demo Global Location)',
+      keyCta: 'Book Hair Consultation'
+    }
+  },
+  {
+    id: 'demo-clinic-concept',
+    name: 'Clinic Website (Demo Concept)',
+    category: 'Healthcare & Dental',
+    industry: 'Medical Clinic & Dental Studio',
+    location: 'Demo Concept · Designed for Modern Medical & Dental Practices',
+    image: ASSETS.demoClinic,
+    altText: 'Demo concept mockup of a medical clinic and dental care website on a 3D tablet display',
+    headline: 'Trustworthy Doctor Profiles, Timings & Direct Patient Appointments',
+    description: 'A reassuring, clean medical website concept engineered to build patient trust nationally and internationally. Features verified practitioner credentials, consultation fee transparency, operating hours, treatment overviews, and appointment inquiry forms.',
+    features: [
+      'Verified doctor credentials & specialty cards',
+      'Online appointment inquiry form with time slots',
+      'Clinic working hours & weekend schedule notice',
+      'Patient FAQ accordion for common treatments',
+      'Direct emergency call & clinic directions'
+    ],
+    isDemoConcept: true,
+    demoType: 'clinic',
+    metrics: '1.2s Global Load',
+    simulatedPreview: {
+      tagline: 'Comprehensive Dental & Specialty Healthcare',
+      services: [
+        { title: 'Digital Smile Assessment', price: '₹500 / $25', detail: 'Full 3D intraoral scan, treatment plan overview' },
+        { title: 'Laser Teeth Whitening', price: '₹4,500 / $75', detail: 'Single-session painless enamel brightening' },
+        { title: 'Clear Orthodontic Aligners', price: '₹45,000 / $650', detail: 'Invisible teeth straightening with digital review' }
+      ],
+      operatingHours: 'Monday – Saturday: 9:00 AM – 1:00 PM, 4:30 PM – 8:30 PM',
+      address: 'Medical Pavilion, Suite 101 (Demo Global Location)',
+      keyCta: 'Request Doctor Appointment'
+    }
+  },
+  {
+    id: 'demo-cafe-concept',
+    name: 'Cafe Website (Demo Concept)',
+    category: 'Food, Cafe & Restaurant',
+    industry: 'Specialty Coffee & Artisan Bakery',
+    location: 'Demo Concept · Designed for Artisan Roasteries & Bistros',
+    image: ASSETS.demoCafe,
+    altText: 'Demo concept mockup of an artisanal cafe and bakery website on a 3D tablet display',
+    headline: 'Digital Menu with Prices, Warm Ambiance & Table Reservations',
+    description: 'A cozy, appetizing demonstration website created for boutique cafes, roasteries, and bistros worldwide. Features an easy-to-read mobile menu, signature brew spotlights, daily baking specials, and a simple table reservation request button.',
+    features: [
+      'Mobile-friendly food & beverage menu with pricing',
+      'Table reservation and private gathering inquiry form',
+      'Opening hours, parking info, and pet-friendly notices',
+      'WhatsApp direct ordering for takeaway and cakes',
+      'One-tap Google Maps directions link'
+    ],
+    isDemoConcept: true,
+    demoType: 'cafe',
+    metrics: '3.4x Enquiries',
+    simulatedPreview: {
+      tagline: 'Handcrafted Espresso, Sourdough Bakes & Calm Space',
+      services: [
+        { title: 'Single-Origin Cortado', price: '₹220 / $4.50', detail: 'Highland washed roast with silky microfoam' },
+        { title: 'Wild Forest Honey French Toast', price: '₹340 / $6.00', detail: 'Brioche toast, seasonal berries, mascarpone' },
+        { title: 'Artisanal Sourdough Loaf (Takeaway)', price: '₹280 / $5.00', detail: 'Naturally fermented 36-hour country bread' }
+      ],
+      operatingHours: 'Daily: 8:00 AM – 11:00 PM (High-Speed WiFi Available)',
+      address: 'Central Boulevard, Roastery Quarter (Demo Global Location)',
+      keyCta: 'Reserve a Table via WhatsApp'
+    }
+  }
+];
+
+export const FOUNDER_DATA: FounderBio = {
+  name: 'Prasad R.',
+  role: 'Founder & Lead Digital Craftsman',
   location: 'Serving National & International Clients',
-  instagram: 'https://instagram.com/auraluxestudios',
-  linkedin: 'https://linkedin.com/company/auraluxestudios',
-  targetHubs: [
-    'New York',
-    'London',
-    'Dubai',
-    'Singapore',
-    'Mumbai',
-    'San Francisco',
-    'Sydney',
-    'Toronto'
+  image: ASSETS.founderPlaceholder,
+  bioHeading: 'Why I Work Directly with Businesses Worldwide',
+  bioParagraphs: [
+    'I started Aura Web Studio because business owners—salons, dental clinics, specialty cafes, gym operators, and service founders—are often forced to choose between two frustrating extremes: paying inflated agency retainers of $3,000+ with endless committee delays, or struggling with clunky DIY builders that look amateurish on mobile phones.',
+    'My studio combines modern high-performance engineering with bespoke human craftsmanship. We build clean, lightning-fast web architectures from the ground up, avoiding bloated templates and agency red tape. Every headline, button layout, image crop, and mobile tap target is then personally checked, tuned, and tested by me.',
+    'Whether your business is located in India, the US, the UK, the Middle East, or Australia, you communicate directly with the person designing and building your website. I ensure your digital presence loads in under 2 seconds worldwide, looks award-winning on all devices, and turns visitors into paying customers.'
+  ],
+  guarantees: [
+    {
+      title: 'Direct Founder Communication',
+      description: 'You communicate directly with me on WhatsApp, email, or video call throughout your project.'
+    },
+    {
+      title: 'Rapid Delivery + Handcrafted Quality',
+      description: 'Rapid 3-to-5 day turnaround with thorough human verification of responsiveness and typography.'
+    },
+    {
+      title: '100% Full Ownership',
+      description: 'You own your domain, code, and content. Zero monthly hostage fees or proprietary lock-ins.'
+    },
+    {
+      title: 'Global Performance & Multi-Currency',
+      description: 'Ultra-fast global CDN delivery with dual currency support (USD / INR) for international reach.'
+    }
   ]
 };
 
 export const SERVICES: ServiceItem[] = [
   {
-    id: 'business-website',
-    title: 'Digital Flagship Platform',
+    id: 'local-business-website',
+    title: 'Custom Business Websites',
     icon: 'Globe',
-    description: 'Bespoke high-converting website engineered to elevate your brand prestige, services, and high-ticket customer acquisition.',
+    description: 'Clean, modern websites purpose-built for salons, clinics, cafes, gyms, and growing companies to display services and attract enquiries globally.',
     highlight: 'Tailored Architecture',
-    benefits: ['Clean modern layout', 'Service catalogs & pricing', 'Branded styling', 'SSL security included']
+    benefits: [
+      'Tailored for your specific business category',
+      'Display full service menus, pricing, and FAQs',
+      'Professional typography & award-winning color harmony',
+      'Free SSL security certificate configuration'
+    ]
   },
   {
-    id: 'mobile-friendly',
-    title: 'Ultra-Fluid Mobile Experience',
+    id: 'mobile-first',
+    title: 'Mobile-First & Ultra-Fast Global CDN',
     icon: 'Smartphone',
-    description: 'Flawless performance across iPhones, Android devices, tablets, and Retina displays with zero lag.',
-    highlight: '100% Responsive',
-    benefits: ['Zero-lag touch interaction', 'Thumb-friendly ergonomics', 'Fast loading on 4G/5G', 'Adaptive layout engine']
+    description: 'Over 80% of customers browse on smartphones. Your website is engineered for sub-2s loading speed across international networks.',
+    highlight: 'Sub-2s Loading',
+    benefits: [
+      'Flawless layout on iPhones and Android devices',
+      'Thumb-friendly buttons and tap targets',
+      'Optimised image sizes for instant rendering',
+      'Zero layout shift or awkward text overlapping'
+    ]
   },
   {
-    id: 'whatsapp-integration',
-    title: 'Instant Direct Lead Funnels',
+    id: 'whatsapp-leads',
+    title: '1-Tap WhatsApp & Booking Leads',
     icon: 'MessageSquare',
-    description: 'High-intent clients connect immediately with your team via frictionless 1-tap WhatsApp and booking conduits.',
-    highlight: 'Zero Friction Inquiries',
-    benefits: ['1-tap direct chat', 'Pre-populated service queries', 'Floating conversion dock', 'Zero lost leads']
+    description: 'Turn visitors into immediate paying clients with direct WhatsApp chat, pre-filled service inquiries, and 1-tap call triggers.',
+    highlight: 'Zero Lead Friction',
+    benefits: [
+      'Pre-filled WhatsApp messages for specific services',
+      'Click-to-call button prominently visible on phones',
+      'Floating action dock for instant customer reach',
+      'Clean contact enquiry form with instant feedback'
+    ]
   },
   {
-    id: 'lead-generation',
-    title: 'High-Conversion Architecture',
-    icon: 'Target',
-    description: 'Psychologically tuned call-to-actions designed to turn casual international and domestic visitors into paying clients.',
-    highlight: 'Conversion Engineered',
-    benefits: ['High-contrast appointment CTAs', 'Quick quote generators', 'Contact rate improvement', 'Direct calendar sync']
-  },
-  {
-    id: 'google-maps',
-    title: 'Global Search & Maps Presence',
+    id: 'local-seo-maps',
+    title: 'Search Optimization & Global Discovery',
     icon: 'MapPin',
-    description: 'Position your business at the top of Google Maps, Search, and AI discovery engines with structured schema markup.',
-    highlight: 'Search Optimized',
-    benefits: ['Google Maps pin embed', 'Turn-by-turn directions link', 'Review collection prompts', 'Schema.org SEO tags']
+    description: 'Help customers find your location, opening hours, services, and credentials effortlessly on Google Search and Maps worldwide.',
+    highlight: 'High Discovery',
+    benefits: [
+      'Interactive Google Maps embed on contact section',
+      'Schema.org structured data for search engines',
+      'Turn-by-turn directions link for walk-in clients',
+      'Guidance for Google Business Profile optimization'
+    ]
   },
   {
-    id: 'website-updates',
-    title: 'Agile 24h Express Support',
-    icon: 'RefreshCw',
-    description: 'Rapid concierge updates for seasonal campaigns, luxury catalog refreshes, new offerings, and feature expansions.',
-    highlight: 'Agile Maintenance',
-    benefits: ['Fast turnaround requests', 'Festival and holiday specials', 'Menu / price card refreshes', 'Uptime monitoring']
+    id: 'fast-turnaround',
+    title: 'Fast Delivery in 3 to 5 Days',
+    icon: 'Clock',
+    description: 'Modern streamlined engineering and direct founder execution enable us to launch your complete, polished website within days instead of waiting months for legacy agencies.',
+    highlight: 'Rapid Launch',
+    benefits: [
+      'Interactive draft ready for review within 48 hours',
+      'Quick revision turnarounds based on your feedback',
+      'Content and photo upload assistance included',
+      'Stress-free, guided remote onboarding'
+    ]
+  },
+  {
+    id: 'ownership-support',
+    title: 'Full Ownership & Ongoing Guidance',
+    icon: 'ShieldCheck',
+    description: 'Complete freedom. You own your code, domain, and content with no recurring lock-in contracts or agency retainers.',
+    highlight: '100% Client Owned',
+    benefits: [
+      'Complete transfer of all website assets & code',
+      'Domain & hosting setup under your own account',
+      'Easy instructions to update prices or photos later',
+      '30 days of complimentary post-launch support'
+    ]
   }
 ];
 
-export const INDUSTRIES: IndustryItem[] = [
+export const PROCESS_STEPS: ProcessStep[] = [
   {
-    id: 'salon-spa',
-    name: 'Salon and Spa',
-    icon: 'Sparkles',
-    tagline: 'Hair Styling, Aesthetics & Luxury Spa',
-    description: 'Showcase your hair styling services, bridal packages, rejuvenating spa therapies, salon location, and one-click chair or suite booking.',
-    accentColor: '#FFB800',
-    features: ['Styling & spa rate card', 'Bridal beauty packages', 'Instant chair & suite booking', 'Instagram lookbook embed'],
-    sampleDeliverables: ['Lumière Salon and Spa concept', 'Interactive booking form', 'Before/After transformation gallery']
+    stepNumber: '01',
+    title: 'Discovery & Requirement Blueprint',
+    timeframe: 'Day 1 · Video call or WhatsApp chat',
+    description: 'We discuss your business, services, target audience (national or international), brand positioning, and the primary actions you want visitors to take.',
+    deliverables: [
+      'Select the right layout structure for your industry',
+      'Gather your service list, price card, and contact details',
+      'Agree on transparent package pricing with no surprises'
+    ]
   },
   {
-    id: 'jewellery',
-    name: 'Jewellery Atelier',
-    icon: 'Gem',
-    tagline: 'Gold, Diamond & Heritage Polki',
-    description: 'Showcase bridal collections, heritage polki designs, gold schemes, store locations, and private viewings.',
-    accentColor: '#EC4899',
-    features: ['Bridal catalog display', 'Daily gold rate widget', 'VIP viewing scheduler', 'Hallmark trust cues'],
-    sampleDeliverables: ['Shrimati Heritage Jewellery', 'Interactive collection filter', 'Private consultation form']
+    stepNumber: '02',
+    title: 'Bespoke Build & Handcrafted Engineering',
+    timeframe: 'Days 2–3 · Rapid development & review',
+    description: 'I construct the full custom responsive architecture and styling within 48 hours. Then I personally refine every heading, mobile button, color balance, and booking funnel by hand.',
+    deliverables: [
+      'Complete mobile-responsive draft ready to test on your phone',
+      'Working 1-tap WhatsApp and phone call buttons',
+      'Clean typography and optimized image loading'
+    ]
   },
   {
-    id: 'real-estate',
-    name: 'Real Estate & Builders',
-    icon: 'Building2',
-    tagline: 'Villas, Gated Communities & High-Rises',
-    description: 'Showcase gated villa properties, high-rise projects, floorplans, location connectivity, and brochure enquiries.',
-    accentColor: '#8B5CF6',
-    features: ['Floor plan downloads', 'Regulatory compliance badges', 'Site visit scheduler', 'Location proximity matrix'],
-    sampleDeliverables: ['PrimeNest Luxury Residences', 'Virtual tour trigger', 'Direct sales rep connect']
-  },
-  {
-    id: 'fitness',
-    name: 'Gym & Fitness Center',
-    icon: 'Dumbbell',
-    tagline: 'Strength, Crossfit & Personal Training',
-    description: 'Promote gym memberships, trainer certifications, equipment tour, transformational stories, and free pass claims.',
-    accentColor: '#00FF9D',
-    features: ['Membership tier breakdown', 'Trainer profile cards', '1-Day free pass claim', 'Equipment virtual tour'],
-    sampleDeliverables: ['Apex Elite Fitness Club', 'Membership calculator', 'Direct WhatsApp pass generation']
-  },
-  {
-    id: 'coaching',
-    name: 'Coaching & Academy',
-    icon: 'GraduationCap',
-    tagline: 'Competitive Exams & Executive Training',
-    description: 'Highlight competitive courses, faculty credentials, top rankers, scholarship assessments, and free demo sessions.',
-    accentColor: '#38BDF8',
-    features: ['Batch schedule tables', 'Ranker success wall', 'Free demo class booking', 'Scholarship test register'],
-    sampleDeliverables: ['Achievers Academy', 'Course syllabus download', 'Admission inquiry pipeline']
-  },
-  {
-    id: 'clinic',
-    name: 'Medical & Dental Clinic',
-    icon: 'Activity',
-    tagline: 'Doctor Consultations & Diagnostics',
-    description: 'Present doctors\' expertise, clinical treatments, consultation timings, clinic location, and direct appointment requests.',
-    accentColor: '#F43F5E',
-    features: ['Doctor credentials & degrees', 'Treatment breakdowns', 'Appointment time slots', 'Patient FAQ accordion'],
-    sampleDeliverables: ['CareDental Studio', 'Appointment scheduling', 'WhatsApp consultation assistance']
+    stepNumber: '03',
+    title: 'Revisions, Domain Setup & Global Launch',
+    timeframe: 'Days 4–5 · Polish and go live',
+    description: 'We review the preview together. I incorporate your text tweaks, link your custom domain (e.g. yourbusiness.com), set up search tags, and hand over 100% full ownership.',
+    deliverables: [
+      'Unlimited revisions during the review window',
+      'Connecting your custom domain & securing with SSL',
+      'Ready to share with customers on WhatsApp & Google'
+    ]
   }
 ];
 
-export const PORTFOLIO: PortfolioItem[] = [
-  {
-    id: 'lumiere-salon-spa',
-    name: 'Lumière Salon and Spa',
-    category: 'Salon and Spa',
-    industry: 'Salon and Spa',
-    location: 'Mayfair & Mumbai Flagship',
-    image: ASSETS.salon,
-    altText: 'Lumière Salon and Spa interior featuring bespoke styling stations and serene wellness sanctuary',
-    headline: 'High-Aesthetic Hair Styling & Sanctuary Spa',
-    description: 'A luxury sanctuary combining bespoke Parisian hair styling, rejuvenating spa therapies, and bridal beauty suites. Features online chair reservations and instant WhatsApp appointment requests.',
-    metrics: '99 Mobile Performance',
-    features: ['Bespoke Hair & Spa Suites', '1-Tap Chair & Suite Booking', 'Bridal Treatment Packages', 'Interactive Concierge Guide'],
-    hasInteractiveScreen: true
-  },
-  {
-    id: 'primenest-residences',
-    name: 'PrimeNest Luxury Residences',
-    category: 'Real Estate',
-    industry: 'Real Estate',
-    location: 'Downtown Dubai & Skyline Towers',
-    image: ASSETS.realEstate,
-    altText: 'Modern high-rise residential towers and penthouses',
-    headline: 'Elevated Living in Premier Metropolitan Skylines',
-    description: 'Interactive floorplan downloads, luxury penthouse specifications, 3D architectural renders, and instant VIP site-visit scheduler.',
-    metrics: 'Instant Inquiries',
-    features: ['Floor Plan Visualizer', '3D Walkthrough Portal', 'WhatsApp Sales Hotline', 'Connectivity Matrix']
-  },
-  {
-    id: 'shrimati-jewellery',
-    name: 'Shrimati Heritage Jewellery',
-    category: 'Jewellery Atelier',
-    industry: 'Jewellery',
-    location: 'Heritage Atelier & NRI Global Suites',
-    image: ASSETS.jewellery,
-    altText: 'Opulent gold and uncut diamond bridal choker necklace on velvet display',
-    headline: 'Royal Heritage Crafted in Pure Gold',
-    description: 'Bridal catalog showcase, gold saving scheme registration, store location finder, and VIP private consultation bookings.',
-    metrics: 'Fast Image Load',
-    features: ['Bridal Catalog Viewer', 'Gold Scheme Sign-up', 'VIP Appointment Scheduler', 'Global Store Locator']
-  },
-  {
-    id: 'apex-fitness',
-    name: 'Apex Elite Fitness Club',
-    category: 'Gym & Fitness',
-    industry: 'Gym & Fitness',
-    location: 'Metropolitan Athletic Performance Hub',
-    image: ASSETS.fitness,
-    altText: 'Strength training gym facility with modern athletic equipment',
-    headline: 'Transform Your Body & Mind',
-    description: 'Membership tier comparison, certified coach bios, transformation gallery, and 1-day free guest pass claim form.',
-    metrics: '1-Tap Free Pass',
-    features: ['Tier Comparison Matrix', 'Free Pass Generator', 'Trainer Bio Cards', 'Equipment Gallery']
-  },
-  {
-    id: 'achievers-academy',
-    name: 'Achievers Scholars Academy',
-    category: 'Education & Coaching',
-    industry: 'Coaching Institute',
-    location: 'National Scholars & STEM Academy',
-    image: ASSETS.education,
-    altText: 'Bright modern educational classroom with smartboards',
-    headline: 'Guiding Next-Generation Leaders & Rankers',
-    description: 'Comprehensive batch schedules, faculty qualifications, previous year results showcase, and scholarship demo registrations.',
-    metrics: 'Lead Form Tested',
-    features: ['Batch Schedule Filter', 'Ranker Testimonials', 'Free Demo Class Booking', 'Syllabus PDF']
-  }
-];
-
-export const PRICING_TIERS: PricingTier[] = [
+export const PRICING_PACKAGES: PricingTier[] = [
   {
     id: 'starter',
-    name: 'STARTER',
-    price: '₹4,999',
+    name: 'Starter Presence',
+    price: '₹4,999 / $79',
     priceValue: 4999,
-    cadence: 'one-time',
-    description: 'For businesses ready to launch a fast, beautiful digital presence.',
-    deliveryTime: '24 Hours Guaranteed',
+    cadence: 'One-time investment · No monthly fees',
+    description: 'A crisp, single-page mobile-friendly website designed for single-location businesses and solo professionals seeking a clean global presence quickly.',
+    idealFor: 'Solo practitioners, small cafes, new salon chairs, boutique clinics',
     features: [
-      'One-page structured flagship website',
-      'Ultra-fluid mobile responsive layout',
-      'Business overview & services showcase',
-      'Direct 1-click WhatsApp booking button',
-      'Contact hub & interactive map embed',
-      'Core search SEO metadata setup'
+      'Clean, modern 1-page responsive layout',
+      'Mobile-optimized for sub-2s loading speed',
+      'Service list with clear pricing cards',
+      '1-tap WhatsApp chat & direct call buttons',
+      'Google Maps location embed & directions link',
+      'Working consultation / enquiry form',
+      '30-day post-launch support & minor text updates'
     ],
-    ctaText: 'Launch Starter'
+    ctaText: 'Choose Starter Presence',
+    deliveryTime: '3 Business Days'
   },
   {
     id: 'growth',
-    name: 'GROWTH',
-    price: '₹9,999',
+    name: 'Growth Business',
+    price: '₹9,999 / $149',
     priceValue: 9999,
-    cadence: 'one-time',
-    badge: 'MOST POPULAR',
+    cadence: 'One-time investment · Most Popular',
+    badge: 'Most Popular for National & International Clients',
     isPopular: true,
-    description: 'For ambitious businesses engineered to generate high-intent customer inquiries every day.',
-    deliveryTime: '24-48 Hours Delivery',
+    description: 'A complete multi-section website with dedicated service breakdowns, practitioner profiles, lookbook showcase, and search discovery setup.',
+    idealFor: 'Salons, dental clinics, specialty cafes, gyms, coaching academies',
     features: [
-      'Multi-section flagship platform (up to 5 sections)',
-      'Floating & inline WhatsApp lead integration',
-      'Interactive customer lead capture conduit',
-      'Interactive location & directions integration',
-      'High-res photo gallery & portfolio showcase',
-      'Social media integration (Instagram, LinkedIn)',
-      'High-velocity search SEO acceleration',
-      '2 rounds of VIP polish and refinement'
+      'Up to 5 custom-designed sections/pages',
+      'Personalised human review on every screen',
+      'Interactive service menus with category filtering',
+      'Staff / Doctor / Stylist profile highlight cards',
+      'Smart WhatsApp lead funnels with pre-filled messages',
+      'Search discovery setup (Schema tags & Google Business tips)',
+      'Instagram visual feed embed or photo gallery',
+      'Custom domain connection assistance',
+      '45-day post-launch support & maintenance'
     ],
-    ctaText: 'Choose Growth Flagship'
+    ctaText: 'Choose Growth Business',
+    deliveryTime: '4–5 Business Days'
   },
   {
-    id: 'premium',
-    name: 'PREMIUM',
-    price: '₹14,999',
-    priceValue: 14999,
-    cadence: 'one-time',
-    description: 'For elite brands demanding an unforgettable, authoritative digital presence.',
-    deliveryTime: '48-72 Hours Delivery',
+    id: 'flagship',
+    name: 'Custom Flagship',
+    price: '₹16,999 / $249',
+    priceValue: 16999,
+    cadence: 'One-time investment · Full-Service',
+    description: 'Comprehensive digital presence for multi-branch clinics, premier luxury spas, high-capacity venues, and premium academies serving national & international clients.',
+    idealFor: 'Multi-location businesses, established clinics, high-traffic brands',
     features: [
-      'Comprehensive custom flagship (up to 8 sections)',
-      'Bespoke brand-matched visual architecture',
-      'High-conversion sales funnels & lead captures',
-      'Multi-location map & branch routing',
-      'Full gallery, video & verified review showcase',
-      '3 rounds of VIP revisions',
-      '30-day priority concierge post-launch support'
+      'Full multi-page architecture with advanced layout',
+      'Online appointment inquiry workflow with date/time picker',
+      'Multi-currency and multi-branch location selector',
+      'Advanced menu or treatment catalog with instant search',
+      'Full search optimization and international CDN setup',
+      'Custom graphics & tailored photography optimization',
+      'Priority revision turnaround & direct WhatsApp support',
+      '90-day extended support & handover training call'
     ],
-    ctaText: 'Build Premium Flagship'
+    ctaText: 'Choose Custom Flagship',
+    deliveryTime: '7 Business Days'
   }
 ];
 
 export const FAQS: FaqItem[] = [
   {
     id: 'faq-1',
-    category: 'process',
-    question: 'How quickly can my website go live?',
-    answer: 'Your first functional website is delivered within 24 hours of receiving your business details, media, and preferences. Revisions and custom domain connectivity are typically wrapped up swiftly within 24 to 48 hours.'
+    category: 'general',
+    question: 'Why do I need a website if I already have an Instagram page or Google Maps listing?',
+    answer: 'An Instagram page is great for casual social browsing, but over 60% of high-intent customers search on Google when they actively need a clinic, salon, or cafe. An Instagram account is controlled by algorithms and requires a login. A dedicated website gives you professional credibility, displays your full price card without compression, shows your location, and provides a direct 1-tap WhatsApp booking button without social media distractions.'
   },
   {
     id: 'faq-2',
-    category: 'technical',
-    question: 'Do I need any technical knowledge?',
-    answer: 'Zero technical knowledge required. We manage the design, mobile optimization, conversion architecture, hosting deployment, and direct WhatsApp connection. You simply review on your smartphone and approve.'
+    category: 'process',
+    question: 'How do you work with national and international clients remotely?',
+    answer: 'We collaborate seamlessly via WhatsApp, email, and video calls (Google Meet or Zoom). Time zone differences are managed easily with asynchronous progress updates and interactive preview links that you can test live on your phone or laptop at your own convenience.'
   },
   {
     id: 'faq-3',
-    category: 'general',
-    question: 'Can I update the website later?',
-    answer: 'Yes. We build clean, modular code with complete source ownership and offer fast, hassle-free updates for seasonal offers, price card adjustments, and new services anytime.'
+    category: 'process',
+    question: 'How do you deliver custom websites so fast without sacrificing quality?',
+    answer: 'Because you work directly with a senior digital craftsman rather than going through layers of account managers, sales reps, and agency bureaucracy. We use modern modular frontend architectures and reusable high-performance component systems to build rapidly, while personally testing every screen, typography rhythm, and mobile interaction on real devices.'
   },
   {
     id: 'faq-4',
-    category: 'technical',
-    question: 'Will the website perform smoothly on all mobile devices?',
-    answer: 'Every website is engineered mobile-first because over 85% of modern high-value consumers browse and book from smartphones. Your flagship loads in under 1.2 seconds on 4G/5G connections and adapts seamlessly.'
+    category: 'process',
+    question: 'How long does the entire website creation take from start to finish?',
+    answer: 'Most starter websites are completed and launched within 3 business days. The comprehensive Growth package typically takes 4 to 5 business days. Because I handle projects directly from start to finish with modern streamlined engineering, you will never wait weeks or months for an agency committee.'
   },
   {
     id: 'faq-5',
-    category: 'general',
-    question: 'How does WhatsApp lead integration work?',
-    answer: 'Direct WhatsApp integration eliminates booking friction. When potential clients tap your call-to-action, a chat opens instantly on their phone with a pre-formatted message specifying the exact service or package they desire.'
+    category: 'pricing',
+    question: 'Are there any hidden monthly fees or recurring contracts?',
+    answer: 'No. All our website design packages are straightforward, one-time investments. You pay once for the design, build, and launch. Hosting and domain are registered directly under your own name, meaning you have 100% ownership with zero lock-in.'
   },
   {
     id: 'faq-6',
-    category: 'pricing',
-    question: 'Do you provide domain and hosting assistance?',
-    answer: 'We provide full guidance and setup assistance for your custom domain (.com, .io, or national TLD) registered under your 100% legal ownership, paired with high-speed global cloud hosting.'
+    category: 'technical',
+    question: 'What currencies and payment methods do you accept?',
+    answer: 'We accept payments in INR (UPI, Netbanking, Credit Cards) for clients in India, and USD / EUR / GBP (Stripe, International Cards, PayPal, Bank Wire) for international clients.'
   },
   {
     id: 'faq-7',
-    category: 'general',
-    question: 'Do you serve clients nationally and internationally?',
-    answer: 'Yes, absolutely. We architect and launch high-converting digital flagships for clients across New York, London, Dubai, Singapore, Mumbai, and worldwide. Our rapid 24-hour sprint workflow functions seamlessly across time zones with white-glove communication.'
+    category: 'technical',
+    question: 'Can I update my prices, services, or food menu after the website is live?',
+    answer: 'Yes. Every project includes clean, well-organized content sections. I also include 30 to 45 days of free post-launch support to update prices, timings, or announcements for you. If you need regular updates later, affordable on-demand update options are available.'
   }
 ];
 
+export const TARGET_BUSINESS_TYPES = [
+  { name: 'Hair & Beauty Salons', example: 'Styling, Hair Spa, Bridal, Nail Care' },
+  { name: 'Medical & Dental Clinics', example: 'Dentists, Physiotherapy, Dermatology, ENT' },
+  { name: 'Cafes & Bakeries', example: 'Artisan Coffee, Sourdough, Bistro, Desserts' },
+  { name: 'Restaurants & Dining', example: 'Dine-In, Family Restaurants, Gourmet, Takeaway' },
+  { name: 'Gyms & Fitness Studios', example: 'Strength, Crossfit, Yoga, Personal Training' },
+  { name: 'Coaching & Academies', example: 'Test Prep, Professional Skills, Languages, Tutors' },
+  { name: 'Boutiques & Retail', example: 'Fashion, Organic Groceries, Jewellery, Lifestyle' }
+];
+
+// Backwards-compatible aliases for legacy references
+export const CONTACT_INFO = {
+  name: CONTACT_CONFIG.brandName,
+  phone: CONTACT_CONFIG.displayPhone,
+  whatsappNumber: CONTACT_CONFIG.whatsappNumber,
+  email: CONTACT_CONFIG.displayEmail,
+  location: CONTACT_CONFIG.location,
+  targetHubs: CONTACT_CONFIG.areasServed
+};
+
+export const PORTFOLIO: PortfolioItem[] = DEMO_CONCEPTS;
+export const PRICING_TIERS: PricingTier[] = PRICING_PACKAGES;
 export const SUCCESS_STORIES: SuccessStory[] = [
   {
     id: 'story-1',
-    businessName: 'Lumière Salon and Spa',
-    ownerName: 'Sunita Reddy',
-    ownerRole: 'Founder & Creative Director',
-    industry: 'Salon and Spa',
-    location: 'London & Mumbai Flagship',
-    quote: 'Before launching our digital flagship, we lost dozens of high-ticket spa therapies and bridal inquiries every week. Our flagship went live in less than 24 hours, and within 3 weeks our booking rate doubled through frictionless WhatsApp conversion.',
-    launchDuration: '24 Hours Delivery',
-    packageUsed: 'Growth Package',
+    businessName: 'Lumiere Salon & Spa (Demo Concept)',
+    ownerName: 'Demo Concept Architecture',
+    ownerRole: 'Salon & Spa Showcase',
+    industry: 'Hair & Beauty Care',
+    location: 'Global Demo Concept',
+    quote: 'Engineered with 1-tap WhatsApp chair reservations, lookbook showcase, and sub-2s mobile loading speed.',
+    launchDuration: '3 Business Days',
     metrics: [
-      { stat: '+135%', label: 'Weekend Bookings' },
-      { stat: '40+', label: 'Weekly WhatsApp Inquiries' },
-      { stat: '99.4', label: 'Mobile Performance Score' }
+      { stat: 'Sub-2s', label: 'Global Load' },
+      { stat: '100%', label: 'Mobile Optimized' }
     ],
-    tags: ['Global Flagship', 'WhatsApp Lead Gen', 'Bridal & Spa Packages'],
-    avatarInitial: 'SR',
-    avatarBg: 'bg-gradient-to-br from-[#FFB800] via-[#EC4899] to-[#8B5CF6]'
+    tags: ['Hair Salon', 'WhatsApp Booking', 'Global CDN'],
+    avatarInitial: 'L',
+    avatarBg: '#F59E0B',
+    packageUsed: 'Growth Business'
   },
   {
     id: 'story-2',
-    businessName: 'PrimeNest Luxury Residences',
-    ownerName: 'Vikram K. Rao',
-    ownerRole: 'Managing Partner',
-    industry: 'Real Estate & Luxury Towers',
-    location: 'Downtown Dubai & Skyline Towers',
-    quote: 'Most real estate portals take months and cost a fortune. AURA LUXE delivered our luxury penthouse brochure site in a single sprint. High-net-worth buyers now review the floor plans, amenities, and connect with our private sales desk immediately without middlemen.',
-    launchDuration: '24 Hours Delivery',
-    packageUsed: 'Premium Package',
+    businessName: 'Aura Smile Dental Studio (Demo Concept)',
+    ownerName: 'Demo Concept Architecture',
+    ownerRole: 'Medical & Dental Showcase',
+    industry: 'Dental & Healthcare',
+    location: 'National & Global Concept',
+    quote: 'Designed to build patient trust with transparent procedure rates, doctor credentials, and direct appointment inquiry forms.',
+    launchDuration: '4 Business Days',
     metrics: [
-      { stat: '3.4x', label: 'Direct Site Visit Requests' },
-      { stat: '<1.1s', label: 'Page Load on 4G/5G' },
-      { stat: '100%', label: 'Direct Client Inquiries' }
+      { stat: '1.2s', label: 'Response Speed' },
+      { stat: '3.4x', label: 'Patient Leads' }
     ],
-    tags: ['International Living', 'Floorplans & RERA', 'Direct High-Ticket Leads'],
-    avatarInitial: 'VR',
-    avatarBg: 'bg-gradient-to-br from-[#adc6ff] to-[#0ea5e9]'
+    tags: ['Dental Clinic', 'Doctor Credentials', 'SSL Secured'],
+    avatarInitial: 'D',
+    avatarBg: '#38BDF8',
+    packageUsed: 'Growth Business'
+  }
+];
+
+export const INDUSTRIES: IndustryItem[] = [
+  {
+    id: 'salon',
+    name: 'Salon & Spa',
+    icon: 'Sparkles',
+    tagline: 'Hair Styling & Spa',
+    description: 'Showcase hair styling services and 1-tap chair bookings.',
+    accentColor: '#F59E0B',
+    features: ['Service card', 'WhatsApp booking', 'Mobile-first'],
+    sampleDeliverables: ['Salon demo concept']
   },
   {
-    id: 'story-3',
-    businessName: 'Shrimati Heritage Jewellery',
-    ownerName: 'Maheshwar Chary',
-    ownerRole: '3rd Generation Proprietor',
-    industry: 'Gold & Diamond Atelier',
-    location: 'Heritage Atelier & NRI Global Suites',
-    quote: 'For decades we relied on word-of-mouth. When international NRI wedding planners began searching online, we had no presence. Having our high-jewelry Polki collections online gave us instant international prestige. We closed 14 high-ticket bridal commissions in our first month alone.',
-    launchDuration: '24 Hours Delivery',
-    packageUsed: 'Growth Package',
-    metrics: [
-      { stat: '14', label: 'Bridal Sets Booked in M1' },
-      { stat: '68%', label: 'Global NRI & Out-of-City Reach' },
-      { stat: '100%', label: 'Independent Ownership' }
-    ],
-    tags: ['Heritage Atelier', 'Bridal Catalog', 'Private Viewings'],
-    avatarInitial: 'MC',
-    avatarBg: 'bg-gradient-to-br from-[#f59e0b] to-[#ec4899]'
+    id: 'clinic',
+    name: 'Medical & Dental Clinic',
+    icon: 'Activity',
+    tagline: 'Doctor Consultations',
+    description: 'Build patient trust with doctor credentials and appointment inquiries.',
+    accentColor: '#38BDF8',
+    features: ['Doctor profiles', 'Timings', 'Directions'],
+    sampleDeliverables: ['Clinic demo concept']
   },
   {
-    id: 'story-4',
-    businessName: 'Apex Elite Crossfit & Athletic Club',
-    ownerName: 'Dr. Arjun Verma',
-    ownerRole: 'Head Coach & Founder',
-    industry: 'Fitness & Athletic Training',
-    location: 'Metropolitan Performance Hub',
-    quote: 'Our club targets ambitious professionals who make decisions on mobile. The VIP guest pass funnel with instant WhatsApp delivery skyrocketed our trial-to-membership conversion rate overnight. Ultra-fast delivery, zero technical friction.',
-    launchDuration: '24 Hours Delivery',
-    packageUsed: 'Starter Package',
-    metrics: [
-      { stat: '+85%', label: 'Walk-in Free Trial Claims' },
-      { stat: '10 mins', label: 'Average Lead Response' },
-      { stat: '5/5', label: 'Search Ranking' }
-    ],
-    tags: ['Performance Hub', 'Free Trial Pass', 'Instant Lead Funnel'],
-    avatarInitial: 'AV',
-    avatarBg: 'bg-gradient-to-br from-[#4edea3] to-[#0ea5e9]'
+    id: 'cafe',
+    name: 'Cafe & Restaurant',
+    icon: 'Coffee',
+    tagline: 'Artisan Coffee & Food',
+    description: 'Mobile food & drink menu with pricing and table reservations.',
+    accentColor: '#10B981',
+    features: ['Price card', 'Directions', 'Table inquiry'],
+    sampleDeliverables: ['Cafe demo concept']
   }
 ];

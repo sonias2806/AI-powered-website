@@ -103,7 +103,7 @@ export const InteractiveScreenModal: React.FC<InteractiveScreenModalProps> = ({
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
                 </div>
                 <div className="text-xs font-mono-num text-[#FFB800] bg-[#0c091d] px-4 py-0.5 rounded-full border border-[#2e2354]">
-                  https://{activeConcept.includes('lumiere') ? 'lumiere-hyderabad.in' : `${activeConcept}.in`}
+                  https://{activeConcept.includes('lumiere') ? 'lumiere-flagship.com' : `${activeConcept}.com`}
                 </div>
                 <div className="text-[11px] font-mono-num text-[#00FF9D] font-bold">Responsive 1440px · SSL</div>
               </div>

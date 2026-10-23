@@ -18,10 +18,10 @@ export const InteractiveDevicePreview: React.FC<InteractiveDevicePreviewProps> =
   const [refreshKey, setRefreshKey] = useState(0);
 
   const concepts = [
-    { id: 'lumiere-salon-spa', name: 'Lumière Salon and Spa', domain: 'lumiere-hyderabad.in', industry: 'Salon and Spa' },
+    { id: 'lumiere-salon-spa', name: 'Lumière Salon and Spa', domain: 'lumiere-flagship.com', industry: 'Salon and Spa' },
     { id: 'shrimati-jewellery', name: 'Shrimati Heritage', domain: 'shrimati-jewels.com', industry: 'Jewellery' },
-    { id: 'primenest-residences', name: 'PrimeNest Residences', domain: 'primenest-gachibowli.in', industry: 'Real Estate' },
-    { id: 'apex-fitness', name: 'Apex Elite Fitness', domain: 'apexfitness-hyd.com', industry: 'Gym & Fitness' }
+    { id: 'primenest-residences', name: 'PrimeNest Residences', domain: 'primenest-skyline.com', industry: 'Real Estate' },
+    { id: 'apex-fitness', name: 'Apex Elite Fitness', domain: 'apexelite-wellness.com', industry: 'Gym & Fitness' }
   ];
 
   const currentConcept = concepts.find(c => c.id === selectedConcept) || concepts[0];
@@ -124,7 +124,7 @@ export const InteractiveDevicePreview: React.FC<InteractiveDevicePreviewProps> =
 
             {/* Browser Viewport Canvas */}
             <div className="relative h-[560px] overflow-y-auto bg-[#0b1326]">
-              {selectedConcept === 'lumiere-salon-cafe' ? (
+              {selectedConcept === 'lumiere-salon-spa' || selectedConcept === 'lumiere-salon-cafe' ? (
                 <LumiereScreen key={refreshKey} deviceMode="desktop" />
               ) : (
                 <ConceptScreenFallback conceptId={selectedConcept} />
@@ -155,7 +155,7 @@ export const InteractiveDevicePreview: React.FC<InteractiveDevicePreviewProps> =
 
             {/* Screen Inner Viewport */}
             <div className="relative h-[620px] overflow-y-auto bg-[#0b1326] rounded-b-2xl scrollbar-none">
-              {selectedConcept === 'lumiere-salon-cafe' ? (
+              {selectedConcept === 'lumiere-salon-spa' || selectedConcept === 'lumiere-salon-cafe' ? (
                 <LumiereScreen key={refreshKey} deviceMode="mobile" />
               ) : (
                 <ConceptScreenFallback conceptId={selectedConcept} />
@@ -201,7 +201,7 @@ export const InteractiveDevicePreview: React.FC<InteractiveDevicePreviewProps> =
             </button>
           </div>
           <div className="flex-1 max-w-6xl mx-auto w-full overflow-hidden mt-4 rounded-xl border border-[#2d3449]">
-            {selectedConcept === 'lumiere-salon-cafe' ? (
+            {selectedConcept === 'lumiere-salon-spa' || selectedConcept === 'lumiere-salon-cafe' ? (
               <LumiereScreen isModal={true} onClose={() => setIsFullscreen(false)} />
             ) : (
               <ConceptScreenFallback conceptId={selectedConcept} />
@@ -253,13 +253,13 @@ const ConceptScreenFallback: React.FC<{ conceptId: string }> = ({ conceptId }) =
 
       <div className="pt-4 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-xs text-slate-400">
-          Tailored for high conversions in Hyderabad's premier commercial corridors.
+          Tailored for high-margin client conversions across premier national and international flagship destinations.
         </p>
         <a
           href="#contact"
           className="px-5 py-2.5 bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold text-xs uppercase tracking-wider rounded-lg transition-colors"
         >
-          Request Similar Website (24 Hours)
+          Request Similar Flagship (24 Hours)
         </a>
       </div>
     </div>

@@ -5,6 +5,7 @@ import {
   ArrowRight, Check, Eye
 } from 'lucide-react';
 import { INDUSTRIES } from '../data/siteData';
+import { IndustryItem } from '../types';
 
 interface IndustriesSectionProps {
   onSelectIndustry: (industryName: string) => void;
@@ -31,7 +32,7 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({
 
   const filteredIndustries = activeFilter === 'all' 
     ? INDUSTRIES 
-    : INDUSTRIES.filter(i => {
+    : INDUSTRIES.filter((i: IndustryItem) => {
         if (activeFilter === 'salon-spa') return i.id === 'salon-spa';
         if (activeFilter === 'luxury') return ['jewellery', 'real-estate'].includes(i.id);
         if (activeFilter === 'wellness') return ['fitness', 'clinic', 'coaching'].includes(i.id);
@@ -50,15 +51,15 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({
             <span className="w-2 h-2 rounded-full bg-[#00FF9D] animate-ping" />
             <span className="uppercase tracking-widest font-bold">DOMAIN EXPERTISE</span>
             <span className="text-[#4b3d67]">/</span>
-            <span className="text-[#00FF9D] font-bold">HYDERABAD NATIVE</span>
+            <span className="text-[#00FF9D] font-bold">GLOBAL STANDARDS</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-syne font-extrabold text-white tracking-tight max-w-3xl text-balance">
-            Websites Architected For <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6]">Your Industry</span>
+            Websites Architected For <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6]">Salon &amp; Spa Flagships</span>
           </h2>
 
           <p className="text-sm sm:text-base text-[#cbd5e1] max-w-2xl mt-4 font-normal leading-relaxed text-balance">
-            Pre-engineered customer journeys, WhatsApp booking docks, and visual rate cards designed specifically for Hyderabad’s most active commercial sectors.
+            Pre-engineered guest journeys, VIP WhatsApp booking docks, and interactive visual service suites designed specifically for luxury salon and spa brands worldwide.
           </p>
 
           {/* Interactive Filter Segmented Control */}
@@ -86,7 +87,7 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({
 
         {/* Dynamic Industries Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredIndustries.map((ind) => (
+          {filteredIndustries.map((ind: IndustryItem) => (
             <div
               key={ind.id}
               className="bg-[#0b0c1a] rounded-3xl p-7 border border-[#231b3e] hover:border-[#FFB800]/50 transition-all duration-300 flex flex-col justify-between hover:shadow-[0_15px_40px_rgba(255,184,0,0.15)] group hover:-translate-y-1"
@@ -113,7 +114,7 @@ export const IndustriesSection: React.FC<IndustriesSectionProps> = ({
 
                 {/* Features Checklist */}
                 <div className="space-y-1.5 mb-6 pt-3 border-t border-[#1e1935]">
-                  {ind.features.map((f, idx) => (
+                  {ind.features.map((f: string, idx: number) => (
                     <div key={idx} className="flex items-center gap-2 text-xs text-[#cbd5e1] font-space">
                       <Check className="w-3.5 h-3.5 text-[#00FF9D] shrink-0" />
                       <span>{f}</span>

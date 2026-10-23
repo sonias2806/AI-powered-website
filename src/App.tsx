@@ -6,261 +6,182 @@
 import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
-import { ThreeCanvasBackdrop } from './components/ThreeCanvasBackdrop';
-import { Showcase3DCarousel } from './components/Showcase3DCarousel';
-import { SuccessStories3DCarousel } from './components/SuccessStories3DCarousel';
-import { RoiCalculatorSection } from './components/RoiCalculatorSection';
+import { PortfolioSection } from './components/PortfolioSection';
+import { FounderSection } from './components/FounderSection';
 import { ServicesSection } from './components/ServicesSection';
-import { IndustriesSection } from './components/IndustriesSection';
 import { HowItWorksSection } from './components/HowItWorksSection';
 import { PricingSection } from './components/PricingSection';
 import { ContactSection } from './components/ContactSection';
 import { FaqSection } from './components/FaqSection';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { Footer } from './components/Footer';
-import { InteractiveScreenModal } from './components/InteractiveScreenModal';
-import { MessageSquare, ArrowRight, Sparkles, Zap, Award } from 'lucide-react';
-import { CONTACT_INFO } from './data/siteData';
-import { PortfolioItem } from './types';
-import { soundManager } from './utils/soundEffects';
+import { ThreeCanvasBackdrop } from './components/ThreeCanvasBackdrop';
+import { ArrowRight, MessageSquare, Sparkles } from 'lucide-react';
+import { CONTACT_CONFIG } from './data/siteData';
 
 export default function App() {
-  const [selectedIndustry, setSelectedIndustry] = useState<string>('Salon and Spa');
-  const [selectedPackage, setSelectedPackage] = useState<string>('Growth (₹9,999)');
-  const [isSimulatorModalOpen, setIsSimulatorModalOpen] = useState(false);
-  const [modalConceptId, setModalConceptId] = useState<string>('lumiere-salon-spa');
-  const [soundEnabled, setSoundEnabled] = useState(false);
-  const [colorTheme, setColorTheme] = useState<'cosmic' | 'emerald' | 'sunset'>('cosmic');
+  const [selectedIndustry, setSelectedIndustry] = useState<string>('Hair & Beauty Salon');
+  const [selectedPackage, setSelectedPackage] = useState<string>('Growth Business (₹9,999)');
 
-  const handleToggleSound = () => {
-    const nextState = soundManager.toggle();
-    setSoundEnabled(nextState);
-  };
-
-  const handleCycleTheme = () => {
-    soundManager.playClick();
-    setColorTheme(prev => prev === 'cosmic' ? 'emerald' : prev === 'emerald' ? 'sunset' : 'cosmic');
-  };
-
-  const handleSelectIndustry = (industryName: string) => {
-    soundManager.playClick();
-    setSelectedIndustry(industryName);
+  const scrollToContact = () => {
     const contactElem = document.getElementById('contact');
     if (contactElem) {
       contactElem.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const scrollToPortfolio = () => {
+    const portfolioElem = document.getElementById('portfolio');
+    if (portfolioElem) {
+      portfolioElem.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   const handleSelectPackage = (packageName: string) => {
-    soundManager.playChime();
     setSelectedPackage(packageName);
-    const contactElem = document.getElementById('contact');
-    if (contactElem) {
-      contactElem.scrollIntoView({ behavior: 'smooth' });
-    }
+    scrollToContact();
   };
 
   const handleSelectService = (serviceName: string) => {
-    soundManager.playClick();
-    const contactElem = document.getElementById('contact');
-    if (contactElem) {
-      contactElem.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleOpenLiveConcept = (conceptId: string) => {
-    soundManager.playClick();
-    setModalConceptId(conceptId);
-    setIsSimulatorModalOpen(true);
-  };
-
-  const handleOpenPortfolioItemModal = (item: PortfolioItem) => {
-    soundManager.playClick();
-    setModalConceptId(item.id);
-    setIsSimulatorModalOpen(true);
+    setSelectedIndustry(serviceName);
+    scrollToContact();
   };
 
   const handleSelectConceptForContact = (conceptName: string) => {
-    soundManager.playChime();
-    setSelectedIndustry(conceptName.includes('Salon') || conceptName.includes('Spa') ? 'Salon and Spa' : 'Other Local Business');
-    const contactElem = document.getElementById('contact');
-    if (contactElem) {
-      contactElem.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  const handleSelectStoryForContact = (businessName: string) => {
-    soundManager.playChime();
-    if (businessName.includes('Salon') || businessName.includes('Lumière') || businessName.includes('Spa')) {
-      setSelectedIndustry('Salon and Spa');
-    } else if (businessName.includes('Residences') || businessName.includes('PrimeNest')) {
-      setSelectedIndustry('Real Estate');
-    } else if (businessName.includes('Jewellery')) {
-      setSelectedIndustry('Jewellery');
-    } else if (businessName.includes('Gym') || businessName.includes('Crossfit')) {
-      setSelectedIndustry('Gym & Fitness');
+    if (conceptName.toLowerCase().includes('salon')) {
+      setSelectedIndustry('Hair & Beauty Salon');
+    } else if (conceptName.toLowerCase().includes('clinic')) {
+      setSelectedIndustry('Medical & Dental Clinic');
+    } else if (conceptName.toLowerCase().includes('cafe')) {
+      setSelectedIndustry('Cafe & Bakery');
     } else {
       setSelectedIndustry('Other Local Business');
     }
-    const contactElem = document.getElementById('contact');
-    if (contactElem) {
-      contactElem.scrollIntoView({ behavior: 'smooth' });
-    }
+    scrollToContact();
   };
 
   return (
-    <div className="min-h-screen bg-[#08070e] text-[#f1f4fb] flex flex-col font-sans selection:bg-[#FFB800] selection:text-black relative">
-      {/* 3D WebGL Constellation Canvas Backdrop */}
+    <div className="min-h-screen bg-[#060713] text-slate-100 flex flex-col font-sans selection:bg-amber-400 selection:text-slate-950 relative overflow-x-hidden">
+      {/* Dynamic 3D Particle Constellation Canvas */}
       <ThreeCanvasBackdrop />
 
-      {/* Top Header with Award-Caliber BrandLogo & Atmosphere switcher */}
+      {/* Vibrant Award-Winning Ambient Aurora Mesh Background Layers */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+        {/* Top-Right Sunset Amber-Coral Glowing Orb */}
+        <div className="absolute -top-32 -right-24 w-[620px] h-[620px] bg-gradient-to-br from-amber-500/25 via-rose-500/20 to-transparent rounded-full blur-[140px] animate-float-slow" />
+
+        {/* Top-Left Royal Indigo & Electric Violet Orb */}
+        <div className="absolute -top-20 -left-28 w-[580px] h-[580px] bg-gradient-to-tr from-indigo-600/30 via-violet-600/20 to-transparent rounded-full blur-[140px] animate-float-reverse" />
+
+        {/* Mid-Left Cyber Cyan & Emerald Glow */}
+        <div className="absolute top-[35%] -left-36 w-[640px] h-[640px] bg-gradient-to-br from-cyan-500/20 via-emerald-500/15 to-transparent rounded-full blur-[150px] animate-pulse-glow" />
+
+        {/* Mid-Right Neon Hot Pink & Magenta Aura */}
+        <div className="absolute top-[50%] -right-32 w-[600px] h-[600px] bg-gradient-to-bl from-pink-500/22 via-purple-600/20 to-transparent rounded-full blur-[150px] animate-float-slow" />
+
+        {/* Bottom Ambient Solar Gold & Violet Mesh */}
+        <div className="absolute -bottom-40 left-1/3 w-[700px] h-[700px] bg-gradient-to-t from-amber-500/20 via-indigo-600/20 to-transparent rounded-full blur-[160px] animate-float-reverse" />
+
+        {/* Subtle Cyber Grid with Radial Vignette */}
+        <div className="absolute inset-0 bg-cyber-grid opacity-25 [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_85%)]" />
+      </div>
+
+      {/* Top Header with strict 3-zone Top Bar Contract */}
       <Header
-        onOpenLivePreview={() => handleOpenLiveConcept('lumiere-salon-spa')}
-        onSelectContact={() => {
-          const contactElem = document.getElementById('contact');
-          if (contactElem) contactElem.scrollIntoView({ behavior: 'smooth' });
-        }}
-        soundEnabled={soundEnabled}
-        onToggleSound={handleToggleSound}
-        colorTheme={colorTheme}
-        onCycleTheme={handleCycleTheme}
+        onSelectContact={scrollToContact}
+        onOpenDemoWork={scrollToPortfolio}
       />
 
       <main className="flex-1 w-full relative z-10">
-        {/* Hero Section with 3D Tilt Showcase & Live Mockup */}
+        {/* Hero Section with exact required headline, supporting text, and dual CTAs */}
         <Hero
-          onOpenConsultation={() => {
-            const contactElem = document.getElementById('contact');
-            if (contactElem) contactElem.scrollIntoView({ behavior: 'smooth' });
-          }}
+          onOpenConsultation={scrollToContact}
+          onViewWork={scrollToPortfolio}
         />
 
-        {/* 3D SPATIAL BUSINESS PORTFOLIO CAROUSEL */}
-        <Showcase3DCarousel
-          onOpenLiveConcept={handleOpenPortfolioItemModal}
-          onSelectConceptForContact={handleSelectConceptForContact}
+        {/* Portfolio Section with 3 Clearly Labelled Demo Concepts (Salon, Clinic, Cafe) */}
+        <PortfolioSection
+          onSelectConceptForConsultation={handleSelectConceptForContact}
         />
 
-        {/* 3D SUCCESS STORIES CAROUSEL (Verified Hyderabad Revenue & 3D Flip Cards) */}
-        <SuccessStories3DCarousel
-          onSelectStoryForContact={handleSelectStoryForContact}
+        {/* Founder Introduction Section with Photograph Placeholder & Professional Biography */}
+        <FounderSection
+          onOpenConsultation={scrollToContact}
         />
 
-        {/* 3D ROI & WHATSAPP CONVERSION PREDICTOR */}
-        <RoiCalculatorSection />
-
-        {/* Services Section */}
-        <ServicesSection onSelectService={handleSelectService} />
-
-        {/* Industries Section */}
-        <IndustriesSection
-          onSelectIndustry={handleSelectIndustry}
-          onPreviewConcept={handleOpenLiveConcept}
+        {/* Service Cards tailored for National & International Businesses */}
+        <ServicesSection
+          onSelectService={handleSelectService}
         />
 
-        {/* How It Works Section */}
-        <HowItWorksSection />
+        {/* Simple Three-Step Project Process */}
+        <HowItWorksSection
+          onOpenConsultation={scrollToContact}
+        />
 
-        {/* Callout Banner between Workflow and Pricing */}
-        <section className="w-full py-16 px-4 sm:px-6 lg:px-8 bg-[#07060d] border-y border-[#2e2354] relative overflow-hidden">
-          {/* Ambient lighting */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-gradient-to-r from-[#FFB800]/15 via-[#EC4899]/15 to-[#8B5CF6]/15 rounded-full blur-[140px] pointer-events-none" />
+        {/* Transparent Package Information in INR */}
+        <PricingSection
+          onSelectPackage={handleSelectPackage}
+        />
 
-          <div className="max-w-5xl mx-auto rounded-3xl bg-gradient-to-r from-[#120e29] via-[#1a1238] to-[#120e29] p-8 sm:p-12 border border-[#FFB800]/40 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl backdrop-blur-2xl relative z-10">
-            <div className="max-w-xl text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#140e29] border border-[#FFB800]/30 text-xs font-mono-num text-[#FFB800] mb-3 font-bold">
-                <Zap className="w-3.5 h-3.5 text-[#00FF9D]" />
-                <span>HYDERABAD MARKET REALITY</span>
+        {/* Mid-Page Callout Banner with Radiant Gradient Border & Glassmorphic Glow */}
+        <section className="py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+          <div className="max-w-4xl mx-auto rounded-3xl p-[1.5px] bg-gradient-to-r from-amber-400 via-rose-500 to-indigo-500 shadow-2xl shadow-indigo-950/40">
+            <div className="rounded-[22px] bg-[#0c0e1e]/90 backdrop-blur-2xl p-7 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 text-center sm:text-left relative overflow-hidden">
+              {/* Internal subtle colorful glow */}
+              <div className="absolute -top-16 -right-16 w-56 h-56 bg-amber-400/15 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -bottom-16 -left-16 w-56 h-56 bg-rose-500/15 rounded-full blur-3xl pointer-events-none" />
+
+              <div className="relative z-10">
+                <div className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-300 uppercase tracking-wider mb-2">
+                  <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Zero Obligation Consultation · National &amp; International</span>
+                </div>
+                <h3 className="text-xl sm:text-2xl lg:text-3xl font-syne font-extrabold text-white">
+                  Not Sure Which Structure Fits Your Business?
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed max-w-lg">
+                  Send us a quick WhatsApp with your business type. We will share a tailored layout outline and honest advice within 2 hours.
+                </p>
               </div>
-              <h2 className="text-2xl sm:text-4xl font-syne font-extrabold text-white mb-2 leading-tight">
-                Your Customers Are Searching On Their Phones <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6]">Right Now.</span>
-              </h2>
-              <p className="text-xs sm:text-sm text-[#cbd5e1] leading-relaxed font-space mt-2">
-                Give them an ultra-fast place to discover your store, view service cards &amp; pricing, and message your WhatsApp counter in a single tap before your competitors do.
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
-              <a
-                href="#contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center font-space font-extrabold text-xs uppercase tracking-wider bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6] text-white px-7 py-4 rounded-xl shadow-[0_4px_25px_rgba(255,184,0,0.35)] hover:shadow-[0_6px_35px_rgba(236,72,153,0.5)] transition-all hover:scale-105"
-              >
-                <span>Launch My Website</span>
-              </a>
-              <a
-                href={`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=Hi%2C%20I%20am%20interested%20in%20a%20website%20for%20my%20business`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-2 font-space font-bold text-xs uppercase tracking-wider bg-[#171332] text-white border border-[#2e2354] hover:bg-[#251d4d] px-6 py-4 rounded-xl transition-all"
-              >
-                <MessageSquare className="w-4 h-4 text-[#00FF9D]" />
-                <span>WhatsApp Brief</span>
-              </a>
+
+              <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto relative z-10">
+                <a
+                  href={`https://wa.me/${CONTACT_CONFIG.whatsappNumber}?text=Hi%2C%20I%20would%20like%20to%20get%20advice%20on%20a%20website%20for%20my%20business`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-emerald-400 hover:from-emerald-400 hover:to-emerald-300 text-slate-950 font-bold text-xs transition-all shadow-lg shadow-emerald-950/30 hover:-translate-y-0.5"
+                >
+                  <MessageSquare className="w-4 h-4 fill-slate-950/20" />
+                  <span>WhatsApp Advice</span>
+                </a>
+                <button
+                  onClick={scrollToContact}
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold text-xs border border-white/15 transition-all hover:-translate-y-0.5"
+                >
+                  <span>Request Free Call</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           </div>
         </section>
 
-        {/* Pricing Section with Interactive Addon Calculator */}
-        <PricingSection onSelectPackage={handleSelectPackage} />
-
-        {/* Contact & Enquiry Section */}
+        {/* Strong Contact & Consultation Section with Form Validation & Configurable WhatsApp Placeholder */}
         <ContactSection
           initialIndustry={selectedIndustry}
           initialPackage={selectedPackage}
         />
 
-        {/* FAQ Section */}
+        {/* Practical FAQs for Small Business Owners */}
         <FaqSection />
-
-        {/* Final CTA Banner */}
-        <section className="w-full py-24 px-4 sm:px-6 lg:px-8 bg-[#07060d] relative overflow-hidden">
-          <div className="max-w-5xl mx-auto relative rounded-3xl bg-gradient-to-br from-[#130f2d] via-[#1a123a] to-[#0e0a22] p-8 sm:p-16 text-center border border-[#FFB800]/30 shadow-2xl overflow-hidden backdrop-blur-2xl">
-            <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-r from-[#FFB800]/20 via-[#EC4899]/20 to-[#8B5CF6]/20 rounded-full blur-[130px] pointer-events-none" />
-            <div className="relative z-10 flex flex-col items-center">
-              <span className="text-xs font-space font-bold uppercase tracking-widest text-[#FFB800] bg-[#140e29] px-4 py-1.5 rounded-full mb-4 border border-[#FFB800]/30 shadow-lg shadow-[#FFB800]/10">
-                FREE INITIAL HYDERABAD SPRINT CONSULTATION
-              </span>
-              <h2 className="text-3xl sm:text-5xl lg:text-6xl font-syne font-extrabold text-white max-w-2xl mb-4 text-balance">
-                Ready to Put Your Business <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6]">Online?</span>
-              </h2>
-              <p className="text-sm sm:text-base text-[#cbd5e1] max-w-xl mb-8 text-balance font-normal leading-relaxed font-space">
-                Let's craft a website that makes your business easier to discover, trust, and contact across Hyderabad within 24 hours.
-              </p>
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
-                <a
-                  href="#contact"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-xs font-space font-extrabold uppercase tracking-wider bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6] text-white px-8 py-4 rounded-xl shadow-[0_10px_35px_-5px_rgba(255,184,0,0.4)] hover:shadow-[0_15px_45px_-5px_rgba(236,72,153,0.5)] hover:scale-105 transition-all"
-                >
-                  <span>Get My Website In 24 Hours</span>
-                  <ArrowRight className="w-4 h-4 stroke-[3]" />
-                </a>
-                <a
-                  href={`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=Hi%2C%20I%20am%20ready%20to%20get%20my%20website%20live`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-xs font-space font-bold uppercase tracking-wider bg-[#171332] text-white px-8 py-4 rounded-xl border border-[#2e2354] hover:bg-[#251d4d] transition-all"
-                >
-                  <MessageSquare className="w-4 h-4 text-[#00FF9D]" />
-                  <span>Chat With Us First</span>
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
       </main>
 
-      {/* Floating WhatsApp Action Dock */}
+      {/* Floating WhatsApp Quick Action Button */}
       <FloatingWhatsApp />
 
-      {/* Footer with BrandLogo & 3D links */}
+      {/* Clean Footer with Global Client Hubs & Contact Details */}
       <Footer />
-
-      {/* Interactive Screen Simulation Modal */}
-      <InteractiveScreenModal
-        isOpen={isSimulatorModalOpen}
-        onClose={() => setIsSimulatorModalOpen(false)}
-        conceptId={modalConceptId}
-        onSelectConceptForContact={handleSelectConceptForContact}
-      />
     </div>
   );
 }

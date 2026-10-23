@@ -57,7 +57,7 @@ export const LumiereScreen: React.FC<LumiereScreenProps> = ({
       <div className="bg-[#1c1a17] border-b border-[#2d2924] py-2 px-4 text-center text-xs tracking-widest uppercase text-[#c5a880] flex items-center justify-between">
         <span className="flex items-center gap-1.5 mx-auto">
           <Star className="w-3 h-3 text-[#c5a880] fill-[#c5a880]" />
-          Road No. 36, Banjara Hills, Hyderabad · Valet Parking Available
+          Flagship Boutique · Private Suites &amp; Valet Parking Available
         </span>
         {isModal && onClose && (
           <button 
@@ -193,7 +193,7 @@ export const LumiereScreen: React.FC<LumiereScreenProps> = ({
           <div className="group relative rounded-xl overflow-hidden border border-[#2b2722] bg-[#181614] flex flex-col justify-between shadow-2xl">
             <div className="relative aspect-[16/11] overflow-hidden bg-stone-900">
               <img
-                src={ASSETS.cafe}
+                src={ASSETS.spa}
                 alt="Lumière Luxury Wellness Sanctuary and Serene Spa Suite"
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
               />
@@ -318,7 +318,7 @@ export const LumiereScreen: React.FC<LumiereScreenProps> = ({
         <div id="lumiere-contact" className="border-t border-[#24221f] pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-[#8a7f72] gap-4">
           <div className="flex items-center gap-2">
             <MapPin className="w-4 h-4 text-[#c5a880]" />
-            <span>Plot 402, Rd Number 36, Jubilee Hills / Banjara Hills Border, Hyderabad</span>
+            <span>Flagship Atelier, Private Suite Concourse · Mayfair &amp; Flagship Suites</span>
           </div>
           <div className="flex items-center gap-4">
             <span>Tues–Sun: 9:00 AM – 9:00 PM</span>

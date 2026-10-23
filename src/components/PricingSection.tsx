@@ -1,206 +1,172 @@
-import React, { useState } from 'react';
-import { Check, Zap, Plus, Sparkles, ArrowRight, ShieldCheck } from 'lucide-react';
-import { PRICING_TIERS } from '../data/siteData';
-import confetti from 'canvas-confetti';
+import React from 'react';
+import { Check, ArrowRight, ShieldCheck, Clock, Sparkles } from 'lucide-react';
+import { PRICING_PACKAGES } from '../data/siteData';
 
 interface PricingSectionProps {
   onSelectPackage: (packageName: string) => void;
 }
 
 export const PricingSection: React.FC<PricingSectionProps> = ({ onSelectPackage }) => {
-  const [selectedAddons, setSelectedAddons] = useState<string[]>([]);
-
-  const addonsList = [
-    { id: 'domain', name: 'Custom Domain (.in or .com registration & DNS setup)', price: 1200 },
-    { id: 'multilang', name: 'Telugu & English Dual Language Switcher', price: 2500 },
-    { id: 'maps', name: 'Google Business Profile verification & ranking optimization', price: 1500 },
-    { id: 'catalog', name: 'Online Product Catalog / Digital Menu with WhatsApp Checkout', price: 3500 }
-  ];
-
-  const toggleAddon = (id: string) => {
-    setSelectedAddons(prev => 
-      prev.includes(id) ? prev.filter(item => item !== id) : [...prev, id]
-    );
-  };
-
-  const calculateAddonsTotal = () => {
-    return selectedAddons.reduce((sum, id) => {
-      const match = addonsList.find(a => a.id === id);
-      return sum + (match ? match.price : 0);
-    }, 0);
-  };
-
-  const handleSelectWithConfetti = (packageName: string) => {
-    try {
-      confetti({
-        particleCount: 50,
-        spread: 70,
-        origin: { y: 0.7 },
-        colors: ['#FFB800', '#EC4899', '#8B5CF6', '#00FF9D']
-      });
-    } catch {
-      // safe fallback
-    }
-    onSelectPackage(packageName);
-  };
-
   return (
-    <section id="pricing" className="w-full py-24 px-4 sm:px-6 lg:px-8 bg-[#07060d] relative overflow-hidden">
-      {/* Background ambient lighting in Solar Gold and Electric Fuchsia */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-gradient-to-b from-[#FFB800]/12 via-[#EC4899]/10 to-transparent rounded-full blur-[160px] pointer-events-none" />
+    <section id="pricing" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden border-t border-b border-white/10">
+      {/* Dynamic Colorful Aurora Mesh */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden z-0" aria-hidden="true">
+        <div className="absolute top-1/4 -right-28 w-[580px] h-[580px] bg-gradient-to-bl from-amber-500/20 via-rose-500/15 to-transparent rounded-full blur-[140px]" />
+        <div className="absolute bottom-10 -left-28 w-[520px] h-[520px] bg-gradient-to-tr from-indigo-600/22 via-cyan-500/15 to-transparent rounded-full blur-[140px]" />
+      </div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Section Header */}
-        <div className="flex flex-col items-center text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#140e29] border border-[#FFB800]/30 text-xs font-space font-medium text-[#FFB800] mb-4 shadow-lg shadow-[#FFB800]/10">
-            <span className="w-2 h-2 rounded-full bg-[#00FF9D] animate-ping" />
-            <span className="uppercase tracking-widest font-bold">TRANSPARENT 24H INVESTMENT</span>
-            <span className="text-[#4b3d67]">/</span>
-            <span className="text-[#00FF9D] font-bold">ZERO LOCK-IN</span>
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-amber-400/30 text-xs font-bold uppercase tracking-wider text-amber-300 mb-4 backdrop-blur-xl shadow-lg shadow-amber-950/20">
+            <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+            <span>Transparent Pricing in INR &amp; USD · No Hidden Lock-in</span>
           </div>
-
-          <h2 className="text-3xl sm:text-5xl font-syne font-extrabold text-white tracking-tight max-w-3xl text-balance">
-            Simple, Transparent <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6]">Website Packages</span>
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-syne font-extrabold text-white tracking-tight">
+            Fair, Upfront Packages for National &amp; International Clients
           </h2>
-
-          <p className="text-sm sm:text-base text-[#cbd5e1] max-w-2xl mt-4 font-normal leading-relaxed text-balance font-space">
-            Upfront fixed pricing engineered for Hyderabad's salons and spas, jewelers, realtors, and gyms. Complete client code ownership, no hidden monthly lock-ins.
+          <p className="text-sm sm:text-base text-slate-200 mt-3 leading-relaxed drop-shadow-sm">
+            One-time project investment. No monthly retainers, no agency markups, and zero hidden lock-in fees.
           </p>
         </div>
 
-        {/* 3 Pricing Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch mb-12">
-          {PRICING_TIERS.map((tier) => (
-            <div
-              key={tier.id}
-              className={`relative rounded-3xl p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 shadow-2xl backdrop-blur-2xl ${
-                tier.isPopular
-                  ? 'bg-[#120e29]/95 border-2 border-[#FFB800] lg:-translate-y-3 shadow-[0_25px_60px_rgba(255,184,0,0.25)]'
-                  : 'bg-[#0f0c22]/90 border border-[#2e2354] hover:border-[#FFB800]/40'
-              }`}
-            >
-              {/* Popular Badge */}
-              {tier.isPopular && (
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6] text-white text-[10px] font-space font-extrabold uppercase tracking-widest px-4 py-1 rounded-full shadow-lg shadow-[#FFB800]/25">
-                  Most Popular For Local Growth
-                </div>
-              )}
-
-              <div>
-                {/* Header info */}
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-2xl font-syne font-bold text-white">{tier.name}</h3>
-                  <span className="text-xs font-mono-num text-[#00FF9D] bg-[#00FF9D]/10 px-2.5 py-1 rounded-lg border border-[#00FF9D]/30 font-bold">
-                    {tier.deliveryTime}
-                  </span>
-                </div>
-
-                <p className="text-xs text-[#cbd5e1] min-h-[36px] leading-relaxed mb-6 font-space">
-                  {tier.description}
-                </p>
-
-                {/* Price Display */}
-                <div className="flex items-baseline gap-2 mb-6 pb-6 border-b border-[#251d45]">
-                  <span className="text-4xl sm:text-5xl font-syne font-extrabold text-white font-mono-num">
-                    {tier.price}
-                  </span>
-                  <span className="text-xs text-[#94a3b8] font-space">/ one-time fee</span>
-                </div>
-
-                {/* Features List */}
-                <ul className="space-y-3 text-xs sm:text-sm text-[#cbd5e1] mb-8 font-space">
-                  {tier.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-2.5">
-                      <div className="w-4 h-4 rounded-full bg-[#00FF9D]/20 text-[#00FF9D] flex items-center justify-center shrink-0 mt-0.5 border border-[#00FF9D]/30">
-                        <Check className="w-3 h-3 stroke-[3]" />
-                      </div>
-                      <span className="leading-snug">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Action Button */}
-              <button
-                onClick={() => handleSelectWithConfetti(`${tier.name} (${tier.price})`)}
-                className={`w-full py-3.5 px-4 rounded-xl text-xs font-space font-extrabold uppercase tracking-wider flex items-center justify-center gap-2 transition-all ${
-                  tier.isPopular
-                    ? 'bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6] text-white shadow-lg shadow-[#FFB800]/30 hover:shadow-[0_0_30px_rgba(236,72,153,0.5)] hover:scale-[1.02]'
-                    : 'bg-[#171332] text-white hover:bg-[#251d4d] border border-[#34275f]'
-                }`}
-              >
-                <span>Select {tier.name}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          ))}
-        </div>
-
-        {/* Interactive Add-on Calculator Section */}
-        <div className="max-w-4xl mx-auto rounded-3xl bg-[#0f0c22]/90 border border-[#2e2354] p-6 sm:p-8 shadow-2xl backdrop-blur-2xl">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 border-b border-[#251d45] pb-4">
-            <div>
-              <h4 className="text-lg font-syne font-bold text-white flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-[#FFB800]" />
-                <span>Optional Add-On Modules</span>
-              </h4>
-              <p className="text-xs text-[#cbd5e1] font-space mt-1">
-                Customize your website with optional domain registration, bilingual toggles, or digital catalogs.
-              </p>
-            </div>
-
-            {selectedAddons.length > 0 && (
-              <div className="flex items-center gap-2 bg-[#171332] px-3.5 py-1.5 rounded-xl border border-[#FFB800]/40 text-xs font-mono-num shadow-inner">
-                <span className="text-[#cbd5e1]">Add-ons Total:</span>
-                <span className="font-bold text-[#FFB800]">
-                  +₹{calculateAddonsTotal().toLocaleString('en-IN')}
-                </span>
-              </div>
-            )}
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
-            {addonsList.map((addon) => {
-              const isSelected = selectedAddons.includes(addon.id);
+        {/* 3 Pricing Packages */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch mb-10">
+          {PRICING_PACKAGES.map((pkg) => {
+            if (pkg.isPopular) {
               return (
                 <div
-                  key={addon.id}
-                  onClick={() => toggleAddon(addon.id)}
-                  className={`p-3.5 rounded-xl border cursor-pointer transition-all flex items-center justify-between gap-3 ${
-                    isSelected
-                      ? 'bg-[#1b153b] border-[#FFB800] text-white shadow-md shadow-[#FFB800]/15'
-                      : 'bg-[#120e26] border-[#251d45] text-[#94a3b8] hover:border-[#FFB800]/40 hover:text-white'
-                  }`}
+                  key={pkg.id}
+                  className="rounded-3xl p-[2px] bg-gradient-to-b from-amber-400 via-rose-500 to-indigo-500 shadow-2xl shadow-amber-950/40 relative lg:-translate-y-2 flex flex-col"
                 >
-                  <div className="flex items-center gap-2.5">
-                    <div className={`w-4 h-4 rounded-md border flex items-center justify-center shrink-0 ${
-                      isSelected ? 'bg-[#FFB800] border-[#FFB800] text-black' : 'border-[#43356e]'
-                    }`}>
-                      {isSelected && <Check className="w-3 h-3 stroke-[3]" />}
+                  <div className="rounded-[22px] bg-[#0d1024]/95 backdrop-blur-2xl p-7 sm:p-8 flex flex-col justify-between flex-1 relative overflow-hidden">
+                    {/* Top shine */}
+                    <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-amber-400/15 to-transparent pointer-events-none" />
+
+                    <div className="relative z-10">
+                      {/* Popular Badge */}
+                      <div className="inline-flex items-center gap-1.5 text-[11px] font-bold text-amber-300 uppercase tracking-wider mb-2 px-3 py-1 rounded-full bg-amber-400/15 border border-amber-400/30">
+                        <Sparkles className="w-3 h-3 text-amber-400" />
+                        <span>{pkg.badge || 'Most Popular Plan'}</span>
+                      </div>
+
+                      <div className="flex items-center justify-between mb-3 mt-1">
+                        <h3 className="text-xl font-bold text-white">{pkg.name}</h3>
+                        <span className="flex items-center gap-1 text-[11px] font-medium text-amber-300 bg-amber-950/60 px-2.5 py-1 rounded-full border border-amber-400/30">
+                          <Clock className="w-3 h-3 text-amber-400" />
+                          <span>{pkg.deliveryTime}</span>
+                        </span>
+                      </div>
+
+                      <p className="text-xs sm:text-sm text-slate-200 leading-relaxed mb-5 min-h-[36px]">
+                        {pkg.description}
+                      </p>
+
+                      {/* Price */}
+                      <div className="flex items-baseline gap-2 mb-4 pb-4 border-b border-white/10">
+                        <span className="text-3xl sm:text-4xl font-syne font-extrabold text-white font-mono-num tabular-nums">
+                          {pkg.price}
+                        </span>
+                        <span className="text-xs text-amber-200 font-medium">/ one-time investment</span>
+                      </div>
+
+                      {/* Ideal for note */}
+                      <div className="text-xs text-slate-300 mb-5 italic">
+                        <span className="font-bold text-amber-300 not-italic">Ideal for: </span>
+                        {pkg.idealFor}
+                      </div>
+
+                      {/* Features List */}
+                      <ul className="space-y-2.5 text-xs text-slate-200 mb-7">
+                        {pkg.features.map((feature, idx) => (
+                          <li key={idx} className="flex items-start gap-2">
+                            <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                            <span className="leading-snug">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
-                    <span className="text-xs font-space leading-snug">{addon.name}</span>
+
+                    {/* Action Button */}
+                    <button
+                      onClick={() => onSelectPackage(`${pkg.name} (${pkg.price})`)}
+                      className="w-full py-3.5 px-4 rounded-xl text-xs font-bold flex items-center justify-center gap-2 bg-gradient-to-r from-amber-400 via-amber-300 to-yellow-400 hover:from-amber-300 hover:to-yellow-300 text-slate-950 shadow-xl shadow-amber-950/30 transition-all hover:-translate-y-0.5 relative z-10"
+                    >
+                      <span>{pkg.ctaText}</span>
+                      <ArrowRight className="w-3.5 h-3.5 stroke-[2.4]" />
+                    </button>
                   </div>
-                  <span className="text-xs font-mono-num font-bold text-[#00FF9D] shrink-0">
-                    +₹{addon.price.toLocaleString('en-IN')}
-                  </span>
                 </div>
               );
-            })}
-          </div>
+            }
 
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 text-xs font-space text-[#cbd5e1]">
-            <div className="flex items-center gap-2">
-              <ShieldCheck className="w-4 h-4 text-[#00FF9D]" />
-              <span>All packages include 100% full source code ownership and 24h SLA.</span>
-            </div>
-            <a
-              href="#contact"
-              className="text-[#FFB800] hover:text-white font-bold inline-flex items-center gap-1 transition-colors"
-            >
-              <span>Get Custom Quote</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </a>
+            return (
+              <div
+                key={pkg.id}
+                className="p-7 sm:p-8 rounded-3xl bg-[#0c0f20]/85 border border-white/15 backdrop-blur-xl hover:border-white/30 transition-all flex flex-col justify-between shadow-xl shadow-black/40 hover:-translate-y-1"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-3">
+                    <h3 className="text-xl font-bold text-white">{pkg.name}</h3>
+                    <span className="flex items-center gap-1 text-[11px] font-medium text-slate-300 bg-white/5 px-2.5 py-1 rounded-full border border-white/10">
+                      <Clock className="w-3 h-3 text-amber-400" />
+                      <span>{pkg.deliveryTime}</span>
+                    </span>
+                  </div>
+
+                  <p className="text-xs text-slate-300 leading-relaxed mb-5 min-h-[36px]">
+                    {pkg.description}
+                  </p>
+
+                  {/* Price */}
+                  <div className="flex items-baseline gap-2 mb-4 pb-4 border-b border-white/10">
+                    <span className="text-3xl sm:text-4xl font-syne font-extrabold text-white font-mono-num tabular-nums">
+                      {pkg.price}
+                    </span>
+                    <span className="text-xs text-slate-400">/ one-time investment</span>
+                  </div>
+
+                  {/* Ideal for note */}
+                  <div className="text-xs text-slate-300 mb-5 italic">
+                    <span className="font-semibold text-slate-200 not-italic">Ideal for: </span>
+                    {pkg.idealFor}
+                  </div>
+
+                  {/* Features List */}
+                  <ul className="space-y-2.5 text-xs text-slate-300 mb-6">
+                    {pkg.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                        <span className="leading-snug">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Action Button */}
+                <button
+                  onClick={() => onSelectPackage(`${pkg.name} (${pkg.price})`)}
+                  className="w-full py-3 px-4 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 bg-white/10 hover:bg-white/15 text-white border border-white/15 transition-all hover:-translate-y-0.5"
+                >
+                  <span>{pkg.ctaText}</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Reassurance Banner */}
+        <div className="p-5 rounded-2xl bg-slate-900/70 border border-white/15 backdrop-blur-xl flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-200 shadow-xl shadow-black/30">
+          <div className="flex items-center gap-2">
+            <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+            <span>
+              All packages include 100% full source code ownership, mobile optimization, and direct founder support.
+            </span>
           </div>
+          <span className="text-slate-400 text-center sm:text-right">
+            Have a custom requirement or multi-branch setup? Enquire below for a tailored quote.
+          </span>
         </div>
       </div>
     </section>
