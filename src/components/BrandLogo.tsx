@@ -26,8 +26,8 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
   return (
     <div className={`inline-flex items-center gap-2.5 select-none ${className}`}>
       {/* Clean modern geometric monogram */}
-      <div className={`relative ${iconSizes[size]} shrink-0 flex items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 via-indigo-600 to-amber-500 p-0.5 shadow-md shadow-indigo-950/20`}>
-        <div className="w-full h-full bg-[#0d1017] rounded-[10px] flex items-center justify-center">
+      <div className={`relative ${iconSizes[size]} shrink-0 flex items-center justify-center rounded-xl bg-gradient-to-br from-rose-500 via-amber-500 to-purple-600 p-0.5 shadow-md shadow-rose-500/20`}>
+        <div className="w-full h-full bg-white rounded-[10px] flex items-center justify-center">
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -35,7 +35,7 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
             strokeWidth="2.2"
             strokeLinecap="round"
             strokeLinejoin="round"
-            className="w-5 h-5 text-amber-400"
+            className="w-5 h-5 text-rose-600"
           >
             {/* Modern architectural 'A' with subtle digital craftsmanship crossbar */}
             <path d="M12 3L3 20h4.5l1.8-4h5.4l1.8 4H21L12 3z" fill="currentColor" fillOpacity="0.15" />
@@ -47,14 +47,14 @@ export const BrandLogo: React.FC<BrandLogoProps> = ({
       {withText && (
         <div className="flex flex-col text-left">
           <div className="flex items-center gap-1.5 leading-none">
-            <span className={`font-syne font-extrabold ${textSizes[size]} text-white tracking-tight`}>
+            <span className={`font-syne font-extrabold ${textSizes[size]} text-slate-900 tracking-tight`}>
               Aura
             </span>
-            <span className={`font-syne font-semibold ${textSizes[size]} text-indigo-300 tracking-tight`}>
+            <span className={`font-syne font-bold ${textSizes[size]} text-rose-600 tracking-tight`}>
               Web Studio
             </span>
           </div>
-          <span className="text-[10px] text-slate-400 font-medium tracking-wide mt-0.5">
+          <span className="text-[10px] text-slate-500 font-medium tracking-wide mt-0.5">
             Global &amp; National · High-Converting Websites
           </span>
         </div>

@@ -5,7 +5,8 @@ export const ASSETS = {
   demoSalon: '/src/assets/images/demo_salon_concept_1792692052993.jpg',
   demoClinic: '/src/assets/images/demo_clinic_concept_1792692053856.jpg',
   demoCafe: '/src/assets/images/demo_cafe_concept_1792692054539.jpg',
-  founderPlaceholder: '/src/assets/images/founder_portrait_placeholder_1792692054397.jpg',
+  founderPhoto: '/src/assets/images/founder_sonia_portrait_1792758276848.jpg',
+  founderPlaceholder: '/src/assets/images/founder_sonia_portrait_1792758276848.jpg',
   salon: '/src/assets/images/demo_salon_concept_1792692052993.jpg',
   spa: '/src/assets/images/demo_salon_concept_1792692052993.jpg',
   heroMockup: '/src/assets/images/hero_web_showcase_1792692052621.jpg',
@@ -41,7 +42,7 @@ export const HERO_CONTENT = {
   headline: 'Your Business Deserves a Website That Wins Customers.',
   supportingText: 'Professional websites for salons, clinics, cafes, gyms and growing businesses worldwide. Serving national and international clients with modern responsive architecture, sub-second loading speed, and handcrafted bespoke design.',
   primaryCta: 'Get a Free Website Consultation',
-  secondaryCta: 'View Our Work',
+  secondaryCta: '3D Showcase Demo',
   subValuePoints: [
     'Sub-2s global CDN loading speed',
     'Direct WhatsApp & 1-tap booking funnels',
@@ -151,32 +152,32 @@ export const DEMO_CONCEPTS: PortfolioItem[] = [
 ];
 
 export const FOUNDER_DATA: FounderBio = {
-  name: 'Prasad R.',
-  role: 'Founder & Lead Digital Craftsman',
+  name: 'Sonia S.',
+  role: 'Founder & Creative Web Director',
   location: 'Serving National & International Clients',
-  image: ASSETS.founderPlaceholder,
-  bioHeading: 'Why I Work Directly with Businesses Worldwide',
+  image: ASSETS.founderPhoto,
+  bioHeading: 'Why I Work Directly with Growing Businesses Worldwide',
   bioParagraphs: [
-    'I started Aura Web Studio because business owners—salons, dental clinics, specialty cafes, gym operators, and service founders—are often forced to choose between two frustrating extremes: paying inflated agency retainers of $3,000+ with endless committee delays, or struggling with clunky DIY builders that look amateurish on mobile phones.',
-    'My studio combines modern high-performance engineering with bespoke human craftsmanship. We build clean, lightning-fast web architectures from the ground up, avoiding bloated templates and agency red tape. Every headline, button layout, image crop, and mobile tap target is then personally checked, tuned, and tested by me.',
-    'Whether your business is located in India, the US, the UK, the Middle East, or Australia, you communicate directly with the person designing and building your website. I ensure your digital presence loads in under 2 seconds worldwide, looks award-winning on all devices, and turns visitors into paying customers.'
+    'I founded Aura Web Studio because business owners—salons, wellness spas, dental clinics, boutique cafes, and service entrepreneurs—deserve captivating, high-performing websites without the exorbitant $4,000+ agency markup or the cookie-cutter mediocrity of DIY page builders.',
+    'I bring a blend of artistic design direction and modern, high-speed frontend engineering. Every client site is crafted with vivid visual aesthetics, intuitive mobile ergonomics, transparent rate cards, and direct 1-tap WhatsApp booking funnels.',
+    'When you partner with Aura Web Studio, you collaborate directly with me from concept to launch. Whether you are expanding locally or catering to clients across India, North America, the UK, the UAE, or Asia-Pacific, I personally guarantee your website will be lightning-fast, distinctive, and built to convert.'
   ],
   guarantees: [
     {
-      title: 'Direct Founder Communication',
-      description: 'You communicate directly with me on WhatsApp, email, or video call throughout your project.'
+      title: 'Direct Founder Collaboration',
+      description: 'You speak directly with me on WhatsApp, email, or video call throughout your project with zero middlemen.'
     },
     {
-      title: 'Rapid Delivery + Handcrafted Quality',
-      description: 'Rapid 3-to-5 day turnaround with thorough human verification of responsiveness and typography.'
+      title: 'Rapid Turnaround & Bespoke Craft',
+      description: 'Fast 3-to-5 day delivery with dedicated human attention to visual polish, mobile UX, and typography.'
     },
     {
       title: '100% Full Ownership',
-      description: 'You own your domain, code, and content. Zero monthly hostage fees or proprietary lock-ins.'
+      description: 'You own your domain, code, and content. Zero monthly lock-in or proprietary platform hostage fees.'
     },
     {
-      title: 'Global Performance & Multi-Currency',
-      description: 'Ultra-fast global CDN delivery with dual currency support (USD / INR) for international reach.'
+      title: 'Global CDN & Dual Currency',
+      description: 'Ultra-fast worldwide CDN delivery with support for dual-currency pricing (USD & INR).'
     }
   ]
 };
