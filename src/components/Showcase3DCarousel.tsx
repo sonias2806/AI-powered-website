@@ -116,21 +116,21 @@ export const Showcase3DCarousel: React.FC<Showcase3DCarouselProps> = ({
       <div className="absolute -bottom-20 right-10 w-96 h-96 bg-[#00FF9D]/12 rounded-full blur-[140px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
-        {/* Section Header with Flagship Badge */}
+        {/* Section Header with Prototype Badge */}
         <div className="flex flex-col items-center text-center mb-12 sm:mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#120e24] border border-[#FFB800]/30 text-xs font-space font-medium text-[#FFB800] mb-4 shadow-lg shadow-[#FFB800]/5">
-            <span className="w-2 h-2 rounded-full bg-[#FFB800] animate-pulse" />
-            <span className="tracking-widest uppercase font-bold">DIGITAL FLAGSHIP 3D SHOWCASE</span>
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#120e24] border border-[var(--theme-border)] text-xs font-space font-medium text-[var(--theme-primary)] mb-4 shadow-lg">
+            <span className="w-2 h-2 rounded-full bg-[var(--theme-primary)] animate-pulse" />
+            <span className="tracking-widest uppercase font-bold">WORKING DESIGN CONCEPTS</span>
             <span className="text-[#4b3d67]">/</span>
-            <span className="text-[#00FF9D] font-bold">GLOBAL &amp; NATIONAL CLIENTS</span>
+            <span className="text-[#00FF9D] font-bold">READY IN 2 DAYS</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl lg:text-6xl font-syne font-extrabold text-white tracking-tight max-w-4xl text-balance">
-            Interactive <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6]">3D Flagship Showcase</span>
+            Interactive <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--theme-primary)] via-[var(--theme-secondary)] to-[var(--theme-accent)]">Live Website Concepts</span>
           </h2>
 
           <p className="text-sm sm:text-base text-[#cbd5e1] max-w-2xl mt-4 font-normal leading-relaxed text-balance">
-            Explore live digital experiences custom-crafted for luxury salons and spas, aesthetic suites, and wellness flagships worldwide. Sub-second performance engineered to convert discerning clientele instantly.
+            Explore functional, production-ready design architectures tailored for salons &amp; spas, jewelers, realtors, fitness clubs, and professional practices. Custom-adapted and live on your domain in 48 hours.
           </p>
 
           {/* Controls Bar: Mode switcher (3D vs Grid) + Autoplay toggle */}
@@ -140,7 +140,7 @@ export const Showcase3DCarousel: React.FC<Showcase3DCarouselProps> = ({
                 onClick={() => setViewMode('3d')}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-space font-semibold transition-all ${
                   viewMode === '3d'
-                    ? 'bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6] text-white shadow-md font-bold'
+                    ? 'bg-gradient-to-r from-[var(--theme-primary)] via-[var(--theme-secondary)] to-[var(--theme-accent)] text-white shadow-md font-bold'
                     : 'text-[#94a3b8] hover:text-white'
                 }`}
               >
@@ -152,7 +152,7 @@ export const Showcase3DCarousel: React.FC<Showcase3DCarouselProps> = ({
                 onClick={() => setViewMode('grid')}
                 className={`flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-space font-semibold transition-all ${
                   viewMode === 'grid'
-                    ? 'bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6] text-white shadow-md font-bold'
+                    ? 'bg-gradient-to-r from-[var(--theme-primary)] via-[var(--theme-secondary)] to-[var(--theme-accent)] text-white shadow-md font-bold'
                     : 'text-[#94a3b8] hover:text-white'
                 }`}
               >
@@ -239,9 +239,9 @@ export const Showcase3DCarousel: React.FC<Showcase3DCarouselProps> = ({
                   >
                     {/* Glassmorphic Cyber Card Container with Golden/Magenta Accents */}
                     <div className="relative w-full h-full rounded-3xl overflow-hidden bg-[#0d0a1c]/95 border border-[#2a1e4a] backdrop-blur-2xl shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] flex flex-col group transition-all duration-300">
-                      {/* Active Card Glowing Edge in Gold & Magenta */}
+                      {/* Active Card Glowing Edge */}
                       {isCenter && (
-                        <div className="absolute inset-0 rounded-3xl pointer-events-none border-2 border-[#FFB800]/60 shadow-[inset_0_0_25px_rgba(255,184,0,0.2)] z-20" />
+                        <div className="absolute inset-0 rounded-3xl pointer-events-none border-2 border-[var(--theme-primary)]/60 shadow-[inset_0_0_25px_rgba(255,255,255,0.1)] z-20" />
                       )}
 
                       {/* Top Visual: Concept Screen Header */}
@@ -255,7 +255,7 @@ export const Showcase3DCarousel: React.FC<Showcase3DCarouselProps> = ({
 
                         {/* Top Bar inside card preview */}
                         <div className="absolute top-3 left-3 right-3 flex items-center justify-between z-10">
-                          <span className="text-[11px] font-space font-bold tracking-wider uppercase text-white bg-black/70 backdrop-blur-md px-3 py-1 rounded-lg border border-[#FFB800]/30">
+                          <span className="text-[11px] font-space font-bold tracking-wider uppercase text-white bg-black/70 backdrop-blur-md px-3 py-1 rounded-lg border border-[var(--theme-border)]">
                             {item.category}
                           </span>
                           <span className="flex items-center gap-1 text-[11px] font-mono-num font-bold text-[#00FF9D] bg-[#0d0a1c]/90 backdrop-blur-md px-2.5 py-0.5 rounded-lg border border-[#00FF9D]/40">
@@ -272,7 +272,7 @@ export const Showcase3DCarousel: React.FC<Showcase3DCarouselProps> = ({
                                 e.stopPropagation();
                                 if (onOpenLiveConcept) onOpenLiveConcept(item);
                               }}
-                              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6] text-white font-space font-extrabold text-xs uppercase tracking-wider flex items-center gap-2 shadow-2xl hover:scale-105 transition-transform"
+                              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-[var(--theme-primary)] via-[var(--theme-secondary)] to-[var(--theme-accent)] text-white font-space font-extrabold text-xs uppercase tracking-wider flex items-center gap-2 shadow-2xl hover:scale-105 transition-transform"
                             >
                               <Eye className="w-4 h-4 text-white" />
                               <span>Inspect Live Mockup</span>
@@ -285,7 +285,7 @@ export const Showcase3DCarousel: React.FC<Showcase3DCarouselProps> = ({
                       <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between">
                         <div>
                           {/* Location & Title */}
-                          <div className="flex items-center gap-1.5 text-xs text-[#FFB800] font-space font-bold mb-1">
+                          <div className="flex items-center gap-1.5 text-xs text-[var(--theme-primary)] font-space font-bold mb-1">
                             <MapPin className="w-3 h-3 shrink-0" />
                             <span>{item.location}</span>
                           </div>
@@ -319,7 +319,7 @@ export const Showcase3DCarousel: React.FC<Showcase3DCarouselProps> = ({
                               }}
                               className="flex-1 py-2.5 px-3 rounded-xl bg-[#17132e] hover:bg-[#231b45] border border-[#312356] text-xs font-space font-bold text-white flex items-center justify-center gap-1.5 transition-colors"
                             >
-                              <Smartphone className="w-3.5 h-3.5 text-[#FFB800]" />
+                              <Smartphone className="w-3.5 h-3.5 text-[var(--theme-primary)]" />
                               <span>Live Screen</span>
                             </button>
 
@@ -329,7 +329,7 @@ export const Showcase3DCarousel: React.FC<Showcase3DCarouselProps> = ({
                                 triggerConfetti();
                                 if (onSelectConceptForContact) onSelectConceptForContact(item.name);
                               }}
-                              className="flex-1 py-2.5 px-3 rounded-xl bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6] text-white font-space font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-[#FFB800]/25 hover:shadow-[#EC4899]/40 hover:scale-[1.02] transition-all"
+                              className="flex-1 py-2.5 px-3 rounded-xl bg-gradient-to-r from-[var(--theme-primary)] via-[var(--theme-secondary)] to-[var(--theme-accent)] text-white font-space font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-md hover:scale-[1.02] transition-all"
                             >
                               <span>Build This</span>
                               <ArrowRight className="w-3.5 h-3.5" />
@@ -348,9 +348,9 @@ export const Showcase3DCarousel: React.FC<Showcase3DCarouselProps> = ({
               <button
                 onClick={prevSlide}
                 aria-label="Previous 3D Showcase Card"
-                className="w-12 h-12 rounded-2xl bg-[#0e0c1f] hover:bg-[#1a1436] border border-[#2a1e4a] text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-xl hover:border-[#FFB800]/50"
+                className="w-12 h-12 rounded-2xl bg-[#0e0c1f] hover:bg-[#1a1436] border border-[#2a1e4a] text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-xl hover:border-[var(--theme-primary)]/50"
               >
-                <ChevronLeft className="w-5 h-5 text-[#FFB800]" />
+                <ChevronLeft className="w-5 h-5 text-[var(--theme-primary)]" />
               </button>
 
               {/* Step indicator pills */}
@@ -362,7 +362,7 @@ export const Showcase3DCarousel: React.FC<Showcase3DCarouselProps> = ({
                     aria-label={`Go to slide ${idx + 1}`}
                     className={`h-2 rounded-full transition-all duration-300 ${
                       idx === activeIndex
-                        ? 'w-8 bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6]'
+                        ? 'w-8 bg-gradient-to-r from-[var(--theme-primary)] via-[var(--theme-secondary)] to-[var(--theme-accent)]'
                         : 'w-2 bg-[#2a1e4a] hover:bg-[#4b3d67]'
                     }`}
                   />
@@ -372,9 +372,9 @@ export const Showcase3DCarousel: React.FC<Showcase3DCarouselProps> = ({
               <button
                 onClick={nextSlide}
                 aria-label="Next 3D Showcase Card"
-                className="w-12 h-12 rounded-2xl bg-[#0e0c1f] hover:bg-[#1a1436] border border-[#2a1e4a] text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-xl hover:border-[#FFB800]/50"
+                className="w-12 h-12 rounded-2xl bg-[#0e0c1f] hover:bg-[#1a1436] border border-[#2a1e4a] text-white flex items-center justify-center transition-all hover:scale-105 active:scale-95 shadow-xl hover:border-[var(--theme-primary)]/50"
               >
-                <ChevronRight className="w-5 h-5 text-[#FFB800]" />
+                <ChevronRight className="w-5 h-5 text-[var(--theme-primary)]" />
               </button>
             </div>
 

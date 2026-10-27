@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Send, MessageSquare, MapPin, Phone, Mail, CheckCircle2, Copy, Check, ArrowRight, Sparkles, ShieldCheck } from 'lucide-react';
+import { Send, MessageSquare, MapPin, Phone, Mail, CheckCircle2, Copy, Check, ArrowRight, Sparkles, ShieldCheck, Zap, Globe2 } from 'lucide-react';
 import { CONTACT_INFO } from '../data/siteData';
 import confetti from 'canvas-confetti';
 
@@ -10,18 +10,18 @@ interface ContactSectionProps {
 
 export const ContactSection: React.FC<ContactSectionProps> = ({
   initialIndustry = '',
-  initialPackage = 'Growth (₹9,999)'
+  initialPackage = 'Growth Sprint (₹10,999) · 2-Day Live Launch'
 }) => {
   const [formData, setFormData] = useState({
     fullName: '',
     businessName: '',
-    businessType: initialIndustry || 'Luxury Hair & Color Suite',
-    city: 'Global / National Flagship',
+    businessType: initialIndustry || 'Salon and Spa',
+    location: 'National & Global',
     phone: '',
     email: '',
     hasWebsite: 'No, starting fresh',
     preferredPackage: initialPackage,
-    needs: ['24-hr launch', 'WhatsApp Lead Gen']
+    needs: ['2-Day Express Launch', 'Turnkey Hosting & Deployment', 'Monthly Maintenance']
   });
 
   const [submitted, setSubmitted] = useState(false);
@@ -50,14 +50,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
   };
 
   const generateWhatsAppMessage = () => {
-    return `Hi AURA LUXE! I'd like to commission our digital flagship website.
+    return `Hi LaunchCraft Web Studio! I'm interested in launching my website in 2 days.
 Name: ${formData.fullName || 'Business Owner'}
-Business: ${formData.businessName || 'My Business'} (${formData.businessType})
-Location: ${formData.city}
+Business: ${formData.businessName || 'My Brand'} (${formData.businessType})
+Location: ${formData.location || 'Global/National'}
 Phone: ${formData.phone || 'N/A'}
-Package: ${formData.preferredPackage}
-Current Site: ${formData.hasWebsite}
-Needs: ${formData.needs.join(', ')}`;
+Selected Plan: ${formData.preferredPackage}
+Current Status: ${formData.hasWebsite}
+Priorities: ${formData.needs.join(', ')}`;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -69,7 +69,7 @@ Needs: ${formData.needs.join(', ')}`;
         particleCount: 65,
         spread: 80,
         origin: { y: 0.6 },
-        colors: ['#FFB800', '#EC4899', '#8B5CF6', '#00FF9D']
+        colors: ['#6366F1', '#06B6D4', '#FFB800', '#00FF9D']
       });
     } catch {
       // safe fallback
@@ -90,25 +90,25 @@ Needs: ${formData.needs.join(', ')}`;
   return (
     <section id="contact" className="w-full py-24 px-4 sm:px-6 lg:px-8 bg-[#07060d] relative overflow-hidden">
       {/* Radiant ambient glow */}
-      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-[#FFB800]/10 rounded-full blur-[160px] pointer-events-none" />
-      <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-[#EC4899]/12 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-[var(--theme-primary)]/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/3 right-1/4 w-[500px] h-[500px] bg-[var(--theme-secondary)]/10 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#140e29] border border-[#FFB800]/30 text-xs font-space font-medium text-[#FFB800] mb-4 shadow-lg shadow-[#FFB800]/10">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#140e29] border border-[var(--theme-border)] text-xs font-space font-medium text-[var(--theme-primary)] mb-4 shadow-lg">
             <span className="w-2 h-2 rounded-full bg-[#00FF9D] animate-ping" />
-            <span className="uppercase tracking-widest font-bold">GLOBAL RAPID SPRINT</span>
+            <span className="uppercase tracking-widest font-bold">START YOUR 2-DAY SPRINT</span>
             <span className="text-[#4b3d67]">/</span>
-            <span className="text-[#00FF9D] font-bold">24-HOUR SLA</span>
+            <span className="text-[#00FF9D] font-bold">48-HOUR DELIVERY SLA</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-syne font-extrabold text-white tracking-tight max-w-3xl text-balance">
-            Let's Build Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6]">24-Hour Digital Presence</span>
+            Let's Launch Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--theme-primary)] via-[var(--theme-secondary)] to-[var(--theme-accent)]">Website in 2 Days</span>
           </h2>
 
           <p className="text-sm sm:text-base text-[#cbd5e1] max-w-2xl mt-4 font-normal leading-relaxed text-balance font-space">
-            Fill out the brief below, and we'll connect with your live concept preview and action plan within a few hours.
+            Share your brief below. We'll set up your tailored design architecture, configure cloud hosting &amp; deployment, and have your working website live in 48 hours.
           </p>
         </div>
 
@@ -121,9 +121,9 @@ Needs: ${formData.needs.join(', ')}`;
                 <div className="w-16 h-16 bg-[#00FF9D]/20 text-[#00FF9D] rounded-2xl flex items-center justify-center mx-auto border border-[#00FF9D]/40 shadow-lg shadow-[#00FF9D]/20">
                   <CheckCircle2 className="w-8 h-8" />
                 </div>
-                <h3 className="text-2xl font-syne font-bold text-white">Inquiry Submitted!</h3>
+                <h3 className="text-2xl font-syne font-bold text-white">Sprint Brief Received!</h3>
                 <p className="text-sm text-[#cbd5e1] max-w-md mx-auto leading-relaxed">
-                  Thank you! We received your details for <strong className="text-[#FFB800]">{formData.businessName || 'your business'}</strong>. Opening WhatsApp to connect directly with our engineering team.
+                  Thank you! We received your details for <strong className="text-[var(--theme-primary)]">{formData.businessName || 'your business'}</strong>. We are opening WhatsApp to coordinate your 2-day live launch directly.
                 </p>
 
                 <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -131,7 +131,7 @@ Needs: ${formData.needs.join(', ')}`;
                     href={`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=${encodeURIComponent(generateWhatsAppMessage())}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 px-6 py-3.5 bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6] text-white font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all shadow-lg hover:scale-105"
+                    className="inline-flex items-center gap-2 px-6 py-3.5 bg-gradient-to-r from-[var(--theme-primary)] via-[var(--theme-secondary)] to-[var(--theme-accent)] text-white font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all shadow-lg hover:scale-105"
                   >
                     <MessageSquare className="w-4 h-4 fill-current" />
                     <span>Open WhatsApp Directly</span>
@@ -150,7 +150,7 @@ Needs: ${formData.needs.join(', ')}`;
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-semibold text-white mb-1.5" htmlFor="full-name">
-                      Full Name *
+                      Your Name *
                     </label>
                     <input
                       id="full-name"
@@ -158,13 +158,13 @@ Needs: ${formData.needs.join(', ')}`;
                       required
                       value={formData.fullName}
                       onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                      placeholder="e.g. Vikram Reddy"
-                      className="w-full h-12 px-4 bg-[#14102c] border border-[#2e2354] rounded-xl text-sm text-white placeholder:text-[#64748b] focus:border-[#FFB800] outline-none transition-colors"
+                      placeholder="e.g. Alex Morgan"
+                      className="w-full h-12 px-4 bg-[#14102c] border border-[#2e2354] rounded-xl text-sm text-white placeholder:text-[#64748b] focus:border-[var(--theme-primary)] outline-none transition-colors"
                     />
                   </div>
                   <div>
                     <label className="block text-xs font-semibold text-white mb-1.5" htmlFor="business-name">
-                      Business Name *
+                      Business or Brand Name *
                     </label>
                     <input
                       id="business-name"
@@ -172,44 +172,46 @@ Needs: ${formData.needs.join(', ')}`;
                       required
                       value={formData.businessName}
                       onChange={(e) => setFormData({ ...formData, businessName: e.target.value })}
-                      placeholder="e.g. Royal Atelier Jewels"
-                      className="w-full h-12 px-4 bg-[#14102c] border border-[#2e2354] rounded-xl text-sm text-white placeholder:text-[#64748b] focus:border-[#FFB800] outline-none transition-colors"
+                      placeholder="e.g. Lumina Studio"
+                      className="w-full h-12 px-4 bg-[#14102c] border border-[#2e2354] rounded-xl text-sm text-white placeholder:text-[#64748b] focus:border-[var(--theme-primary)] outline-none transition-colors"
                     />
                   </div>
                 </div>
 
-                {/* Row 2: Business Type & City */}
+                {/* Row 2: Business Type & Location */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-xs font-semibold text-white mb-1.5" htmlFor="business-type">
-                      Business Vertical *
+                      Business Category *
                     </label>
                     <select
                       id="business-type"
                       required
                       value={formData.businessType}
                       onChange={(e) => setFormData({ ...formData, businessType: e.target.value })}
-                      className="w-full h-12 px-4 bg-[#14102c] border border-[#2e2354] rounded-xl text-sm text-white focus:border-[#FFB800] outline-none transition-colors"
+                      className="w-full h-12 px-4 bg-[#14102c] border border-[#2e2354] rounded-xl text-sm text-white focus:border-[var(--theme-primary)] outline-none transition-colors"
                     >
-                      <option value="Luxury Hair & Color Suite">Luxury Hair &amp; Color Suite</option>
-                      <option value="Med Spa & Aesthetic Clinic">Med Spa &amp; Aesthetic Clinic</option>
-                      <option value="Destination Day Spa & Hammam">Destination Day Spa &amp; Hammam</option>
-                      <option value="Boutique Nail & Lash Lounge">Boutique Nail &amp; Lash Lounge</option>
-                      <option value="Executive Men's Grooming Club">Executive Men's Grooming Club</option>
-                      <option value="Multi-Location Salon Brand">Multi-Location Flagship Salon Brand</option>
+                      <option value="Salon and Spa">Salon &amp; Luxury Spa</option>
+                      <option value="Jewellery">Jewellery Atelier / Luxury Goods</option>
+                      <option value="Real Estate">Real Estate &amp; Architecture</option>
+                      <option value="Gym & Fitness">Gym &amp; Athletic Club</option>
+                      <option value="Clinic">Medical / Dental Practice</option>
+                      <option value="Coaching Institute">Education &amp; Professional Academy</option>
+                      <option value="Startup / Tech">Startup / Tech Company</option>
+                      <option value="Local Business">Local Business / Service Provider</option>
                     </select>
                   </div>
                   <div>
-                    <label className="block text-xs font-semibold text-white mb-1.5" htmlFor="city">
-                      City / Territory (Global or Domestic)
+                    <label className="block text-xs font-semibold text-white mb-1.5" htmlFor="location">
+                      City / Country
                     </label>
                     <input
-                      id="city"
+                      id="location"
                       type="text"
-                      value={formData.city}
-                      onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                      placeholder="e.g. London / New York / Dubai / Mumbai"
-                      className="w-full h-12 px-4 bg-[#14102c] border border-[#2e2354] rounded-xl text-sm text-white focus:border-[#FFB800] outline-none transition-colors"
+                      value={formData.location}
+                      onChange={(e) => setFormData({ ...formData, location: e.target.value })}
+                      placeholder="e.g. London, New York, Mumbai, Sydney"
+                      className="w-full h-12 px-4 bg-[#14102c] border border-[#2e2354] rounded-xl text-sm text-white focus:border-[var(--theme-primary)] outline-none transition-colors"
                     />
                   </div>
                 </div>
@@ -226,8 +228,8 @@ Needs: ${formData.needs.join(', ')}`;
                       required
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      placeholder="+91 98765 43210"
-                      className="w-full h-12 px-4 bg-[#14102c] border border-[#2e2354] rounded-xl text-sm text-white placeholder:text-[#64748b] focus:border-[#FFB800] outline-none transition-colors"
+                      placeholder="+1 (555) 000-0000 or +91 98765 43210"
+                      className="w-full h-12 px-4 bg-[#14102c] border border-[#2e2354] rounded-xl text-sm text-white placeholder:text-[#64748b] focus:border-[var(--theme-primary)] outline-none transition-colors"
                     />
                   </div>
                   <div>
@@ -239,8 +241,8 @@ Needs: ${formData.needs.join(', ')}`;
                       type="email"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      placeholder="name@business.com"
-                      className="w-full h-12 px-4 bg-[#14102c] border border-[#2e2354] rounded-xl text-sm text-white placeholder:text-[#64748b] focus:border-[#FFB800] outline-none transition-colors"
+                      placeholder="alex@example.com"
+                      className="w-full h-12 px-4 bg-[#14102c] border border-[#2e2354] rounded-xl text-sm text-white placeholder:text-[#64748b] focus:border-[var(--theme-primary)] outline-none transition-colors"
                     />
                   </div>
                 </div>
@@ -248,7 +250,7 @@ Needs: ${formData.needs.join(', ')}`;
                 {/* Existing Website Radio */}
                 <div>
                   <span className="block text-xs font-semibold text-white mb-2">
-                    Current Online Status
+                    Current Website Status
                   </span>
                   <div className="flex flex-wrap gap-4">
                     <label className="flex items-center gap-2 cursor-pointer text-xs text-[#cbd5e1]">
@@ -257,19 +259,19 @@ Needs: ${formData.needs.join(', ')}`;
                         name="existing_site"
                         checked={formData.hasWebsite === 'No, starting fresh'}
                         onChange={() => setFormData({ ...formData, hasWebsite: 'No, starting fresh' })}
-                        className="accent-[#FFB800]"
+                        className="accent-[var(--theme-primary)]"
                       />
-                      <span>Starting completely fresh (No site yet)</span>
+                      <span>Starting fresh (Need new website in 2 days)</span>
                     </label>
                     <label className="flex items-center gap-2 cursor-pointer text-xs text-[#cbd5e1]">
                       <input
                         type="radio"
                         name="existing_site"
-                        checked={formData.hasWebsite === 'Yes, needs redesign / refresh'}
-                        onChange={() => setFormData({ ...formData, hasWebsite: 'Yes, needs redesign / refresh' })}
-                        className="accent-[#FFB800]"
+                        checked={formData.hasWebsite === 'Yes, needs modern refresh'}
+                        onChange={() => setFormData({ ...formData, hasWebsite: 'Yes, needs modern refresh' })}
+                        className="accent-[var(--theme-primary)]"
                       />
-                      <span>Have old site, needs 2026 redesign</span>
+                      <span>Have old site, needs 2-day modern overhaul</span>
                     </label>
                   </div>
                 </div>
@@ -277,24 +279,24 @@ Needs: ${formData.needs.join(', ')}`;
                 {/* Checkboxes: Priorities */}
                 <div>
                   <span className="block text-xs font-semibold text-white mb-2">
-                    Key Website Priorities
+                    Key Sprint Priorities
                   </span>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     {[
-                      { id: '24-hr launch', label: '24-Hour Express Launch' },
-                      { id: 'WhatsApp Lead Gen', label: 'Direct 1-Tap WhatsApp Leads' },
-                      { id: 'Google Maps Setup', label: 'Google Maps & Local Search SEO' },
-                      { id: 'Complete Redesign', label: 'Flagship Visual Aesthetic' }
+                      { id: '2-Day Express Launch', label: '2-Day Express Live Launch (48h)' },
+                      { id: 'Turnkey Hosting & Deployment', label: 'Turnkey Cloud Hosting & Custom Domain' },
+                      { id: 'Monthly Maintenance', label: 'Continuous Monthly Maintenance & Updates' },
+                      { id: 'WhatsApp Lead Gen', label: 'Direct 1-Tap WhatsApp Inbound Chat' }
                     ].map((item) => (
                       <label
                         key={item.id}
-                        className="flex items-center gap-2.5 p-3 rounded-xl bg-[#14102c] border border-[#2e2354] cursor-pointer hover:border-[#FFB800]/40 transition-colors"
+                        className="flex items-center gap-2.5 p-3 rounded-xl bg-[#14102c] border border-[#2e2354] cursor-pointer hover:border-[var(--theme-border)] transition-colors"
                       >
                         <input
                           type="checkbox"
                           checked={formData.needs.includes(item.id)}
                           onChange={() => handleCheckboxChange(item.id)}
-                          className="accent-[#FFB800]"
+                          className="accent-[var(--theme-primary)]"
                         />
                         <span className="text-xs text-white">{item.label}</span>
                       </label>
@@ -305,27 +307,29 @@ Needs: ${formData.needs.join(', ')}`;
                 {/* Preferred Package */}
                 <div>
                   <label className="block text-xs font-semibold text-white mb-1.5" htmlFor="pkg">
-                    Selected Package
+                    Selected Package or Service
                   </label>
                   <select
                     id="pkg"
                     value={formData.preferredPackage}
                     onChange={(e) => setFormData({ ...formData, preferredPackage: e.target.value })}
-                    className="w-full h-12 px-4 bg-[#14102c] border border-[#2e2354] rounded-xl text-sm text-white focus:border-[#FFB800] outline-none transition-colors"
+                    className="w-full h-12 px-4 bg-[#14102c] border border-[#2e2354] rounded-xl text-sm text-white focus:border-[var(--theme-primary)] outline-none transition-colors"
                   >
-                    <option value="Starter (₹4,999)">Starter Package — ₹4,999</option>
-                    <option value="Growth (₹9,999)">Growth Package (Most Popular) — ₹9,999</option>
-                    <option value="Premium (₹14,999)">Premium Package — ₹14,999</option>
-                    <option value="Custom Consultation">Custom Enterprise Build</option>
+                    <option value="Starter Sprint (₹5,999) · 2-Day Live Launch">Starter Sprint — ₹5,999 (2-Day Live Launch)</option>
+                    <option value="Growth Sprint (₹10,999) · 2-Day Live Launch">Growth Sprint — ₹10,999 (Most Popular · 2-Day Live Launch)</option>
+                    <option value="Scale Sprint (₹16,999) · 2-3 Day Live Launch">Scale Sprint — ₹16,999 (Full Custom Digital Flagship)</option>
+                    <option value="Essential Monthly Maintenance (₹999/mo)">Essential Monthly Care (₹999/mo)</option>
+                    <option value="Growth Monthly Maintenance (₹1,999/mo)">Growth Monthly Care & Updates (₹1,999/mo)</option>
+                    <option value="Custom Enterprise Build">Custom Enterprise Build</option>
                   </select>
                 </div>
 
                 {/* Submit button */}
                 <button
                   type="submit"
-                  className="w-full h-14 bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6] hover:shadow-[0_10px_35px_-5px_rgba(255,184,0,0.5)] text-white font-syne font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2 hover:scale-[1.01]"
+                  className="w-full h-14 bg-gradient-to-r from-[var(--theme-primary)] via-[var(--theme-secondary)] to-[var(--theme-accent)] hover:brightness-110 text-white font-syne font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all flex items-center justify-center gap-2 hover:scale-[1.01] cursor-pointer shadow-lg"
                 >
-                  <span>Request My 24-Hour Website</span>
+                  <span>Launch My 2-Day Website</span>
                   <Send className="w-4 h-4" />
                 </button>
               </form>
@@ -337,15 +341,15 @@ Needs: ${formData.needs.join(', ')}`;
             {/* Direct Connect Box */}
             <div className="bg-[#0f0c22]/90 p-6 sm:p-7 rounded-3xl border border-[#2e2354] shadow-xl backdrop-blur-2xl">
               <h4 className="text-lg font-syne font-bold text-white mb-4">
-                Prefer To Speak Directly?
+                Chat Directly With Us
               </h4>
               <p className="text-xs text-[#cbd5e1] leading-relaxed mb-6">
-                Skip the form and message our engineering desk directly on WhatsApp. We typically reply within 10 minutes.
+                Message our development desk on WhatsApp. We answer questions, review your requirements, and schedule your 48-hour sprint immediately.
               </p>
 
               <div className="space-y-4 text-xs">
                 <a
-                  href={`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=Hi%2C%20I%20am%20interested%20in%20a%20website%20for%20my%20business`}
+                  href={`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=Hi%20LaunchCraft%2C%20I%20am%20interested%20in%20a%20website%20delivered%20in%202%20days`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-3 p-3.5 rounded-2xl bg-[#14102c] hover:bg-[#1f173f] border border-[#2e2354] hover:border-[#00FF9D]/50 text-white transition-all group"
@@ -363,26 +367,26 @@ Needs: ${formData.needs.join(', ')}`;
 
                 <a
                   href={`tel:${CONTACT_INFO.whatsappNumber}`}
-                  className="flex items-center gap-3 p-3.5 rounded-2xl bg-[#14102c] hover:bg-[#1f173f] border border-[#2e2354] hover:border-[#FFB800]/50 text-white transition-all group"
+                  className="flex items-center gap-3 p-3.5 rounded-2xl bg-[#14102c] hover:bg-[#1f173f] border border-[#2e2354] hover:border-[var(--theme-border)] text-white transition-all group"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-[#FFB800]/20 text-[#FFB800] flex items-center justify-center shrink-0 border border-[#FFB800]/40">
+                  <div className="w-10 h-10 rounded-xl bg-[var(--theme-primary)]/20 text-[var(--theme-primary)] flex items-center justify-center shrink-0 border border-[var(--theme-border)]">
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="font-semibold text-white group-hover:text-[#FFB800] transition-colors">
-                      Direct Voice Call
+                    <div className="font-semibold text-white group-hover:text-[var(--theme-primary)] transition-colors">
+                      Direct Sprint Line
                     </div>
                     <div className="text-[11px] text-[#94a3b8] font-mono-num">Mon - Sat: 9 AM - 9 PM</div>
                   </div>
                 </a>
 
                 <div className="flex items-center gap-3 p-3.5 rounded-2xl bg-[#14102c] border border-[#2e2354] text-white">
-                  <div className="w-10 h-10 rounded-xl bg-[#EC4899]/20 text-[#EC4899] flex items-center justify-center shrink-0 border border-[#EC4899]/40">
-                    <MapPin className="w-5 h-5" />
+                  <div className="w-10 h-10 rounded-xl bg-[var(--theme-secondary)]/20 text-[var(--theme-secondary)] flex items-center justify-center shrink-0 border border-[var(--theme-secondary)]/40">
+                    <Globe2 className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="font-semibold text-white">Engineering Studio Hubs</div>
-                    <div className="text-[11px] text-[#94a3b8]">London · New York · Dubai · Mumbai · Singapore</div>
+                    <div className="font-semibold text-white">Global Reach</div>
+                    <div className="text-[11px] text-[#94a3b8]">Serving Clients Worldwide &amp; Nationally</div>
                   </div>
                 </div>
               </div>
@@ -391,7 +395,7 @@ Needs: ${formData.needs.join(', ')}`;
               <div className="mt-6 pt-5 border-t border-[#251d45]">
                 <button
                   onClick={handleCopyWhatsApp}
-                  className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-[#14102c] hover:bg-[#201842] border border-[#2e2354] text-xs font-semibold text-[#cbd5e1] hover:text-white transition-colors"
+                  className="w-full flex items-center justify-center gap-2 py-2.5 px-3 rounded-xl bg-[#14102c] hover:bg-[#201842] border border-[#2e2354] text-xs font-semibold text-[#cbd5e1] hover:text-white transition-colors cursor-pointer"
                 >
                   {copiedWhatsApp ? (
                     <>
@@ -400,7 +404,7 @@ Needs: ${formData.needs.join(', ')}`;
                     </>
                   ) : (
                     <>
-                      <Copy className="w-3.5 h-3.5 text-[#FFB800]" />
+                      <Copy className="w-3.5 h-3.5 text-[var(--theme-primary)]" />
                       <span>Copy WhatsApp Brief Text</span>
                     </>
                   )}
@@ -410,22 +414,26 @@ Needs: ${formData.needs.join(', ')}`;
 
             {/* SLA Trust Badges */}
             <div className="p-6 rounded-3xl bg-[#0f0c22]/90 border border-[#2e2354] shadow-xl backdrop-blur-2xl">
-              <h5 className="text-xs uppercase tracking-wider text-[#FFB800] font-bold mb-3 flex items-center gap-2">
-                <ShieldCheck className="w-4 h-4 text-[#FFB800]" />
-                <span>Our 24-Hour Global Flagship Guarantee</span>
+              <h5 className="text-xs uppercase tracking-wider text-[var(--theme-primary)] font-bold mb-3 flex items-center gap-2">
+                <ShieldCheck className="w-4 h-4 text-[var(--theme-primary)]" />
+                <span>Our 2-Day Delivery Guarantee</span>
               </h5>
               <ul className="space-y-2 text-xs text-[#cbd5e1]">
                 <li className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#00FF9D] mt-1.5 shrink-0" />
-                  <span>First functional interactive preview delivered within 24 hours of brief</span>
+                  <span>Working website delivered and live within 48 hours of brief</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#00FF9D] mt-1.5 shrink-0" />
-                  <span>100% full source code ownership — zero recurring hostage fees</span>
+                  <span>Turnkey cloud hosting, custom domain mapping &amp; SSL included</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#00FF9D] mt-1.5 shrink-0" />
-                  <span>Sub-second mobile optimization for international &amp; domestic clientele</span>
+                  <span>Predictable monthly maintenance for continuous updates &amp; zero stress</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#00FF9D] mt-1.5 shrink-0" />
+                  <span>100% full source code ownership — zero platform hostage lock-in</span>
                 </li>
               </ul>
             </div>

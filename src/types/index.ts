@@ -55,22 +55,5 @@ export interface ServiceItem {
   benefits: string[];
 }
 
-export interface SuccessStory {
-  id: string;
-  businessName: string;
-  ownerName: string;
-  ownerRole: string;
-  industry: string;
-  location: string;
-  quote: string;
-  launchDuration: string;
-  metrics: {
-    stat: string;
-    label: string;
-  }[];
-  tags: string[];
-  avatarInitial: string;
-  avatarBg: string;
-  packageUsed: string;
-}
+export type ThemeMode = 'cosmic' | 'emerald' | 'sunset' | 'ocean';
 

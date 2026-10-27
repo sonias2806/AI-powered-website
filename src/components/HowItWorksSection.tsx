@@ -1,41 +1,41 @@
 import React from 'react';
-import { MessageSquare, Palette, Code, Rocket, Clock, CheckCircle } from 'lucide-react';
+import { MessageSquare, Palette, Code, Rocket, Clock, CheckCircle, Cloud, RefreshCw } from 'lucide-react';
 
 export const HowItWorksSection: React.FC = () => {
   const steps = [
     {
       step: '01',
-      title: 'Brief On WhatsApp',
-      desc: 'Share your business name, core services, location, photos, and preferences via a quick WhatsApp chat or 2-minute questionnaire.',
+      title: '15-Min WhatsApp Brief',
+      desc: 'Share your business name, core offerings, preferred photos, and goals via a quick WhatsApp chat or 2-minute questionnaire.',
       time: '15 Mins Sprint',
-      icon: <MessageSquare className="w-5 h-5 text-[#FFB800]" />,
-      accent: 'border-[#FFB800]',
-      color: 'text-[#FFB800]'
+      icon: <MessageSquare className="w-5 h-5 text-[var(--theme-primary)]" />,
+      accent: 'border-[var(--theme-primary)]',
+      color: 'text-[var(--theme-primary)]'
     },
     {
       step: '02',
-      title: 'Choose 3D Flow',
-      desc: 'Pick your preferred visual aesthetic, brand colors, and layout structure from tailored interactive mockups engineered for your industry.',
-      time: 'Same-Hour Selection',
-      icon: <Palette className="w-5 h-5 text-[#EC4899]" />,
-      accent: 'border-[#EC4899]',
-      color: 'text-[#EC4899]'
+      title: 'Bespoke UI & Styling',
+      desc: 'We map out a tailored visual structure, mobile-first UX, and dynamic color aesthetic engineered to convert your visitors into paying customers.',
+      time: 'Day 1 Sprint',
+      icon: <Palette className="w-5 h-5 text-[var(--theme-secondary)]" />,
+      accent: 'border-[var(--theme-secondary)]',
+      color: 'text-[var(--theme-secondary)]'
     },
     {
       step: '03',
-      title: '24h Native Build',
-      desc: 'Your site is built using high-velocity modern web stacks, zero builder bloat, optimized for 99+ Core Web Vitals and local Google ranking.',
-      time: '24 Hours Delivery',
-      icon: <Code className="w-5 h-5 text-[#8B5CF6]" />,
-      accent: 'border-[#8B5CF6]',
-      color: 'text-[#8B5CF6]'
+      title: '48-Hour Live Deployment',
+      desc: 'Your working website goes live in 2 days. We configure your custom domain, point DNS records, activate SSL, and launch on a global edge CDN.',
+      time: 'Day 2 Live SLA',
+      icon: <Cloud className="w-5 h-5 text-[var(--theme-accent)]" />,
+      accent: 'border-[var(--theme-accent)]',
+      color: 'text-[var(--theme-accent)]'
     },
     {
       step: '04',
-      title: 'Go Live & Convert',
-      desc: 'Review live on your smartphone, connect your custom domain and WhatsApp hotline, and begin closing direct walk-in customers.',
-      time: 'Instant ROI',
-      icon: <Rocket className="w-5 h-5 text-[#00FF9D]" />,
+      title: 'Monthly Managed Care',
+      desc: 'Never stress over hosting or bugs again. We handle ongoing security patches, uptime monitoring, and on-demand content edits every month.',
+      time: 'Peace Of Mind',
+      icon: <RefreshCw className="w-5 h-5 text-[#00FF9D]" />,
       accent: 'border-[#00FF9D]',
       color: 'text-[#00FF9D]'
     }
@@ -44,24 +44,24 @@ export const HowItWorksSection: React.FC = () => {
   return (
     <section id="how-it-works" className="w-full py-24 px-4 sm:px-6 lg:px-8 bg-[#07060d] relative overflow-hidden">
       {/* Background ambient lighting */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-r from-[#FFB800]/10 via-[#EC4899]/10 to-[#8B5CF6]/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-gradient-to-r from-[var(--theme-primary)]/10 via-[var(--theme-secondary)]/10 to-transparent rounded-full blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Section Header */}
         <div className="flex flex-col items-center text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#140e29] border border-[#FFB800]/30 text-xs font-space font-medium text-[#FFB800] mb-4 shadow-lg shadow-[#FFB800]/10">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#140e29] border border-[var(--theme-border)] text-xs font-space font-medium text-[var(--theme-primary)] mb-4 shadow-lg">
             <span className="w-2 h-2 rounded-full bg-[#00FF9D] animate-ping" />
-            <span className="uppercase tracking-widest font-bold">FRICTIONLESS SPRINT PROCESS</span>
+            <span className="uppercase tracking-widest font-bold">THE 2-DAY SPRINT WORKFLOW</span>
             <span className="text-[#4b3d67]">/</span>
-            <span className="text-[#00FF9D] font-bold">4 STEPS</span>
+            <span className="text-[#00FF9D] font-bold">4 SIMPLE STEPS</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-syne font-extrabold text-white tracking-tight max-w-3xl text-balance">
-            From Idea to Live Website in <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6]">24 Hours</span>
+            From Idea to Working Website in <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--theme-primary)] via-[var(--theme-secondary)] to-[var(--theme-accent)]">2 Days</span>
           </h2>
 
           <p className="text-sm sm:text-base text-[#cbd5e1] max-w-2xl mt-4 font-normal leading-relaxed text-balance font-space">
-            A battle-tested, transparent sprint designed to get your digital flagship live with zero technical headaches, zero downtime, and instant client acquisition.
+            A frictionless, transparent delivery model designed to launch your business with hosting, deployment, and worry-free monthly support.
           </p>
         </div>
 
@@ -70,14 +70,14 @@ export const HowItWorksSection: React.FC = () => {
           {steps.map((item, idx) => (
             <div
               key={idx}
-              className="relative bg-[#0f0c22]/90 rounded-3xl p-7 border border-[#2e2354] hover:border-[#FFB800]/50 transition-all duration-300 flex flex-col justify-between group shadow-xl hover:-translate-y-1 backdrop-blur-2xl hover:shadow-[0_15px_40px_rgba(255,184,0,0.15)]"
+              className="relative bg-[#0f0c22]/90 rounded-3xl p-7 border border-[#2e2354] hover:border-[var(--theme-border)] transition-all duration-300 flex flex-col justify-between group shadow-xl hover:-translate-y-1 backdrop-blur-2xl"
             >
               <div>
                 <div className="flex items-center justify-between mb-6">
                   <div className="w-12 h-12 rounded-2xl bg-[#14102c] border border-[#2e2354] flex items-center justify-center shadow-inner group-hover:scale-110 transition-transform">
                     {item.icon}
                   </div>
-                  <span className="text-3xl font-syne font-extrabold text-[#251d45] group-hover:text-[#FFB800]/60 transition-colors font-mono-num">
+                  <span className="text-3xl font-syne font-extrabold text-[#251d45] group-hover:text-[var(--theme-primary)] transition-colors font-mono-num">
                     {item.step}
                   </span>
                 </div>
@@ -95,9 +95,9 @@ export const HowItWorksSection: React.FC = () => {
                 </p>
               </div>
 
-              <div className="pt-4 mt-4 border-t border-[#231b45] flex items-center gap-1.5 text-xs text-[#FFB800] font-space font-bold">
+              <div className="pt-4 mt-4 border-t border-[#231b45] flex items-center gap-1.5 text-xs text-[var(--theme-primary)] font-space font-bold">
                 <CheckCircle className="w-3.5 h-3.5 text-[#00FF9D]" />
-                <span>Zero Technical Jargon</span>
+                <span>Zero Technical Headaches</span>
               </div>
             </div>
           ))}

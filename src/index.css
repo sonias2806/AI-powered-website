@@ -1,6 +1,54 @@
 @import "tailwindcss";
 
 @layer base {
+  :root {
+    --theme-primary: #6366F1;
+    --theme-secondary: #06B6D4;
+    --theme-accent: #3B82F6;
+    --theme-glow: rgba(99, 102, 241, 0.25);
+    --theme-border: rgba(99, 102, 241, 0.4);
+  }
+
+  [data-theme="indigo"] {
+    --theme-primary: #6366F1;
+    --theme-secondary: #06B6D4;
+    --theme-accent: #3B82F6;
+    --theme-glow: rgba(99, 102, 241, 0.25);
+    --theme-border: rgba(99, 102, 241, 0.4);
+  }
+
+  [data-theme="gold"] {
+    --theme-primary: #FFB800;
+    --theme-secondary: #EC4899;
+    --theme-accent: #8B5CF6;
+    --theme-glow: rgba(255, 184, 0, 0.25);
+    --theme-border: rgba(255, 184, 0, 0.4);
+  }
+
+  [data-theme="emerald"] {
+    --theme-primary: #00FF9D;
+    --theme-secondary: #10B981;
+    --theme-accent: #06B6D4;
+    --theme-glow: rgba(0, 255, 157, 0.25);
+    --theme-border: rgba(0, 255, 157, 0.4);
+  }
+
+  [data-theme="crimson"] {
+    --theme-primary: #F43F5E;
+    --theme-secondary: #EC4899;
+    --theme-accent: #FFB800;
+    --theme-glow: rgba(244, 63, 94, 0.25);
+    --theme-border: rgba(244, 63, 94, 0.4);
+  }
+
+  [data-theme="violet"] {
+    --theme-primary: #8B5CF6;
+    --theme-secondary: #A855F7;
+    --theme-accent: #38BDF8;
+    --theme-glow: rgba(139, 92, 246, 0.25);
+    --theme-border: rgba(139, 92, 246, 0.4);
+  }
+
   html {
     scroll-behavior: smooth;
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;

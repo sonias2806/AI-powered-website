@@ -3,13 +3,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { ThreeCanvasBackdrop } from './components/ThreeCanvasBackdrop';
 import { Showcase3DCarousel } from './components/Showcase3DCarousel';
-import { SuccessStories3DCarousel } from './components/SuccessStories3DCarousel';
-import { RoiCalculatorSection } from './components/RoiCalculatorSection';
 import { ServicesSection } from './components/ServicesSection';
 import { IndustriesSection } from './components/IndustriesSection';
 import { HowItWorksSection } from './components/HowItWorksSection';
@@ -19,18 +17,22 @@ import { FaqSection } from './components/FaqSection';
 import { FloatingWhatsApp } from './components/FloatingWhatsApp';
 import { Footer } from './components/Footer';
 import { InteractiveScreenModal } from './components/InteractiveScreenModal';
-import { MessageSquare, ArrowRight, Sparkles, Zap } from 'lucide-react';
+import { MessageSquare, ArrowRight, Zap, Palette, Cloud, RefreshCw } from 'lucide-react';
 import { CONTACT_INFO } from './data/siteData';
 import { PortfolioItem } from './types';
 import { soundManager } from './utils/soundEffects';
+import { THEMES, ThemeId } from './utils/theme';
 
 export default function App() {
   const [selectedIndustry, setSelectedIndustry] = useState<string>('Salon and Spa');
-  const [selectedPackage, setSelectedPackage] = useState<string>('Growth (₹9,999)');
+  const [selectedPackage, setSelectedPackage] = useState<string>('Growth Sprint (₹10,999) · 2-Day Live Launch');
   const [isSimulatorModalOpen, setIsSimulatorModalOpen] = useState(false);
   const [modalConceptId, setModalConceptId] = useState<string>('lumiere-salon-spa');
   const [soundEnabled, setSoundEnabled] = useState(false);
-  const [colorTheme, setColorTheme] = useState<'cosmic' | 'emerald' | 'sunset'>('cosmic');
+  const [colorTheme, setColorTheme] = useState<ThemeId>('indigo');
+  const [showThemeToast, setShowThemeToast] = useState(false);
+
+  const themeOrder: ThemeId[] = ['indigo', 'gold', 'emerald', 'crimson', 'violet'];
 
   const handleToggleSound = () => {
     const nextState = soundManager.toggle();
@@ -39,7 +41,13 @@ export default function App() {
 
   const handleCycleTheme = () => {
     soundManager.playClick();
-    setColorTheme(prev => prev === 'cosmic' ? 'emerald' : prev === 'emerald' ? 'sunset' : 'cosmic');
+    setColorTheme(prev => {
+      const idx = themeOrder.indexOf(prev);
+      const next = themeOrder[(idx + 1) % themeOrder.length];
+      return next;
+    });
+    setShowThemeToast(true);
+    setTimeout(() => setShowThemeToast(false), 2400);
   };
 
   const handleSelectIndustry = (industryName: string) => {
@@ -89,31 +97,17 @@ export default function App() {
     }
   };
 
-  const handleSelectStoryForContact = (businessName: string) => {
-    soundManager.playChime();
-    if (businessName.includes('Salon') || businessName.includes('Lumière') || businessName.includes('Spa')) {
-      setSelectedIndustry('Salon and Spa');
-    } else if (businessName.includes('Residences') || businessName.includes('PrimeNest')) {
-      setSelectedIndustry('Real Estate');
-    } else if (businessName.includes('Jewellery')) {
-      setSelectedIndustry('Jewellery');
-    } else if (businessName.includes('Gym') || businessName.includes('Crossfit')) {
-      setSelectedIndustry('Gym & Fitness');
-    } else {
-      setSelectedIndustry('Other Local Business');
-    }
-    const contactElem = document.getElementById('contact');
-    if (contactElem) {
-      contactElem.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  const currentThemeConfig = THEMES[colorTheme] || THEMES.indigo;
 
   return (
-    <div className="min-h-screen bg-[#08070e] text-[#f1f4fb] flex flex-col font-sans selection:bg-[#FFB800] selection:text-black relative">
-      {/* 3D WebGL Constellation Canvas Backdrop */}
-      <ThreeCanvasBackdrop />
+    <div
+      data-theme={colorTheme}
+      className="min-h-screen bg-[#08070e] text-[#f1f4fb] flex flex-col font-sans selection:bg-[var(--theme-primary)] selection:text-black relative transition-colors duration-500"
+    >
+      {/* 3D WebGL Constellation Canvas Backdrop reacting to active theme colors */}
+      <ThreeCanvasBackdrop themeId={colorTheme} />
 
-      {/* Top Header with Flagship BrandLogo & Atmosphere switcher */}
+      {/* Top Header with LaunchCraft LC Monogram & Color Switcher */}
       <Header
         onOpenLivePreview={() => handleOpenLiveConcept('lumiere-salon-spa')}
         onSelectContact={() => {
@@ -127,29 +121,23 @@ export default function App() {
       />
 
       <main className="flex-1 w-full relative z-10">
-        {/* Hero Section with 3D Tilt Showcase & Live Mockup */}
+        {/* Strong Hero Section with headline "Your Business Deserves a Website That Wins Customers." */}
         <Hero
           onOpenConsultation={() => {
             const contactElem = document.getElementById('contact');
             if (contactElem) contactElem.scrollIntoView({ behavior: 'smooth' });
           }}
+          activeThemeId={colorTheme}
+          onCycleTheme={handleCycleTheme}
         />
 
-        {/* 3D SPATIAL BUSINESS PORTFOLIO CAROUSEL */}
+        {/* 3D SPATIAL WORKING PROTOTYPE SHOWCASE */}
         <Showcase3DCarousel
           onOpenLiveConcept={handleOpenPortfolioItemModal}
           onSelectConceptForContact={handleSelectConceptForContact}
         />
 
-        {/* 3D SUCCESS STORIES CAROUSEL (Verified Global Client Revenue & 3D Flip Cards) */}
-        <SuccessStories3DCarousel
-          onSelectStoryForContact={handleSelectStoryForContact}
-        />
-
-        {/* 3D ROI & WHATSAPP CONVERSION PREDICTOR */}
-        <RoiCalculatorSection />
-
-        {/* Services Section */}
+        {/* Services & USP Section */}
         <ServicesSection onSelectService={handleSelectService} />
 
         {/* Industries Section */}
@@ -158,36 +146,39 @@ export default function App() {
           onPreviewConcept={handleOpenLiveConcept}
         />
 
-        {/* How It Works Section */}
+        {/* How It Works Section (2-Day Sprint & Monthly Maintenance) */}
         <HowItWorksSection />
 
         {/* Callout Banner between Workflow and Pricing */}
         <section className="w-full py-16 px-4 sm:px-6 lg:px-8 bg-[#07060d] border-y border-[#2e2354] relative overflow-hidden">
           {/* Ambient lighting */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-gradient-to-r from-[#FFB800]/15 via-[#EC4899]/15 to-[#8B5CF6]/15 rounded-full blur-[140px] pointer-events-none" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[300px] bg-gradient-to-r from-[var(--theme-primary)]/15 via-[var(--theme-secondary)]/15 to-[var(--theme-accent)]/15 rounded-full blur-[140px] pointer-events-none" />
 
-          <div className="max-w-5xl mx-auto rounded-3xl bg-gradient-to-r from-[#120e29] via-[#1a1238] to-[#120e29] p-8 sm:p-12 border border-[#FFB800]/40 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl backdrop-blur-2xl relative z-10">
+          <div className="max-w-5xl mx-auto rounded-3xl bg-gradient-to-r from-[#120e29] via-[#1a1238] to-[#120e29] p-8 sm:p-12 border border-[var(--theme-border)] flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl backdrop-blur-2xl relative z-10">
             <div className="max-w-xl text-left">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#140e29] border border-[#FFB800]/30 text-xs font-mono-num text-[#FFB800] mb-3 font-bold">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#140e29] border border-[var(--theme-border)] text-xs font-mono-num text-[var(--theme-primary)] mb-3 font-bold">
                 <Zap className="w-3.5 h-3.5 text-[#00FF9D]" />
-                <span>GLOBAL CLIENT REALITY</span>
+                <span>2-DAY DELIVERY SLA · ZERO STRESS</span>
               </div>
               <h2 className="text-2xl sm:text-4xl font-syne font-extrabold text-white mb-2 leading-tight">
-                High-Ticket Clients Are Searching For Flagship Experiences <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6]">Right Now.</span>
+                A Working Website In 2 Days.{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--theme-primary)] via-[var(--theme-secondary)] to-[var(--theme-accent)]">
+                  Turnkey Hosting &amp; Managed Care.
+                </span>
               </h2>
               <p className="text-xs sm:text-sm text-[#cbd5e1] leading-relaxed font-space mt-2">
-                Give them an ultra-fast, sensory digital flagship to discover your rituals, view bespoke treatments &amp; pricing, and book your VIP chairs in a single tap.
+                We configure your custom domain, set up high-speed global cloud CDN hosting, deploy SSL certificates, and keep your website constantly updated with transparent monthly maintenance.
               </p>
             </div>
             <div className="flex flex-col sm:flex-row items-center gap-3 shrink-0 w-full sm:w-auto">
               <a
                 href="#contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center font-space font-extrabold text-xs uppercase tracking-wider bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6] text-white px-7 py-4 rounded-xl shadow-[0_4px_25px_rgba(255,184,0,0.35)] hover:shadow-[0_6px_35px_rgba(236,72,153,0.5)] transition-all hover:scale-105"
+                className="w-full sm:w-auto inline-flex items-center justify-center font-space font-extrabold text-xs uppercase tracking-wider text-white px-7 py-4 rounded-xl shadow-lg transition-all hover:scale-105 bg-gradient-to-r from-[var(--theme-primary)] via-[var(--theme-secondary)] to-[var(--theme-accent)]"
               >
-                <span>Launch My Website</span>
+                <span>Launch in 2 Days</span>
               </a>
               <a
-                href={`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=Hi%2C%20I%20am%20interested%20in%20a%20website%20for%20my%20business`}
+                href={`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=Hi%20LaunchCraft%2C%20I%20am%20interested%20in%20a%20website%20delivered%20in%202%20days`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 font-space font-bold text-xs uppercase tracking-wider bg-[#171332] text-white border border-[#2e2354] hover:bg-[#251d4d] px-6 py-4 rounded-xl transition-all"
@@ -199,7 +190,7 @@ export default function App() {
           </div>
         </section>
 
-        {/* Pricing Section with Interactive Addon Calculator */}
+        {/* Pricing Section with 2-Day Launch & Monthly Maintenance tabs */}
         <PricingSection onSelectPackage={handleSelectPackage} />
 
         {/* Contact & Enquiry Section */}
@@ -211,36 +202,39 @@ export default function App() {
         {/* FAQ Section */}
         <FaqSection />
 
-        {/* Final CTA Banner */}
+        {/* Final Callout Banner */}
         <section className="w-full py-24 px-4 sm:px-6 lg:px-8 bg-[#07060d] relative overflow-hidden">
-          <div className="max-w-5xl mx-auto relative rounded-3xl bg-gradient-to-br from-[#130f2d] via-[#1a123a] to-[#0e0a22] p-8 sm:p-16 text-center border border-[#FFB800]/30 shadow-2xl overflow-hidden backdrop-blur-2xl">
-            <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-r from-[#FFB800]/20 via-[#EC4899]/20 to-[#8B5CF6]/20 rounded-full blur-[130px] pointer-events-none" />
+          <div className="max-w-5xl mx-auto relative rounded-3xl bg-gradient-to-br from-[#130f2d] via-[#1a123a] to-[#0e0a22] p-8 sm:p-16 text-center border border-[var(--theme-border)] shadow-2xl overflow-hidden backdrop-blur-2xl">
+            <div className="absolute -top-24 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-gradient-to-r from-[var(--theme-primary)]/20 via-[var(--theme-secondary)]/20 to-[var(--theme-accent)]/20 rounded-full blur-[130px] pointer-events-none" />
             <div className="relative z-10 flex flex-col items-center">
-              <span className="text-xs font-space font-bold uppercase tracking-widest text-[#FFB800] bg-[#140e29] px-4 py-1.5 rounded-full mb-4 border border-[#FFB800]/30 shadow-lg shadow-[#FFB800]/10">
-                EXCLUSIVE DIGITAL FLAGSHIP STRATEGY SESSION
+              <span className="text-xs font-space font-bold uppercase tracking-widest text-[var(--theme-primary)] bg-[#140e29] px-4 py-1.5 rounded-full mb-4 border border-[var(--theme-border)] shadow-lg">
+                48-HOUR SPRINT GUARANTEE · NATIONAL &amp; GLOBAL
               </span>
               <h2 className="text-3xl sm:text-5xl lg:text-6xl font-syne font-extrabold text-white max-w-2xl mb-4 text-balance">
-                Ready to Launch Your <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6]">Digital Flagship?</span>
+                Your Business Deserves a Website That{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--theme-primary)] via-[var(--theme-secondary)] to-[var(--theme-accent)]">
+                  Wins Customers.
+                </span>
               </h2>
               <p className="text-sm sm:text-base text-[#cbd5e1] max-w-xl mb-8 text-balance font-normal leading-relaxed font-space">
-                Let's craft a bespoke digital flagship that commands authority and converts discerning clients worldwide within 24 hours.
+                Launch in 2 days. Host on high-speed global infrastructure. Enjoy peaceful, reliable monthly maintenance with zero technical headaches.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto">
                 <a
                   href="#contact"
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-xs font-space font-extrabold uppercase tracking-wider bg-gradient-to-r from-[#FFB800] via-[#EC4899] to-[#8B5CF6] text-white px-8 py-4 rounded-xl shadow-[0_10px_35px_-5px_rgba(255,184,0,0.4)] hover:shadow-[0_15px_45px_-5px_rgba(236,72,153,0.5)] hover:scale-105 transition-all"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-xs font-space font-extrabold uppercase tracking-wider text-white px-8 py-4 rounded-xl shadow-xl hover:scale-105 transition-all bg-gradient-to-r from-[var(--theme-primary)] via-[var(--theme-secondary)] to-[var(--theme-accent)]"
                 >
-                  <span>Get My Website In 24 Hours</span>
+                  <span>Get My Website In 2 Days</span>
                   <ArrowRight className="w-4 h-4 stroke-[3]" />
                 </a>
                 <a
-                  href={`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=Hi%2C%20I%20am%20ready%20to%20get%20my%20website%20live`}
+                  href={`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=Hi%20LaunchCraft%2C%20I%20am%20ready%20to%20get%20my%20website%20live%20in%202%20days`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full sm:w-auto inline-flex items-center justify-center gap-2 text-xs font-space font-bold uppercase tracking-wider bg-[#171332] text-white px-8 py-4 rounded-xl border border-[#2e2354] hover:bg-[#251d4d] transition-all"
                 >
                   <MessageSquare className="w-4 h-4 text-[#00FF9D]" />
-                  <span>Chat With Us First</span>
+                  <span>Chat On WhatsApp</span>
                 </a>
               </div>
             </div>
@@ -248,10 +242,36 @@ export default function App() {
         </section>
       </main>
 
+      {/* Floating Theme Palette Switcher Pill (Quick-access anywhere on page) */}
+      <div className="fixed bottom-24 right-5 z-40 hidden sm:flex flex-col items-end gap-2 pointer-events-auto">
+        <button
+          onClick={handleCycleTheme}
+          className="group flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl bg-[#0f0c22]/95 hover:bg-[#1a1438] border border-[var(--theme-border)] text-xs font-space font-bold text-white shadow-2xl backdrop-blur-xl transition-all hover:scale-105 cursor-pointer"
+          title="Click to cycle website color theme"
+          aria-label="Change website color theme"
+        >
+          <div className="w-5 h-5 rounded-lg flex items-center justify-center transition-transform group-hover:rotate-45" style={{ backgroundColor: currentThemeConfig.primary }}>
+            <Palette className="w-3 h-3 text-black stroke-[2.5]" />
+          </div>
+          <div className="text-left">
+            <div className="text-[10px] text-[#94a3b8] uppercase tracking-wider leading-none">Click to change theme</div>
+            <div className="text-xs font-bold leading-tight" style={{ color: currentThemeConfig.primary }}>{currentThemeConfig.name}</div>
+          </div>
+        </button>
+      </div>
+
+      {/* Theme Changed Toast Notification */}
+      {showThemeToast && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-[#120e29]/95 border border-[var(--theme-border)] text-white px-5 py-2.5 rounded-2xl shadow-2xl backdrop-blur-2xl flex items-center gap-2.5 text-xs font-space animate-fade-in">
+          <Palette className="w-4 h-4 text-[var(--theme-primary)]" />
+          <span>Active Palette: <strong className="font-bold text-[var(--theme-primary)]">{currentThemeConfig.name}</strong> ({currentThemeConfig.badge})</span>
+        </div>
+      )}
+
       {/* Floating WhatsApp Action Dock */}
       <FloatingWhatsApp />
 
-      {/* Footer with BrandLogo & 3D links */}
+      {/* Footer with LaunchCraft logo & links */}
       <Footer />
 
       {/* Interactive Screen Simulation Modal */}

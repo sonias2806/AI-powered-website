@@ -1,8 +1,50 @@
 import React, { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { THEMES, ThemeId } from '../utils/theme';
 
-export const ThreeCanvasBackdrop: React.FC = () => {
+interface ThreeCanvasBackdropProps {
+  themeId?: ThemeId;
+}
+
+export const ThreeCanvasBackdrop: React.FC<ThreeCanvasBackdropProps> = ({ themeId = 'indigo' }) => {
   const mountRef = useRef<HTMLDivElement>(null);
+  const colorsRef = useRef<{ c1: THREE.Color; c2: THREE.Color; c3: THREE.Color }>({
+    c1: new THREE.Color('#6366F1'),
+    c2: new THREE.Color('#06B6D4'),
+    c3: new THREE.Color('#3B82F6')
+  });
+  const icoMeshRef = useRef<THREE.Mesh | null>(null);
+  const icoMesh2Ref = useRef<THREE.Mesh | null>(null);
+  const pointsRef = useRef<THREE.Points | null>(null);
+
+  useEffect(() => {
+    const active = THEMES[themeId] || THEMES.indigo;
+    const c1 = new THREE.Color(active.primary);
+    const c2 = new THREE.Color(active.secondary);
+    const c3 = new THREE.Color(active.accent);
+    colorsRef.current = { c1, c2, c3 };
+
+    if (icoMeshRef.current && (icoMeshRef.current.material as THREE.MeshBasicMaterial)) {
+      (icoMeshRef.current.material as THREE.MeshBasicMaterial).color = c1;
+    }
+    if (icoMesh2Ref.current && (icoMesh2Ref.current.material as THREE.MeshBasicMaterial)) {
+      (icoMesh2Ref.current.material as THREE.MeshBasicMaterial).color = c2;
+    }
+
+    if (pointsRef.current) {
+      const geometry = pointsRef.current.geometry;
+      const colorAttr = geometry.getAttribute('color') as THREE.BufferAttribute;
+      if (colorAttr) {
+        const count = colorAttr.count;
+        for (let i = 0; i < count; i++) {
+          const choice = (i % 3);
+          const col = choice === 0 ? c1 : choice === 1 ? c2 : c3;
+          colorAttr.setXYZ(i, col.r, col.g, col.b);
+        }
+        colorAttr.needsUpdate = true;
+      }
+    }
+  }, [themeId]);
 
   useEffect(() => {
     const mount = mountRef.current;
@@ -88,30 +130,33 @@ export const ThreeCanvasBackdrop: React.FC = () => {
     });
 
     const particles = new THREE.Points(geometry, material);
+    pointsRef.current = particles;
     scene.add(particles);
 
-    // Subtle 3D Geometric Floating Icosahedron Wireframe Core (Solar Gold)
+    // Subtle 3D Geometric Floating Icosahedron Wireframe Core
     const icoGeo = new THREE.IcosahedronGeometry(22, 1);
     const icoMat = new THREE.MeshBasicMaterial({
-      color: 0xFFB800,
+      color: colorsRef.current.c1,
+      wireframe: true,
+      transparent: true,
+      opacity: 0.14
+    });
+    const icoMesh = new THREE.Mesh(icoGeo, icoMat);
+    icoMesh.position.set(30, 5, -20);
+    icoMeshRef.current = icoMesh;
+    scene.add(icoMesh);
+
+    // Subtle second icosahedron
+    const icoGeo2 = new THREE.IcosahedronGeometry(14, 1);
+    const icoMat2 = new THREE.MeshBasicMaterial({
+      color: colorsRef.current.c2,
       wireframe: true,
       transparent: true,
       opacity: 0.12
     });
-    const icoMesh = new THREE.Mesh(icoGeo, icoMat);
-    icoMesh.position.set(30, 5, -20);
-    scene.add(icoMesh);
-
-    // Subtle second icosahedron (Hot Magenta)
-    const icoGeo2 = new THREE.IcosahedronGeometry(14, 1);
-    const icoMat2 = new THREE.MeshBasicMaterial({
-      color: 0xEC4899,
-      wireframe: true,
-      transparent: true,
-      opacity: 0.09
-    });
     const icoMesh2 = new THREE.Mesh(icoGeo2, icoMat2);
     icoMesh2.position.set(-35, -15, -30);
+    icoMesh2Ref.current = icoMesh2;
     scene.add(icoMesh2);
 
     // Mouse movement interaction

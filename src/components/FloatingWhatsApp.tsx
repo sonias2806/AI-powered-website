@@ -6,9 +6,9 @@ export const FloatingWhatsApp: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const quickPrompts = [
-    { label: 'Get 24-hr Flagship Quote', text: 'Hi AURA LUXE! I want to get a digital flagship quote for our salon and spa in 24 hours.' },
-    { label: 'Salon & Spa Flagship Inquiry', text: 'Hi AURA LUXE! I saw the Lumière Salon and Spa flagship preview and want a bespoke digital flagship for our brand.' },
-    { label: 'Commission Bespoke Flagship', text: 'Hi AURA LUXE! I would like to consult on launching our 24-hour luxury web experience.' }
+    { label: 'Get 2-Day Website Quote', text: 'Hi NEXORA DIGITAL! I want to get a working website ready in 2 days with hosting and deployment.' },
+    { label: 'Ask About Monthly Care & Maintenance', text: 'Hi NEXORA DIGITAL! I would like details on your monthly website care and maintenance plans.' },
+    { label: 'Discuss My Business Website', text: 'Hi NEXORA DIGITAL! I would like to schedule a quick consultation to build our business website.' }
   ];
 
   const handleSendPrompt = (text: string) => {
@@ -29,20 +29,21 @@ export const FloatingWhatsApp: React.FC = () => {
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#00FF9D]" />
               </span>
               <div>
-                <div className="text-xs font-bold text-white font-syne">AURA LUXE Desk</div>
-                <div className="text-[10px] text-[#00FF9D] font-mono-num">Online · Replies in ~10 mins</div>
+                <div className="text-xs font-bold text-white font-syne">NEXORA DIGITAL Desk</div>
+                <div className="text-[10px] text-[#00FF9D] font-mono-num">Online · Fast Response</div>
               </div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
               className="text-[#94a3b8] hover:text-white p-1"
+              aria-label="Close chat helper"
             >
               <X className="w-4 h-4" />
             </button>
           </div>
 
           <p className="text-xs text-[#cbd5e1] mb-3 leading-relaxed">
-            Select a quick query to start a direct consultation:
+            Select a quick question or send your brief:
           </p>
 
           <div className="space-y-2">
@@ -60,7 +61,7 @@ export const FloatingWhatsApp: React.FC = () => {
 
           <div className="pt-3 mt-3 border-t border-[#251d45] text-center">
             <span className="text-[10px] text-[#94a3b8] font-mono-num">
-              100% Free · No Obligation
+              100% Free Consultation · No Obligation
             </span>
           </div>
         </div>
