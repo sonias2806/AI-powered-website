@@ -2,19 +2,11 @@
 
 @layer base {
   :root {
-    --theme-primary: #6366F1;
-    --theme-secondary: #06B6D4;
-    --theme-accent: #3B82F6;
-    --theme-glow: rgba(99, 102, 241, 0.25);
-    --theme-border: rgba(99, 102, 241, 0.4);
-  }
-
-  [data-theme="indigo"] {
-    --theme-primary: #6366F1;
-    --theme-secondary: #06B6D4;
-    --theme-accent: #3B82F6;
-    --theme-glow: rgba(99, 102, 241, 0.25);
-    --theme-border: rgba(99, 102, 241, 0.4);
+    --theme-primary: #FFB800;
+    --theme-secondary: #EC4899;
+    --theme-accent: #8B5CF6;
+    --theme-glow: rgba(255, 184, 0, 0.25);
+    --theme-border: rgba(255, 184, 0, 0.4);
   }
 
   [data-theme="gold"] {

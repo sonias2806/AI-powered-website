@@ -6,19 +6,19 @@ interface ThreeCanvasBackdropProps {
   themeId?: ThemeId;
 }
 
-export const ThreeCanvasBackdrop: React.FC<ThreeCanvasBackdropProps> = ({ themeId = 'indigo' }) => {
+export const ThreeCanvasBackdrop: React.FC<ThreeCanvasBackdropProps> = ({ themeId = 'gold' }) => {
   const mountRef = useRef<HTMLDivElement>(null);
   const colorsRef = useRef<{ c1: THREE.Color; c2: THREE.Color; c3: THREE.Color }>({
-    c1: new THREE.Color('#6366F1'),
-    c2: new THREE.Color('#06B6D4'),
-    c3: new THREE.Color('#3B82F6')
+    c1: new THREE.Color('#FFB800'),
+    c2: new THREE.Color('#EC4899'),
+    c3: new THREE.Color('#8B5CF6')
   });
   const icoMeshRef = useRef<THREE.Mesh | null>(null);
   const icoMesh2Ref = useRef<THREE.Mesh | null>(null);
   const pointsRef = useRef<THREE.Points | null>(null);
 
   useEffect(() => {
-    const active = THEMES[themeId] || THEMES.indigo;
+    const active = THEMES[themeId] || THEMES.gold;
     const c1 = new THREE.Color(active.primary);
     const c2 = new THREE.Color(active.secondary);
     const c3 = new THREE.Color(active.accent);

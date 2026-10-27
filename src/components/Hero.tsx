@@ -26,14 +26,14 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({
   onOpenConsultation,
-  activeThemeId = 'indigo',
+  activeThemeId = 'gold',
   onCycleTheme
 }) => {
   const [viewMode, setViewMode] = useState<'photo' | 'interactive'>('photo');
 
   const triggerLaunchConfetti = () => {
     try {
-      const active = THEMES[activeThemeId] || THEMES.indigo;
+      const active = THEMES[activeThemeId] || THEMES.gold;
       confetti({
         particleCount: 65,
         spread: 75,
@@ -46,7 +46,7 @@ export const Hero: React.FC<HeroProps> = ({
     onOpenConsultation();
   };
 
-  const currentTheme = THEMES[activeThemeId] || THEMES.indigo;
+  const currentTheme = THEMES[activeThemeId] || THEMES.gold;
 
   return (
     <section className="relative pt-32 sm:pt-36 pb-20 sm:pb-28 px-4 sm:px-6 lg:px-8 overflow-hidden">

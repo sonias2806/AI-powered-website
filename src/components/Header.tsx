@@ -17,7 +17,7 @@ export const Header: React.FC<HeaderProps> = ({
   onSelectContact,
   soundEnabled = false,
   onToggleSound,
-  colorTheme = 'indigo',
+  colorTheme = 'gold',
   onCycleTheme
 }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -32,7 +32,7 @@ export const Header: React.FC<HeaderProps> = ({
     { label: 'FAQ', href: '#faq' }
   ];
 
-  const currentTheme = THEMES[colorTheme] || THEMES.indigo;
+  const currentTheme = THEMES[colorTheme] || THEMES.gold;
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#07060e]/90 backdrop-blur-2xl border-b border-[#2e2354]/70 transition-all shadow-[0_4px_30px_rgba(0,0,0,0.5)]">

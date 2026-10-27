@@ -29,10 +29,10 @@ export default function App() {
   const [isSimulatorModalOpen, setIsSimulatorModalOpen] = useState(false);
   const [modalConceptId, setModalConceptId] = useState<string>('lumiere-salon-spa');
   const [soundEnabled, setSoundEnabled] = useState(false);
-  const [colorTheme, setColorTheme] = useState<ThemeId>('indigo');
+  const [colorTheme, setColorTheme] = useState<ThemeId>('gold');
   const [showThemeToast, setShowThemeToast] = useState(false);
 
-  const themeOrder: ThemeId[] = ['indigo', 'gold', 'emerald', 'crimson', 'violet'];
+  const themeOrder: ThemeId[] = ['gold', 'emerald', 'crimson', 'violet'];
 
   const handleToggleSound = () => {
     const nextState = soundManager.toggle();
@@ -97,7 +97,7 @@ export default function App() {
     }
   };
 
-  const currentThemeConfig = THEMES[colorTheme] || THEMES.indigo;
+  const currentThemeConfig = THEMES[colorTheme] || THEMES.gold;
 
   return (
     <div

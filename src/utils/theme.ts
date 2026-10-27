@@ -1,5 +1,5 @@
 export interface ThemeConfig {
-  id: 'indigo' | 'gold' | 'emerald' | 'crimson' | 'violet';
+  id: 'gold' | 'emerald' | 'crimson' | 'violet';
   name: string;
   badge: string;
   primary: string;
@@ -13,19 +13,6 @@ export interface ThemeConfig {
 }
 
 export const THEMES: Record<string, ThemeConfig> = {
-  indigo: {
-    id: 'indigo',
-    name: 'Electric Indigo',
-    badge: 'Tech & SaaS',
-    primary: '#6366F1',
-    secondary: '#06B6D4',
-    accent: '#3B82F6',
-    glow: 'rgba(99, 102, 241, 0.25)',
-    border: 'rgba(99, 102, 241, 0.4)',
-    bgGradient: 'from-[#6366F1] via-[#06B6D4] to-[#3B82F6]',
-    buttonGradient: 'bg-gradient-to-r from-[#6366F1] via-[#06B6D4] to-[#3B82F6]',
-    particleColors: ['#6366F1', '#06B6D4', '#3B82F6']
-  },
   gold: {
     id: 'gold',
     name: 'Obsidian Gold',
@@ -80,4 +67,4 @@ export const THEMES: Record<string, ThemeConfig> = {
   }
 };
 
-export type ThemeId = 'indigo' | 'gold' | 'emerald' | 'crimson' | 'violet';
+export type ThemeId = 'gold' | 'emerald' | 'crimson' | 'violet';
