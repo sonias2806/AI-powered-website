@@ -113,18 +113,6 @@ export const Hero: React.FC<HeroProps> = ({
             <Eye className="w-4 h-4 text-[var(--theme-primary)]" />
             <span>View Working Templates</span>
           </a>
-
-          {/* Quick theme switcher button in Hero for prospective clients */}
-          {onCycleTheme && (
-            <button
-              onClick={onCycleTheme}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 font-space font-bold text-xs bg-[#120f26] hover:bg-[#1a1538] border border-[var(--theme-border)] text-[#cbd5e1] hover:text-white px-5 py-4 rounded-2xl transition-all hover:scale-105"
-              title="Click to change website color combination"
-            >
-              <Palette className="w-4 h-4 text-[var(--theme-secondary)] animate-pulse" />
-              <span>Theme: {currentTheme.name} (Click to Change)</span>
-            </button>
-          )}
         </div>
 
         {/* 4 Core Pillars Strip (Truthful technical & delivery metrics) */}

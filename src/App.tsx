@@ -242,24 +242,6 @@ export default function App() {
         </section>
       </main>
 
-      {/* Floating Theme Palette Switcher Pill (Quick-access anywhere on page) */}
-      <div className="fixed bottom-24 right-5 z-40 hidden sm:flex flex-col items-end gap-2 pointer-events-auto">
-        <button
-          onClick={handleCycleTheme}
-          className="group flex items-center gap-2.5 px-3.5 py-2.5 rounded-2xl bg-[#0f0c22]/95 hover:bg-[#1a1438] border border-[var(--theme-border)] text-xs font-space font-bold text-white shadow-2xl backdrop-blur-xl transition-all hover:scale-105 cursor-pointer"
-          title="Click to cycle website color theme"
-          aria-label="Change website color theme"
-        >
-          <div className="w-5 h-5 rounded-lg flex items-center justify-center transition-transform group-hover:rotate-45" style={{ backgroundColor: currentThemeConfig.primary }}>
-            <Palette className="w-3 h-3 text-black stroke-[2.5]" />
-          </div>
-          <div className="text-left">
-            <div className="text-[10px] text-[#94a3b8] uppercase tracking-wider leading-none">Click to change theme</div>
-            <div className="text-xs font-bold leading-tight" style={{ color: currentThemeConfig.primary }}>{currentThemeConfig.name}</div>
-          </div>
-        </button>
-      </div>
-
       {/* Theme Changed Toast Notification */}
       {showThemeToast && (
         <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-[#120e29]/95 border border-[var(--theme-border)] text-white px-5 py-2.5 rounded-2xl shadow-2xl backdrop-blur-2xl flex items-center gap-2.5 text-xs font-space animate-fade-in">
